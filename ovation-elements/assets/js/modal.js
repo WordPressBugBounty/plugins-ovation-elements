@@ -28,9 +28,9 @@
                     <div class="ova-elems-side-panel-btn-wrap not-background">
                         <a class="ova-elems-demo-btn is-theme" href="`+ ova_elems_modal_js.demo_btn +`" target="_blank" >Live Demo</a>
                         <a class="ova-elems-buy-now-btn is-theme" href="`+ ova_elems_modal_js.buy_pro +`" target="_blank" >Buy Now</a>
-                        <a class="ova-elems-docs-btn is-theme" href="`+ ova_elems_modal_js.free_doc +`" target="_blank" >Documentation</a>
+                        <a class="ova-elems-docs-btn is-theme" href="`+ ova_elems_modal_js.free_doc +`" target="_blank" >Guide</a>
                     </div>
-                    <a class="ova-elems-bundle-btn is-theme" href="https://www.ovationthemes.com/products/wordpress-bundle" target="_blank" >Wordpress Theme Bundle (90+ Theme at Just $89)</a>
+                    <a class="ova-elems-bundle-btn is-theme" href="https://www.ovationthemes.com/products/wordpress-bundle" target="_blank" >Wordpress Theme Bundle (100+ Theme at Just $89)</a>
                 </div>`);
             }
         }
