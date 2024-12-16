@@ -3,7 +3,7 @@
  * Plugin Name:       Ovation Elements
  * Plugin URI:        
  * Description:       Transform your site with captivating sliders. Perfect for beginners and advanced users. Create and customize with our ultimate slider plugin.
- * Version:           1.0.7
+ * Version:           1.0.8
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            pewilliams
@@ -23,7 +23,7 @@ define( 'OVA_ELEMS_DIR', plugin_dir_path( OVA_ELEMS_FILE ) );
 define( 'OVA_ELEMS_URL', plugins_url( '/', OVA_ELEMS_FILE ) );
 define( 'OVA_ELEMS_LICENSE_ENDPOINT', 'https://license.ovationthemes.com/api/public/' );
 
-define( 'OVA_ELEMS_VER', '1.0.7' );
+define( 'OVA_ELEMS_VER', '1.0.8' );
 
 // Include necessary files
 include(plugin_dir_path(__FILE__) . 'includes/admin-settings.php');
@@ -32,7 +32,7 @@ include(plugin_dir_path(__FILE__) . 'ajax/ajax.php');
 
 function ova_elems_admin_scripts($hook) {
 
-    if ($hook == 'toplevel_page_ovation_elements' || $hook == 'ovation-elements_page_select-template' || $hook == 'admin_page_edit-slider-template-template1' || $hook == 'admin_page_edit-slider-template-template2' || $hook == 'admin_page_edit-slider-template-template3' || $hook == 'admin_page_edit-slider-template-template4' || $hook == 'admin_page_edit-slider-template-template5') {
+    if ($hook == 'toplevel_page_ovation_elements' || $hook == 'ovation-elements_page_select-template' || $hook == 'admin_page_edit-slider-template-template1' || $hook == 'admin_page_edit-slider-template-template2' || $hook == 'admin_page_edit-slider-template-template3' || $hook == 'admin_page_edit-slider-template-template4' || $hook == 'admin_page_edit-slider-template-template5' || $hook == 'ot-elements_page_select-template') {
         
         wp_enqueue_style('ova-elems-bootstrap-css', plugin_dir_url(__FILE__) . 'assets/css/bootstrap.min.css', array(), OVA_ELEMS_VER);
     }
@@ -80,8 +80,16 @@ function ova_elems_enqueue_scripts($hook) {
     wp_enqueue_style('ova-elems-font-awesome', plugin_dir_url(__FILE__) . 'assets/css/font.all.min.css', array(), OVA_ELEMS_VER);
     wp_enqueue_style('ova-elems-modal-css', OVA_ELEMS_URL . 'assets/css/modal.css', array(), OVA_ELEMS_VER);
 
-      // Enqueue Bootstrap CSS
-      wp_enqueue_script('jquery');
+    wp_enqueue_script(
+        'ova-elems-redirect-js',
+        OVA_ELEMS_URL . 'assets/js/redirect.js',
+        array( 'jquery' ),
+        OVA_ELEMS_VER,
+        true
+    );
+
+    // Enqueue Bootstrap CSS
+    wp_enqueue_script('jquery');
     if (isset($_GET['page']) && $_GET['page'] == 'ovation_elements') {
       
         wp_enqueue_style('ova-elems-bootstrap-css', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', array(), OVA_ELEMS_VER);

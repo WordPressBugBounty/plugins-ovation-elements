@@ -84,13 +84,11 @@ add_action('admin_init', 'ova_elems_redirect_add_new');
 
 // added new menue 
 
-function ova_elems_slider_add_menu_pages()
-{
-
+function ova_elems_slider_add_menu_pages(){
 
     add_menu_page(
         'Ovation Elements',
-        'Ovation Elements',
+        'OT Elements',
         'manage_options',
         'ovation_elements',
         'ova_elems_slider_dashboard_page', // Dashboard callback function
@@ -99,8 +97,8 @@ function ova_elems_slider_add_menu_pages()
     );
     add_submenu_page(
         'ovation_elements',
-        'Select Template',
-        'Select Template',
+        'Slider Templates',
+        'Slider Templates',
         'manage_options',
         'select-template',
         'ova_elems_slider_select_template_page'
@@ -116,7 +114,14 @@ function ova_elems_slider_add_menu_pages()
         ''
     );
 
-
+    add_submenu_page(
+        'ovation_elements',
+        'Go Pro',
+        'Go Pro',
+        'manage_options',
+        'ovation_elements',
+        ''
+    );
 
     add_submenu_page(
         'edit.php?post_type=ova_elems',
@@ -264,18 +269,17 @@ function ova_elems_slider_dashboard_page() {
                     </text>
                 </g>
             </svg>
-            <a href="<?php echo esc_url('https://wordpress.org/support/plugin/ovation-elements/'); ?>" class="ov-header-review-btn" target="_blank" rel="noopener noreferrer">Review
-                Now</a>
+            <a href="<?php echo esc_url('https://www.ovationthemes.com/products/ovation-elements-pro'); ?>" class="ov-header-review-btn" target="_blank" rel="noopener noreferrer">Get Pro</a>
         </div>
      <!-- <div class="container mt-5"> -->
       <!-- Tabs Navigation -->
       <ul class="nav nav-tabs" id="ova_elems_ovationSliderTabs" role="tablist" style="background-image:url('<?php echo esc_url(plugin_dir_url(__FILE__) . '../assets/images/nav-background.png'); ?>');">
 
       <li class="nav-item">
-                <a class="nav-link active" id="ova_elems_tab1-tab" data-toggle="tab" href="#ova_elems_tab1" role="tab" aria-controls="ova_elems_tab1" aria-selected="true">Dashboard</a>
+                <a class="nav-link" id="ova_elems_tab1-tab" data-toggle="tab" href="#ova_elems_tab1" role="tab" aria-controls="ova_elems_tab1" aria-selected="true">Dashboard</a>
             </li>
         <li class="nav-item">
-          <a class="nav-link" id="ova_elems_tab2-tab" data-toggle="tab" href="#ova_elems_tab2" role="tab" aria-controls="ova_elems_tab2" aria-selected="false">Block Themes</a>
+          <a class="nav-link active" id="ova_elems_tab2-tab" data-toggle="tab" href="#ova_elems_tab2" role="tab" aria-controls="ova_elems_tab2" aria-selected="false">Block Themes</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="ova_elems_tab3-tab" data-toggle="tab" href="#ova_elems_tab3" role="tab" aria-controls="ova_elems_tab3" aria-selected="false">Post Type</a>
@@ -293,11 +297,11 @@ function ova_elems_slider_dashboard_page() {
   
       <!-- Tabs Content -->
       <div class="tab-content" id="ova_elems_ovationSliderTabsContent">
-        <div class="tab-pane fade show active" id="ova_elems_tab1" role="tabpanel" aria-labelledby="ova_elems_tab1-tab">
+        <div class="tab-pane fade" id="ova_elems_tab1" role="tabpanel" aria-labelledby="ova_elems_tab1-tab">
           <?php include(plugin_dir_path(__FILE__) . 'ova-elems-tab1.php'); ?>
         </div>
   
-        <div class="tab-pane fade" id="ova_elems_tab2" role="tabpanel" aria-labelledby="ova_elems_tab2-tab">
+        <div class="tab-pane fade show active" id="ova_elems_tab2" role="tabpanel" aria-labelledby="ova_elems_tab2-tab">
           <?php include(plugin_dir_path(__FILE__) . 'ova-elems-tab5.php'); ?>
         </div>
   
