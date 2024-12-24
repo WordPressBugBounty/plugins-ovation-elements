@@ -3,7 +3,7 @@
  * Plugin Name:       Ovation Elements
  * Plugin URI:        
  * Description:       Transform your site with captivating sliders. Perfect for beginners and advanced users. Create and customize with our ultimate slider plugin.
- * Version:           1.0.8
+ * Version:           1.0.9
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            pewilliams
