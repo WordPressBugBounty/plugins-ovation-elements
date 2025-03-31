@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name:       Ovation Elements
- * Plugin URI:        
+ * Plugin URI:        https://www.ovationthemes.com/products/ovation-elements-pro
  * Description:       Transform your site with captivating sliders. Perfect for beginners and advanced users. Create and customize with our ultimate slider plugin.
- * Version:           1.0.9
+ * Version:           1.1.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            pewilliams
@@ -23,43 +23,94 @@ define( 'OVA_ELEMS_DIR', plugin_dir_path( OVA_ELEMS_FILE ) );
 define( 'OVA_ELEMS_URL', plugins_url( '/', OVA_ELEMS_FILE ) );
 define( 'OVA_ELEMS_LICENSE_ENDPOINT', 'https://license.ovationthemes.com/api/public/' );
 
-define( 'OVA_ELEMS_VER', '1.0.8' );
+define( 'OVA_ELEMS_VER', '1.1.0' );
 
 // Include necessary files
 include(plugin_dir_path(__FILE__) . 'includes/admin-settings.php');
 include(plugin_dir_path(__FILE__) . 'includes/slider-shortcode.php');
 include(plugin_dir_path(__FILE__) . 'ajax/ajax.php');
 
+//enqueue script start
 function ova_elems_admin_scripts($hook) {
+    $is_premium_user = get_option('ovation_slider_is_premium', false);
 
-    if ($hook == 'toplevel_page_ovation_elements' || $hook == 'ovation-elements_page_select-template' || $hook == 'admin_page_edit-slider-template-template1' || $hook == 'admin_page_edit-slider-template-template2' || $hook == 'admin_page_edit-slider-template-template3' || $hook == 'admin_page_edit-slider-template-template4' || $hook == 'admin_page_edit-slider-template-template5' || $hook == 'ot-elements_page_select-template') {
-        
-        wp_enqueue_style('ova-elems-bootstrap-css', plugin_dir_url(__FILE__) . 'assets/css/bootstrap.min.css', array(), OVA_ELEMS_VER);
-    }
-    wp_enqueue_style('ova-elems-admin-css', plugin_dir_url(__FILE__) . 'assets/css/slider-admin.css', array(), OVA_ELEMS_VER);    
-    wp_enqueue_media();
-    
-    if ( $hook == 'admin_page_edit-slider-template-template1' ) {
-        wp_enqueue_script('ova-elems-template-1-scripts', plugin_dir_url(__FILE__) . 'assets/js/admin/template-1-scripts.js', array('jquery'), OVA_ELEMS_VER, true);
-    } elseif ( $hook == 'admin_page_edit-slider-template-template2' ) {
-        wp_enqueue_script('ova-elems-template-2-scripts', plugin_dir_url(__FILE__) . 'assets/js/admin/template-2-scripts.js', array('jquery'), OVA_ELEMS_VER, true);
-    } elseif ( $hook == 'admin_page_edit-slider-template-template3' ) {
-        wp_enqueue_script('ova-elems-template-3-scripts', plugin_dir_url(__FILE__) . 'assets/js/admin/template-3-scripts.js', array('jquery'), OVA_ELEMS_VER, true);
-    } elseif ( $hook == 'admin_page_edit-slider-template-template4' ) {
-        wp_enqueue_script('ova-elems-template-4-scripts', plugin_dir_url(__FILE__) . 'assets/js/admin/template-4-scripts.js', array('jquery'), OVA_ELEMS_VER, true);
-        wp_localize_script(
-            'ova-elems-template-4-scripts', 
-            'ova_elems_template_script', 
-            array(
-                'ajaxurl' => admin_url('admin-ajax.php')
-            )
-        );
-    } elseif ( $hook == 'admin_page_edit-slider-template-template5' ) {
-        wp_enqueue_script('ova-elems-template-5-scripts', plugin_dir_url(__FILE__) . 'assets/js/admin/template-5-scripts.js', array('jquery'), OVA_ELEMS_VER, true);
-    }
+    // Define all admin pages 
+    $admin_pages = [
+        'toplevel_page_ovation_elements',
+        'ovation-elements_page_select-template',
+        'admin_page_edit-slider-template-template1',
+        'admin_page_edit-slider-template-template2',
+        'admin_page_edit-slider-template-template3',
+        'admin_page_edit-slider-template-template4',
+        'admin_page_edit-slider-template-template5',
+        'admin_page_edit-slider-template-template6',
+        'admin_page_edit-slider-template-template7',
+        'admin_page_edit-slider-template-template8',
+        'ot-elements_page_select-template',
+        'edit.php?post_type=ova_elems' 
+    ];
 
+    if (in_array($hook, $admin_pages) || ($hook === 'edit.php' && isset($_GET['post_type']) && $_GET['post_type'] === 'ova_elems')) {
+        // Enqueue common styles and scripts for admin pages
+        wp_enqueue_style('ova-elems-mod-bootstrap-css', plugin_dir_url(__FILE__) . 'assets/css/bootstrap.min.css', [], OVA_ELEMS_VER);
+        wp_enqueue_script('ova-elems-mod-bootstrap-js', plugin_dir_url(__FILE__) . 'assets/js/bootstrap.bundle.min.js', ['jquery'], OVA_ELEMS_VER, true);
+        wp_enqueue_style('ova-elems-admin-css-slider', plugin_dir_url(__FILE__) . 'assets/css/preview-slider.css', [], OVA_ELEMS_VER);
+        wp_enqueue_media();
+    }
+    wp_enqueue_style('ova-elems-admin-css', plugin_dir_url(__FILE__) . 'assets/css/slider-admin.css', [], OVA_ELEMS_VER);
+
+    // Define template-specific scripts
+    $templates = [
+        'admin_page_edit-slider-template-template1' => 'template-1-scripts',
+        'admin_page_edit-slider-template-template2' => 'template-2-scripts',
+        'admin_page_edit-slider-template-template3' => 'template-3-scripts',
+        'admin_page_edit-slider-template-template4' => 'template-4-scripts',
+        'admin_page_edit-slider-template-template5' => 'template-5-scripts',
+        'admin_page_edit-slider-template-template6' => 'template-6-scripts',
+        'admin_page_edit-slider-template-template7' => 'template-7-scripts',
+        'admin_page_edit-slider-template-template8' => 'template-8-scripts',
+    ];
+
+    if (array_key_exists($hook, $templates)) {
+        $script_handle = 'ova-elems-' . $templates[$hook];
+        $script_path = plugin_dir_url(__FILE__) . 'assets/js/admin/' . $templates[$hook] . '.js';
+
+        wp_enqueue_script($script_handle, $script_path, ['jquery'], OVA_ELEMS_VER, true);
+
+        wp_localize_script($script_handle, 'sliderData', [
+            'isPremiumUser' => $is_premium_user,
+            'maxSlides' => 2,
+        ]);
+
+        // Localize script 
+        if ($hook == 'admin_page_edit-slider-template-template1') {
+
+            wp_localize_script($script_handle, 'wpVars', [
+                'ajaxUrl' => admin_url('admin-ajax.php'),
+                //'nonce'   => wp_create_nonce('upload_cropped_image_nonce'),
+            ]);
+        }
+
+        if ($hook == 'admin_page_edit-slider-template-template2') {
+            wp_localize_script($script_handle, 'OvimageData', [
+                'plugin_url' => plugin_dir_url(__FILE__),
+            ]);
+        }
+
+        if ($hook == 'admin_page_edit-slider-template-template4' || $hook == 'admin_page_edit-slider-template-template7') {
+            wp_localize_script($script_handle, 'ova_elems_template_script', [
+                'ajaxurl' => admin_url('admin-ajax.php'),
+            ]);
+        }
+
+        if ($hook == 'admin_page_edit-slider-template-template6') {
+            wp_enqueue_script('ova-elems-bootstrap-js', plugin_dir_url(__FILE__) . 'assets/js/bootstrap.bundle.min.js', ['jquery'], OVA_ELEMS_VER, true);
+        }
+    }
 }
+
 add_action('admin_enqueue_scripts', 'ova_elems_admin_scripts');
+//enqueue scripts end 
 
 function ova_elems_admin_enqueue_scripts($hook_suffix) {
     if ($hook_suffix !== 'toplevel_page_ova-elems') {
@@ -92,16 +143,13 @@ function ova_elems_enqueue_scripts($hook) {
     wp_enqueue_script('jquery');
     if (isset($_GET['page']) && $_GET['page'] == 'ovation_elements') {
       
-        wp_enqueue_style('ova-elems-bootstrap-css', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', array(), OVA_ELEMS_VER);
+        wp_enqueue_style('ova-elems-bootstrap-css', plugin_dir_url(__FILE__) . 'assets/css/bootstrap.min.css', [], OVA_ELEMS_VER);
         // Enqueue Bootstrap JS and its dependency Popper.js
-        wp_enqueue_script('ova-elems-popper-js', 'https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js', array('jquery'), OVA_ELEMS_VER, true);
-        wp_enqueue_script('ova-elems-bootstrap-js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', array('jquery', 'ova-elems-popper-js'), OVA_ELEMS_VER, true);
-
-       
+        wp_enqueue_script('ova-elems-popper-js', plugin_dir_url(__FILE__) . 'assets/js/popper.min.js', ['jquery'], OVA_ELEMS_VER, true);
+        wp_enqueue_script('ova-elems-dash-bootstrap-js', plugin_dir_url(__FILE__) . 'assets/js/bootstrap.min.js', array('jquery', 'ova-elems-popper-js'), OVA_ELEMS_VER, true);
     }
 }
 add_action('admin_enqueue_scripts', 'ova_elems_enqueue_scripts');
-//end 
 
 // Register activation hook
 register_activation_hook(__FILE__, 'ova_elems_activate');

@@ -76,7 +76,7 @@ function ova_elems_redirect_add_new()
 {
     global $pagenow;
     if ($pagenow == 'post-new.php' && isset($_GET['post_type']) && $_GET['post_type'] == 'ova_elems') {
-        wp_redirect(admin_url('edit.php?post_type=ova_elems&page=select-template'));
+        wp_redirect(admin_url('admin.php?page=select-template'));
         exit;
     }
 }
@@ -84,7 +84,8 @@ add_action('admin_init', 'ova_elems_redirect_add_new');
 
 // added new menue 
 
-function ova_elems_slider_add_menu_pages(){
+function ova_elems_slider_add_menu_pages()
+{
 
     add_menu_page(
         'Ovation Elements',
@@ -114,14 +115,28 @@ function ova_elems_slider_add_menu_pages(){
         ''
     );
 
-    add_submenu_page(
-        'ovation_elements',
-        'Go Pro',
-        'Go Pro',
-        'manage_options',
-        'ovation_elements',
-        ''
-    );
+
+    // Check if the premium plugin is activated
+    if (is_plugin_active('ovation-elements-pro/ovation-elements-pro.php')) {
+        add_submenu_page(
+            'ovation_elements',
+            'License Key',
+            'License Key',
+            'manage_options',
+            'license-key',
+            'ova_elems_license_key_page'
+        );
+    } else {
+        add_submenu_page(
+            'ovation_elements',
+            'Go Pro',
+            'Go Pro',
+            'manage_options',
+            'ovation_elements',
+            ''
+        );
+    }
+
 
     add_submenu_page(
         'edit.php?post_type=ova_elems',
@@ -179,6 +194,35 @@ function ova_elems_slider_add_menu_pages(){
     );
 
 
+
+    add_submenu_page(
+        'slider-templates',
+        'Edit Slider Template 6',
+        'Edit Slider Template 6',
+        'manage_options',
+        'edit-slider-template-template6',
+        'ova_elems_edit_page_template6'
+    );
+
+    add_submenu_page(
+        'slider-templates',
+        'Edit Slider Template 7',
+        'Edit Slider Template 7',
+        'manage_options',
+        'edit-slider-template-template7',
+        'ova_elems_edit_page_template7'
+    );
+
+    add_submenu_page(
+        'slider-templates',
+        'Edit Slider Template 8',
+        'Edit Slider Template 8',
+        'manage_options',
+        'edit-slider-template-template8',
+        'ova_elems_edit_page_template8'
+    );
+
+
 }
 add_action('admin_menu', 'ova_elems_slider_add_menu_pages');
 
@@ -194,6 +238,9 @@ function ova_elems_hide_admin_notices() {
         'edit-slider-template-template3',
         'edit-slider-template-template4',
         'edit-slider-template-template5',
+        'edit-slider-template-template6',
+        'edit-slider-template-template7',
+        'edit-slider-template-template8',
     ];
 
     foreach ($ova_plugin_pages as $ova_page) {
@@ -279,7 +326,7 @@ function ova_elems_slider_dashboard_page() {
                 <a class="nav-link" id="ova_elems_tab1-tab" data-toggle="tab" href="#ova_elems_tab1" role="tab" aria-controls="ova_elems_tab1" aria-selected="true">Dashboard</a>
             </li>
         <li class="nav-item">
-          <a class="nav-link active" id="ova_elems_tab2-tab" data-toggle="tab" href="#ova_elems_tab2" role="tab" aria-controls="ova_elems_tab2" aria-selected="false">Block Themes</a>
+          <a class="nav-link active" id="ova_elems_tab2-tab" data-toggle="tab" href="#ova_elems_tab2" role="tab" aria-controls="ova_elems_tab2" aria-selected="false">Sliders</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="ova_elems_tab3-tab" data-toggle="tab" href="#ova_elems_tab3" role="tab" aria-controls="ova_elems_tab3" aria-selected="false">Post Type</a>
@@ -288,7 +335,7 @@ function ova_elems_slider_dashboard_page() {
           <a class="nav-link" id="ova_elems_tab4-tab" data-toggle="tab" href="#ova_elems_tab4" role="tab" aria-controls="ova_elems_tab4" aria-selected="false">Page Builder</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="ova_elems_tab5-tab" data-toggle="tab" href="#ova_elems_tab5" role="tab" aria-controls="ova_elems_tab5" aria-selected="false">Sliders</a>
+          <a class="nav-link" id="ova_elems_tab5-tab" data-toggle="tab" href="#ova_elems_tab5" role="tab" aria-controls="ova_elems_tab5" aria-selected="false"> Block Themes</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="ova_elems_tab6-tab" data-toggle="tab" href="#ova_elems_tab6" role="tab" aria-controls="ova_elems_tab6" aria-selected="false">Support</a>
@@ -302,7 +349,7 @@ function ova_elems_slider_dashboard_page() {
         </div>
   
         <div class="tab-pane fade show active" id="ova_elems_tab2" role="tabpanel" aria-labelledby="ova_elems_tab2-tab">
-          <?php include(plugin_dir_path(__FILE__) . 'ova-elems-tab5.php'); ?>
+          <?php include(plugin_dir_path(__FILE__) . 'ova-elems-tab2.php'); ?>
         </div>
   
         <div class="tab-pane fade" id="ova_elems_tab3" role="tabpanel" aria-labelledby="ova_elems_tab3-tab">
@@ -314,7 +361,7 @@ function ova_elems_slider_dashboard_page() {
         </div>
   
         <div class="tab-pane fade" id="ova_elems_tab5" role="tabpanel" aria-labelledby="ova_elems_tab5-tab">
-          <?php include(plugin_dir_path(__FILE__) . 'ova-elems-tab2.php'); ?>
+          <?php include(plugin_dir_path(__FILE__) . 'ova-elems-tab5.php'); ?>
         </div>
   
         <div class="tab-pane fade" id="ova_elems_tab6" role="tabpanel" aria-labelledby="ova_elems_tab6-tab">
@@ -324,6 +371,7 @@ function ova_elems_slider_dashboard_page() {
     </div>
     <?php
 }
+
 
 //end
 
@@ -337,9 +385,6 @@ function ova_elems_handle_template_selection()
     if (!current_user_can('edit_posts')) {
         wp_die(esc_html__('You do not have sufficient permissions to access this page.', 'ovation-elements'));
     }
-
-      // Verify nonce
-  
 
     if (isset($_GET['template_id'])) {
         $template_id = absint($_GET['template_id']);
@@ -363,11 +408,25 @@ function ova_elems_handle_template_selection()
         }
     }
 
-    wp_redirect(admin_url('edit.php?post_type=ova_elems&page=select-template'));
+    wp_redirect(admin_url('admin.php?page=select-template'));
     exit;
 }
 add_action('admin_post_select_template', 'ova_elems_handle_template_selection');
 
+
+//changes here by removing old for trash 
+
+function ova_elems_custom_trash_action() {
+    if (isset($_GET['action']) && $_GET['action'] == 'trash' && isset($_GET['post']) && get_post_type($_GET['post']) == 'ova_elems') {
+        $post_id = $_GET['post'];
+        if (current_user_can('delete_post', $post_id)) {
+            wp_trash_post($post_id);
+            wp_redirect(admin_url('edit.php?post_type=ova_elems'));
+            exit;
+        }
+    }
+}
+add_action('admin_init', 'ova_elems_custom_trash_action');
 
 // Add columns to the post list
 function ova_elems_add_custom_columns($columns)
@@ -385,17 +444,40 @@ function ova_elems_add_custom_columns($columns)
 add_filter('manage_ova_elems_posts_columns', 'ova_elems_add_custom_columns');
 
 // Populate custom columns with data
+
 function ova_elems_custom_column_data($column, $post_id)
 {
     if ($column == 'custom_template') {
         $template_id = get_post_meta($post_id, '_ova_elems_template_id', true);
         echo $template_id ? 'Template ' . esc_html($template_id) : 'N/A';
     } elseif ($column == 'shortcode') {
-        $template_id = get_post_meta($post_id, '_ova_elems_template_id', true);
-        if ($template_id) {
-            echo '[ova-elems-slider-template id="' . esc_attr($post_id) . '"]';
+        $is_premium_user = get_option('ovation_slider_is_premium', false);
+
+        $args = array(
+            'post_type'   => 'ova_elems',
+            'post_status' => 'publish',
+            'posts_per_page' => -1,
+            'orderby' => 'date', 
+            'order'   => 'ASC',
+        );
+        $existing_sliders = get_posts($args);
+        $free_sliders = array_slice($existing_sliders, 0, 100);
+        $is_locked = true;
+        if ($is_premium_user) {
+            $is_locked = false;
         } else {
-            echo 'N/A';
+            foreach ($free_sliders as $free_slider) {
+                if ($free_slider->ID == $post_id) {
+                    $is_locked = false;
+                    break;
+                }
+            }
+        }
+
+        if ($is_locked) {
+            echo '<span class="dashicons dashicons-lock"></span> ' . esc_html__('Locked', 'ovation-elements');
+        } else {
+            echo '[ova-elems-slider-template id="' . esc_attr($post_id) . '"]';
         }
     }
 }
@@ -452,6 +534,19 @@ function ova_elems_edit_page_template5() {
     include(plugin_dir_path(__FILE__) . 'templates/edit-slider-template5.php');
 }
 
+function ova_elems_edit_page_template6()
+{
+    include (plugin_dir_path(__FILE__) . 'templates/edit-slider-template6.php');
+}
+
+function ova_elems_edit_page_template7() {
+    include(plugin_dir_path(__FILE__) . 'templates/edit-slider-template7.php');
+}
+
+function ova_elems_edit_page_template8() {
+    include(plugin_dir_path(__FILE__) . 'templates/edit-slider-template8.php');
+}
+
 //end 
 
 //new redirect_to_edit_link
@@ -478,6 +573,18 @@ function ova_elems_redirect_to_edit_page()
             case 5:
                 wp_redirect(admin_url('admin.php?page=edit-slider-template-template5&post=' . $post_id));
                 break;
+
+            case 6:
+                wp_redirect(admin_url('admin.php?page=edit-slider-template-template6&post=' . $post_id));
+                break;
+            case 7:
+                wp_redirect(admin_url('admin.php?page=edit-slider-template-template7&post=' . $post_id));
+                break;       
+            case 8:
+                wp_redirect(admin_url('admin.php?page=edit-slider-template-template8&post=' . $post_id));
+                break;       
+
+
                 default:
                 wp_redirect(admin_url('admin.php?page=edit-slider-template&post=' . $post_id));
                 break;
@@ -509,6 +616,18 @@ function ova_elems_edit_link($actions, $post)
             case 5:
                 $edit_link = admin_url('admin.php?page=edit-slider-template-template5&post=' . $post->ID);
                 break;
+
+            case 6:
+                $edit_link = admin_url('admin.php?page=edit-slider-template-template6&post=' . $post->ID);
+                break;
+            case 7:
+                $edit_link = admin_url('admin.php?page=edit-slider-template-template7&post=' . $post->ID);
+                break;   
+
+            case 8:
+                $edit_link = admin_url('admin.php?page=edit-slider-template-template8&post=' . $post->ID);
+                break;       
+
                 default:
                 $edit_link = admin_url('admin.php?page=edit-slider-template&post=' . $post->ID);
                 break;
@@ -523,6 +642,7 @@ function ova_elems_edit_link($actions, $post)
 // Template Selection Page
 function ova_elems_slider_select_template_page()
 {
+    $is_premium_user = get_option('ovation_slider_is_premium', false);
     ?>
     <div class="wrap">
         <div class="heading-container">
@@ -531,35 +651,51 @@ function ova_elems_slider_select_template_page()
             </div>
         </div>
         <div class="container-custom">
-            <div class="row">
-                <?php
-                $templates = array(
-                    array('id' => 1, 'title' => 'Business Slider Template', 'image' => OVA_ELEMS_URL . 'assets/images/template-1.png'),
-                    array('id' => 2, 'title' => 'Travel Slider Template', 'image' => OVA_ELEMS_URL . 'assets/images/template-2.png'),
-                    array('id' => 3, 'title' => 'Ecommerce Slider Template', 'image' => OVA_ELEMS_URL . 'assets/images/template-3.png'),
-                    array('id' => 4, 'title' => 'News Slider Template', 'image' => OVA_ELEMS_URL . 'assets/images/template-4.png'),
-                    array('id' => 5, 'title' => 'Food Slider Template', 'image' => OVA_ELEMS_URL . 'assets/images/template-5.png'),
-                );
-                foreach ($templates as $template) {
-                    ?>
-                    <div class="col-md-4 col-lg-4 col-12 mb-4">
-                        <div class="slider-card" style="">
-                            <div class="slider-image">
-                                <img class="card-img-top" src="<?php echo esc_url($template['image']); ?>"
-                                    alt="<?php echo esc_attr($template['title']); ?>">
-                            </div>
-                            <div class="heading-wrapper mt-2">
-                                <h5 class="card-title"><?php echo esc_html($template['title']); ?></h5>
+        <div class="row">
+            <?php
+            $templates = array(
+                array('id' => 1, 'title' => 'Business Slider Template', 'image' => OVA_ELEMS_URL . 'assets/images/template-1.png'),
+                array('id' => 2, 'title' => 'Travel Slider Template', 'image' => OVA_ELEMS_URL . 'assets/images/template-2.png'),
+                array('id' => 3, 'title' => 'Ecommerce Slider Template', 'image' => OVA_ELEMS_URL . 'assets/images/template-3.png'),
+                array('id' => 4, 'title' => 'News Slider Template', 'image' => OVA_ELEMS_URL . 'assets/images/template-4.png'),
+                array('id' => 5, 'title' => 'Food Slider Template', 'image' => OVA_ELEMS_URL . 'assets/images/template-5.png'),
+                array('id' => 6, 'title' => 'Restaurant Slider Template', 'image' => OVA_ELEMS_URL . 'assets/images/template-6.png'),
+                array('id' => 7, 'title' => 'Travel2 Slider Template', 'image' => OVA_ELEMS_URL . 'assets/images/template-7.png'),
+                array('id' => 8, 'title' => 'Education Slider Template', 'image' => OVA_ELEMS_URL . 'assets/images/template-8.png'),
+            );
+
+            foreach ($templates as $template) {
+                $is_pro_template = in_array($template['id'], [6, 7, 8]); // Mark templates 6, 7, 8 as Pro only
+                ?>
+                <div class="col-md-4 col-lg-4 col-12 mb-4">
+                    <div class="slider-card" style="">
+                        <div class="slider-image">
+                            <img class="card-img-top" src="<?php echo esc_url($template['image']); ?>"
+                                alt="<?php echo esc_attr($template['title']); ?>">
+                        </div>
+                        <div class="heading-wrapper mt-2">
+                            <h5 class="card-title"><?php echo esc_html($template['title']); ?></h5>
+                            <?php if ($is_premium_user || !$is_pro_template) { ?>
+                                <!-- Allow premium users or free templates -->
                                 <a href="<?php echo esc_url(admin_url('admin-post.php?action=create_ova_elems&template_id=' . $template['id'])); ?>"
                                     class="btn btn-primary">Select Template</a>
-                            </div>
+                            <?php } else { ?>
+                                <!-- Restrict Pro templates -->
+                                <button class="btn btn-secondary" disabled>Pro Only</button>
+                                <p class="mt-2">
+                                    <a href="https://www.ovationthemes.com/products/ovation-elements-pro" target="_blank" class="btn btn-link">
+                                        Upgrade to Pro
+                                    </a>
+                                </p>
+                            <?php } ?>
                         </div>
                     </div>
-                    <?php
-                }
-                ?>
-            </div>
+                </div>
+                <?php
+            }
+            ?>
         </div>
+    </div>
     </div>
     <?php
 }
@@ -605,6 +741,18 @@ function ova_elems_handle_create_slider()
                 case 5:
                     wp_redirect(admin_url('admin.php?page=edit-slider-template-template5&post=' . $post_id));
                     break;
+                case 6:
+                    wp_redirect(admin_url('admin.php?page=edit-slider-template-template6&post=' . $post_id));
+                    break;
+                case 7:
+                    wp_redirect(admin_url('admin.php?page=edit-slider-template-template7&post=' . $post_id));
+                    break;    
+                case 8:
+                    wp_redirect(admin_url('admin.php?page=edit-slider-template-template8&post=' . $post_id));
+                    break;     
+    
+
+
                 default:
                     wp_redirect(admin_url('admin.php?page=edit-slider-template&post=' . $post_id));
                     break;
@@ -636,10 +784,17 @@ function ova_elems_save_data(){
     $slide_images = isset($_POST['slide_images']) ? array_map('sanitize_text_field', wp_unslash($_POST['slide_images'])) : [];
     $slide_button_texts = isset($_POST['slide_button_texts']) ? array_map('sanitize_text_field', wp_unslash($_POST['slide_button_texts'])) : [];
     $slide_button_urls = isset($_POST['slide_button_urls']) ? array_map('esc_url_raw', wp_unslash($_POST['slide_button_urls'])) : [];
+
+    $slide_button2_texts = isset($_POST['slide_button2_texts']) ? array_map('sanitize_text_field', wp_unslash($_POST['slide_button2_texts'])) : [];
+    $slide_button2_urls = isset($_POST['slide_button2_urls']) ? array_map('esc_url_raw', wp_unslash($_POST['slide_button2_urls'])) : [];
     $slide_thumbnail_images = isset($_POST['slide_thumbnail_images']) ? array_map('sanitize_text_field', wp_unslash($_POST['slide_thumbnail_images'])) : [];
     $slide_thumbnail_titles = isset($_POST['slide_thumbnail_titles']) ? array_map('sanitize_text_field', wp_unslash($_POST['slide_thumbnail_titles'])) : [];
     
     $slide_head_tags = isset($_POST['slide_head_tags']) ? array_map('sanitize_text_field', wp_unslash($_POST['slide_head_tags'])) : [];
+    $slide_mini_head_images = isset($_POST['slide_mini_head_images']) ? array_map('sanitize_text_field', wp_unslash($_POST['slide_mini_head_images'])) : [];
+
+    $slide_courses = isset($_POST['slide_courses']) ? array_map('intval', wp_unslash($_POST['slide_courses'])) : []; // Added line
+    $slide_bg_color = isset($_POST['slide_bg_color']) ? array_map('sanitize_hex_color', wp_unslash($_POST['slide_bg_color'])) : [];
 
 
     foreach ($slide_titles as $index => $title) {
@@ -649,11 +804,19 @@ function ova_elems_save_data(){
             'image_id' => $slide_images[$index] ?? '',
             'button_text' => $slide_button_texts[$index] ?? '',
             'button_url' => $slide_button_urls[$index] ?? '',
+            'button2_text' => $slide_button2_texts[$index] ?? '',
+            'button2_url' => $slide_button2_urls[$index] ?? '',
             'thumbnail_image_id' => $slide_thumbnail_images[$index] ?? '',
             'thumbnail_title' => $slide_thumbnail_titles[$index] ?? '',
             'head_tag' => $slide_head_tags[$index] ?? '',
+            'mini_head_image' => $slide_mini_head_images[$index] ?? '', // New setting
+            'course_id' => $slide_courses[$index] ?? '', // Added field
+            'slide_bg_color' => $slide_bg_color[$index] ?? '',
         ];
     }
+
+    // print_r($slides);
+    // exit;
 
     update_post_meta($post_id, '_ova_elems_slides', maybe_serialize($slides));
 
@@ -679,19 +842,62 @@ function ova_elems_save_data(){
     $basketball_url = isset($_POST['basketball_url']) ? esc_url_raw(wp_unslash($_POST['basketball_url'])) : '';
     $twitter_url = isset($_POST['twitter_url']) ? esc_url_raw(wp_unslash($_POST['twitter_url'])) : '';    
 
+    $list_title = isset($_POST['list_title']) ? sanitize_text_field(wp_unslash($_POST['list_title'])) : '';
+    $list_description = isset($_POST['list_description']) ? sanitize_textarea_field(wp_unslash($_POST['list_description'])) : '';
+    $enter_list = isset($_POST['enter_list']) ? array_map('sanitize_text_field', array_map('trim', explode(',', wp_unslash($_POST['enter_list'])))) : [];
+
+    $ov_template_review_text = isset($_POST['ov_template_review_text']) ? sanitize_text_field(wp_unslash($_POST['ov_template_review_text'])) : '';
+    $ov_template_social_review_text = isset($_POST['ov_template_social_review_text']) ? sanitize_text_field(wp_unslash($_POST['ov_template_social_review_text'])) : '';
+
+    //$ov_template_review_no = isset($_POST['ov_template_review_no']) ? intval(wp_unslash($_POST['ov_template_review_no'])) : 0;
+    $ov_template_review_no = isset($_POST['ov_template_review_no']) ? sanitize_text_field(wp_unslash($_POST['ov_template_review_no'])) : '';
+
+    $slide_video_url = isset($_POST['slide_video_url']) ? esc_url_raw(wp_unslash($_POST['slide_video_url'])) : '';
+
+    $static_button_text = isset($_POST['static_button_text']) ? sanitize_text_field(wp_unslash($_POST['static_button_text'])) : '';
+    $static_button_url = isset($_POST['static_button_url']) ? esc_url_raw(wp_unslash($_POST['static_button_url'])) : '';
+
+    $static_button2_text = isset($_POST['static_button2_text']) ? sanitize_text_field(wp_unslash($_POST['static_button2_text'])) : '';
+    $static_button2_url = isset($_POST['static_button2_url']) ? esc_url_raw(wp_unslash($_POST['static_button2_url'])) : '';
+    $banner_font_size = isset($_POST['banner_font_size']) ? intval($_POST['banner_font_size']) : 18;
+    $heading_font_size = isset($_POST['heading_font_size']) ? intval($_POST['heading_font_size']) : 18;
+   
+    $head_font_size = isset($_POST['head_font_size']) ? intval($_POST['head_font_size']) : 18;
+    $button_font_size = isset($_POST['button_font_size']) ? intval($_POST['button_font_size']) : 18;
+    $button2_font_size = isset($_POST['button2_font_size']) ? intval($_POST['button2_font_size']) : 18;
+    $ov_mini_title_font_size = isset($_POST['ov_mini_title_font_size']) ? intval($_POST['ov_mini_title_font_size']) : 18;
+    $mini_description_font_size = isset($_POST['mini_description_font_size']) ? intval($_POST['mini_description_font_size']) : 18;
+    $slide_email_font_size = isset($_POST['slide_email_font_size']) ? intval($_POST['slide_email_font_size']) : 18;
+    $slide_no_font_size = isset($_POST['slide_no_font_size']) ? intval($_POST['slide_no_font_size']) : 18;
+    $list_title_font_size = isset($_POST['list_title_font_size']) ? intval($_POST['list_title_font_size']) : 'initial';
+    $list_description_font_size = isset($_POST['list_description_font_size']) ? intval($_POST['list_description_font_size']) : 'initial';
+    $list_content_font_size = isset($_POST['list_content_font_size']) ? intval($_POST['list_content_font_size']) : 'initial'; 
+    $review_text_font_size = isset($_POST['review_text_font_size']) ? intval($_POST['review_text_font_size']) : 18;  // New setting
+    $review_no_font_size = isset($_POST['review_no_font_size']) ? intval($_POST['review_no_font_size']) : 18;  // New setting
+    $static_button_text_font_size = isset($_POST['static_button_text_font_size']) ? intval($_POST['static_button_text_font_size']) : 18;
+    $title_head_font_size = isset($_POST['title_head_font_size']) ? intval($_POST['title_head_font_size']) : 20;
+    $static_loader_percentage = isset($_POST['static_loader_percentage']) ? intval($_POST['static_loader_percentage']) : 90; 
+
+    $ov_review_text_font_size = isset($_POST['ov_review_text_font_size']) ? intval($_POST['ov_review_text_font_size']) : 18;
+
+    $ov_social_text_font_size = isset($_POST['ov_social_text_font_size']) ? intval($_POST['ov_social_text_font_size']) : 18;
+
+    $video_bg_image = isset($_POST['video_bg_image']) ? esc_url($_POST['video_bg_image']) : '';
+
+    // bg image of 5 
+    $bg_slide_image = isset($_POST['bg_slide_image']) ? esc_url($_POST['bg_slide_image']) : '';
+
+
     $static_settings = [
         'corner_images' => $slide_corner_images,
         'mini_titles' => $slide_mini_titles,
         'mini_descriptions' => $slide_mini_descriptions,
         'mini_title2' => $slide_mini_title2,
         'mini_description2' => $slide_mini_description2,
-
-
         'slide_email'  => $slide_email,
         'slide_no'     => $slide_no,
 
         'background_color'     => $background_color,
-
         'mini_images_1' => $slide_mini_images_1,
         'mini_images_2' => $slide_mini_images_2,
         'instagram_url' => $instagram_url,
@@ -699,6 +905,51 @@ function ova_elems_save_data(){
         'youtube_url' => $youtube_url,
         'basketball_url' => $basketball_url,
         'twitter_url' => $twitter_url,
+        'slide_video_url' => $slide_video_url,
+        'list_title' => $list_title,
+        'list_description' => $list_description,
+        'enter_list' => $enter_list,
+
+        'ov_template_review_text' => $ov_template_review_text,
+        'ov_template_social_review_text' => $ov_template_social_review_text,
+        'ov_template_review_no' => $ov_template_review_no,
+
+        'static_button_text' => $static_button_text,
+        'static_button_url' => $static_button_url,
+
+        'static_button2_text' => $static_button2_text,
+        'static_button2_url' => $static_button2_url,
+
+        'background_color'  => $background_color,
+
+        'banner_font_size' => $banner_font_size,
+
+        'heading_font_size' => $heading_font_size,
+
+        'head_font_size' => $head_font_size,
+        'button_font_size' => $button_font_size,
+        'button2_font_size' => $button2_font_size, 
+        'ov_mini_title_font_size' => $ov_mini_title_font_size, 
+        'mini_description_font_size' => $mini_description_font_size,
+        'slide_email_font_size' => $slide_email_font_size,
+        'slide_no_font_size' => $slide_no_font_size,
+        'list_title_font_size' => $list_title_font_size,
+        'list_description_font_size' => $list_description_font_size,
+        'list_content_font_size' => $list_content_font_size, 
+        'review_text_font_size' => $review_text_font_size,   
+        'review_no_font_size' => $review_no_font_size, 
+        'static_button_text_font_size' => $static_button_text_font_size,
+        'title_head_font_size' => $title_head_font_size,
+        'static_loader_percentage' => $static_loader_percentage , 
+        'ov_review_text_font_size' => $ov_review_text_font_size,   
+        
+        'ov_social_text_font_size' => $ov_social_text_font_size,
+        'video_bg_image' => $video_bg_image,
+        'bg_slide_image' => $bg_slide_image
+        
+
+
+       
     ];
 
     update_post_meta($post_id, '_ova_elems_static_settings', maybe_serialize($static_settings));
@@ -729,17 +980,106 @@ function ova_elems_save_template4_data() {
     $selected_posts = isset($_POST['selected_posts']) ? array_map('intval', (array)$_POST['selected_posts']) : array();
     update_post_meta($post_id, '_ova_elems_selected_posts_template4', maybe_serialize($selected_posts));
 
+    //newly add
+    $button_data = isset($_POST['button_data']) ? array_map(function($data) {
+        return [
+            'text'  => sanitize_text_field($data['text'] ?? ''),
+            'url'   => esc_url_raw($data['url'] ?? ''),
+            'text2' => sanitize_text_field($data['text2'] ?? ''), // Button2 Text
+            'url2'  => esc_url_raw($data['url2'] ?? ''),          // Button2 URL
+            'video' => esc_url_raw($data['video'] ?? ''),         
+        ];
+    }, $_POST['button_data']) : [];
+
+    
+    
+    update_post_meta($post_id, '_ova_elems_button_data_template4', maybe_serialize($button_data));
+
+    $tour_info_data = isset($_POST['tour_info_data']) ? array_map('sanitize_textarea_field', (array)$_POST['tour_info_data']) : [];
+
+    update_post_meta($post_id, '_ova_elems_tour_info_data_template4', maybe_serialize($tour_info_data));
+
+
+    //new for vedio link
+        $video_data = isset($_POST['video_data']) ? array_map(function($data) {
+            return [
+                'live_link' => esc_url_raw($data['live_link'] ?? ''),
+                'upload_video' => esc_url_raw($data['upload_video'] ?? ''), // Uploaded Video URL
+            ];
+        }, $_POST['video_data']) : [];
+    
+        // Save the live video link data
+        update_post_meta($post_id, '_ova_elems_video_data_template4', maybe_serialize($video_data));
+
+
+    //newly end
+
     // Sanitize and save static settings
     $static_settings = array(
         'instagram_url' => isset($_POST['instagram_url']) ? esc_url_raw(wp_unslash($_POST['instagram_url'])) : '',
+        'facebook_url' => isset($_POST['facebook_url']) ? esc_url_raw(wp_unslash($_POST['facebook_url'])) : '',
         'youtube_url' => isset($_POST['youtube_url']) ? esc_url_raw(wp_unslash($_POST['youtube_url'])) : '',
         'basketball_url' => isset($_POST['basketball_url']) ? esc_url_raw(wp_unslash($_POST['basketball_url'])) : '',
         'twitter_url' => isset($_POST['twitter_url']) ? esc_url_raw(wp_unslash($_POST['twitter_url'])) : '',
+        'ov_template_review_text' => isset($_POST['ov_template_review_text']) ? sanitize_textarea_field(wp_unslash($_POST['ov_template_review_text'])) : '',
         'mini_description' => isset($_POST['mini_description']) ? sanitize_textarea_field(wp_unslash($_POST['mini_description'])) : '',
+        'live_video_link' => isset($_POST['live_video_link']) ? esc_url_raw(wp_unslash($_POST['live_video_link'])) : '',
+        'live_mini_text' => isset($_POST['live_mini_text']) ? sanitize_text_field(wp_unslash($_POST['live_mini_text'])) : '',
+        'live_title_text' => isset($_POST['live_title_text']) ? sanitize_text_field(wp_unslash($_POST['live_title_text'])) : '',
+
         'corner_posts_count' => isset($_POST['corner_posts_count']) ? absint(wp_unslash($_POST['corner_posts_count'])) : 1,
         'corner_posts_category' => isset($_POST['corner_posts_category']) ? absint(wp_unslash($_POST['corner_posts_category'])) : '',
         'corner_posts_order' => isset($_POST['corner_posts_order']) ? sanitize_text_field(wp_unslash($_POST['corner_posts_order'])) : 'asc',
+
+          // New settings
+        'upload_minheadimage' => isset($_POST['upload_minheadimage']) ? esc_url_raw(wp_unslash($_POST['upload_minheadimage'])) : '',  
+        'ov_travel_head_tag' => isset($_POST['ov_travel_head_tag']) ? sanitize_text_field(wp_unslash($_POST['ov_travel_head_tag'])) : '',
+        'ov_static_title' => isset($_POST['ov_static_title']) ? sanitize_text_field(wp_unslash($_POST['ov_static_title'])) : '',
+        'static_description' => isset($_POST['static_description']) ? sanitize_textarea_field(wp_unslash($_POST['static_description'])) : '',
+        'ov_button_text' => isset($_POST['ov_button_text']) ? sanitize_text_field(wp_unslash($_POST['ov_button_text'])) : '',
+        'ov_button_url' => isset($_POST['ov_button_url']) ? esc_url_raw(wp_unslash($_POST['ov_button_url'])) : '',
+        'ov_client_image' => isset($_POST['ov_client_image']) ? esc_url_raw(wp_unslash($_POST['ov_client_image'])) : '',
+        'ov_review_text' => isset($_POST['ov_review_text']) ? sanitize_text_field(wp_unslash($_POST['ov_review_text'])) : '',
+
+       // 'ov_review_no' => isset($_POST['ov_review_no']) ? absint(wp_unslash($_POST['ov_review_no'])) : 0,
+       'ov_review_no' => isset($_POST['ov_review_no']) ? sanitize_text_field(wp_unslash($_POST['ov_review_no'])) : '',
+
+         // New settings
+        'banner_font_size' => isset($_POST['banner_font_size']) ? absint(wp_unslash($_POST['banner_font_size'])) : 50,  
+        'heading_font_size' => isset($_POST['heading_font_size']) ? absint(wp_unslash($_POST['heading_font_size'])) : 50,  
+        'button_font_size' => isset($_POST['button_font_size']) ? absint(wp_unslash($_POST['button_font_size'])) : 18,  
+
+         // New font size settings
+         'ov_social_text_font_size' => isset($_POST['ov_social_text_font_size']) ? absint(wp_unslash($_POST['ov_social_text_font_size'])) : 18,
+         'ov_review_text_font_size' => isset($_POST['ov_review_text_font_size']) ? absint(wp_unslash($_POST['ov_review_text_font_size'])) : 18,
+
+        'title_head_font_size' => isset($_POST['title_head_font_size']) ? absint(wp_unslash($_POST['title_head_font_size'])) : 18,
+        'list_title_font_size' => isset($_POST['list_title_font_size']) ? absint(wp_unslash($_POST['list_title_font_size'])) : 18,
+        'list_description_font_size' => isset($_POST['list_description_font_size']) ? absint(wp_unslash($_POST['list_description_font_size'])) : 18,
+        'list_content_font_size' => isset($_POST['list_content_font_size']) ? absint(wp_unslash($_POST['list_content_font_size'])) : 18,
+        'static_button_text_font_size' => isset($_POST['static_button_text_font_size']) ? absint(wp_unslash($_POST['static_button_text_font_size'])) : 18,
+
+        'review_text_font_size' => isset($_POST['review_text_font_size']) ? absint(wp_unslash($_POST['review_text_font_size'])) : 18,
+        'review_no_font_size' => isset($_POST['review_no_font_size']) ? absint(wp_unslash($_POST['review_no_font_size'])) : 18,
+        'ov_mini_title_font_size' => isset($_POST['ov_mini_title_font_size']) ? absint(wp_unslash($_POST['ov_mini_title_font_size'])) : 18,
+        'oe_button_font_size' => isset($_POST['oe_button_font_size']) ? absint(wp_unslash($_POST['oe_button_font_size'])) : 18,
+
+        'ov_mini_title_right_font_size' => isset($_POST['ov_mini_title_right_font_size']) ? absint(wp_unslash($_POST['ov_mini_title_right_font_size'])) : 14,
+        'ov_mini_description_font_size' => isset($_POST['ov_mini_description_font_size']) ? absint(wp_unslash($_POST['ov_mini_description_font_size'])) : 18,
+        'thmhead_font_size' => isset($_POST['thmhead_font_size']) ? absint(wp_unslash($_POST['thmhead_font_size'])) : 18,
+        'thmbtitle_font_size' => isset($_POST['thmbtitle_font_size']) ? absint(wp_unslash($_POST['thmbtitle_font_size'])) : 18,
+        'thmbdesc_font_size' => isset($_POST['thmbdesc_font_size']) ? absint(wp_unslash($_POST['thmbdesc_font_size'])) : 18,
+        
+        // New font size settings
+        'live_mini_text_font_size' => isset($_POST['live_mini_text_font_size']) ? intval($_POST['live_mini_text_font_size']) : 18,
+        'live_title_font_size' => isset($_POST['live_title_font_size']) ? intval($_POST['live_title_font_size']) : 18,
+        'oe_left_side_title_font_size' => isset($_POST['oe_left_side_title_font_size']) ? intval($_POST['oe_left_side_title_font_size']) : 18,
+
+        
+
+
     );    
+    
     update_post_meta($post_id, '_ova_elems_static_settings_template4', maybe_serialize($static_settings));
 
    
@@ -764,11 +1104,164 @@ add_shortcode('ova-elems-slider-template', 'ova_elems_template_shortcode');
 function ova_elems_enqueue_styles() {
 global $ova_elems_template;
 
-    // Enqueue common styles and scripts
+  // Enqueue Swiper CSS and JS locally
+wp_enqueue_style(
+    'swiper-css',
+    OVA_ELEMS_URL . 'assets/css/swiper-bundle.min.css',
+    [],
+    OVA_ELEMS_VER
+);
+wp_enqueue_script(
+    'swiper-js',
+    OVA_ELEMS_URL . 'assets/js/swiper-bundle.min.js',
+    [],
+    OVA_ELEMS_VER,
+    true
+);
+
+wp_enqueue_style(
+    'oe-front-cs',
+    OVA_ELEMS_URL . 'assets/css/bootstrap.min.css',
+    [],
+    OVA_ELEMS_VER
+);
+wp_enqueue_script(
+    'oe-front-js',
+    OVA_ELEMS_URL . 'assets/js/bootstrap.bundle.min.js',
+    [],
+    OVA_ELEMS_VER,
+    true
+);
+
+
     wp_enqueue_style('ova-elems-google-fonts-montserrat-outfit', 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap', array(), OVA_ELEMS_VER, '');
     wp_enqueue_style('ova-elems-font-awesome', OVA_ELEMS_URL . 'assets/css/font.all.min.css', array(), OVA_ELEMS_VER);
-}
+ }
 
-add_action('wp_enqueue_scripts', 'ova_elems_enqueue_styles' , 10 );
+ add_action('wp_enqueue_scripts', 'ova_elems_enqueue_styles' , 10 );
+
+ 
 
 //end
+
+//for color picker
+
+function enqueue_wp_color_picker_assets($hook) {
+    // Enqueue color picker CSS and JS
+    wp_enqueue_style('wp-color-picker');
+    wp_enqueue_script('wp-color-picker');
+}
+add_action('admin_enqueue_scripts', 'enqueue_wp_color_picker_assets');
+
+//end
+
+
+
+//for compressor and croping 
+
+add_action('wp_ajax_upload_cropped_image', 'handle_cropped_image_upload');
+
+function handle_cropped_image_upload() {
+   // check_ajax_referer('upload_cropped_image_nonce', '_ajax_nonce'); // Verify nonce for security
+
+    if (!isset($_FILES['cropped_image']) || empty($_FILES['cropped_image'])) {
+        wp_send_json_error(['message' => 'No image file provided.']);
+    }
+
+    $file = $_FILES['cropped_image'];
+
+    // Validate the file
+    if ($file['error'] !== UPLOAD_ERR_OK) {
+        wp_send_json_error(['message' => 'Error uploading file.']);
+    }
+
+    $upload = wp_handle_upload($file, ['test_form' => false]);
+
+    if (!$upload || isset($upload['error'])) {
+        wp_send_json_error(['message' => 'Failed to upload image.', 'error' => $upload['error']]);
+    }
+
+    // Insert the uploaded image into the WordPress media library
+    $attachment_id = wp_insert_attachment([
+        'guid'           => $upload['url'],
+        'post_mime_type' => $upload['type'],
+        'post_title'     => sanitize_file_name($file['name']),
+        'post_content'   => '',
+        'post_status'    => 'inherit',
+    ], $upload['file']);
+
+    if (is_wp_error($attachment_id)) {
+        wp_send_json_error(['message' => 'Failed to insert image into media library.']);
+    }
+
+    // Generate attachment metadata and update
+    require_once ABSPATH . 'wp-admin/includes/image.php';
+    $metadata = wp_generate_attachment_metadata($attachment_id, $upload['file']);
+    wp_update_attachment_metadata($attachment_id, $metadata);
+
+    wp_send_json_success(['message' => 'Image uploaded successfully!', 'url' => $upload['url']]);
+}
+
+
+
+//for tutor plugin installation 
+
+add_action('wp_ajax_tutor_plugin_action', function() {
+    check_ajax_referer('tutor-plugin-action', 'nonce');
+
+    $action = $_POST['action_type'] ?? '';
+    $response = ['success' => false, 'message' => '', 'is_active' => false];
+
+    if ($action === 'install') {
+        include_once ABSPATH . 'wp-admin/includes/plugin-install.php';
+        include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+
+        $api = plugins_api('plugin_information', ['slug' => 'tutor', 'fields' => ['sections' => false]]);
+        $upgrader = new Plugin_Upgrader();
+        $result = $upgrader->install($api->download_link);
+
+        if (is_wp_error($result)) {
+            $response['message'] = $result->get_error_message();
+        } else {
+            // Automatically activate the plugin
+            include_once ABSPATH . 'wp-admin/includes/plugin.php';
+            $plugin_slug = 'tutor/tutor.php';
+            activate_plugin($plugin_slug);
+
+            if (is_plugin_active($plugin_slug)) {
+                $response['success'] = true;
+                $response['message'] = __('Tutor LMS installed and activated successfully.', 'ovation-elements');
+                $response['is_active'] = true;
+            } else {
+                $response['message'] = __('Tutor LMS installed but failed to activate.', 'ovation-elements');
+            }
+        }
+    } elseif ($action === 'activate') {
+        include_once ABSPATH . 'wp-admin/includes/plugin.php';
+
+        $plugin_slug = 'tutor/tutor.php';
+        activate_plugin($plugin_slug);
+
+        if (is_plugin_active($plugin_slug)) {
+            $response['success'] = true;
+            $response['message'] = __('Tutor LMS activated successfully.', 'ovation-elements');
+            $response['is_active'] = true;
+        } else {
+            $response['message'] = __('Failed to activate Tutor LMS.', 'ovation-elements');
+        }
+    }
+
+    // Handle HTML or JSON response
+    if (isset($_POST['response_type']) && $_POST['response_type'] === 'html') {
+        echo esc_html($response['message']);
+    } else {
+        wp_send_json($response);
+    }
+
+    wp_die();
+});
+//end 
+
+
+
+

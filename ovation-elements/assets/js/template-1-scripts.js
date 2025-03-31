@@ -1,34 +1,46 @@
-document.addEventListener('DOMContentLoaded', function() {
-    let currentIndex = 0;
-    const slides = document.querySelectorAll('.oe-slider-main-wrapper .slide'); // Updated selector
-    const prevButton = document.querySelector('.oe-slider-controls .prev');
-    const nextButton = document.querySelector('.oe-slider-controls .next');
-    const counters = document.querySelectorAll('.counter-wrap .count'); // Counter elements
+document.addEventListener('DOMContentLoaded', function () {
 
-    console.log('Slides:', slides); // Debugging line
-
-    function showSlide(index) {
-        console.log('Showing slide:', index); // Debugging line
-        slides.forEach((slide, i) => {
-            slide.classList.toggle('active', i === index);
-        });
-        counters.forEach((counter, i) => {
-            counter.classList.toggle('active', i === index); // Highlight the current slide number
-        });
-    }
-
-    prevButton.addEventListener('click', function(event) {
-        event.preventDefault();
-        currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
-        showSlide(currentIndex);
-    });
-
-    nextButton.addEventListener('click', function(event) {
-        event.preventDefault();
-        currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
-        showSlide(currentIndex);
-    });
-
-    // Initially show the first slide
-    showSlide(currentIndex);
-});
+    // Use dynamic data passed via localized script
+    const sliderConfig = window.template7SliderConfig || {
+        autoplay: false, 
+        autoplay_delay: 1000, 
+        effect: 'fade', 
+        crossFade: true, 
+        lazyLoad: false, 
+    };
+ 
+ const swiper = new Swiper('.oe-slider-outer', {
+     loop: true,
+     navigation: {
+         nextEl: '.swiper-button-next',
+         prevEl: '.swiper-button-prev',
+     },
+     autoplay: sliderConfig.autoplay ? {
+        delay: sliderConfig.autoplay_delay || 1000, 
+         disableOnInteraction: false,
+     } : false, // Disable autoplay if false
+     effect: sliderConfig.effect,
+     fadeEffect: {
+         crossFade: sliderConfig.crossFade,
+     },
+     lazy: {
+         loadPrevNext: true, // Load next and previous slides as well
+         loadOnTransitionStart: true, // Start lazy loading as soon as possible
+     },
+ });
+ 
+     
+     // Slide change event for updating counter
+     swiper.on('slideChange', function () {
+         const activeIndex = swiper.realIndex; 
+         const counters = document.querySelectorAll('.count');
+ 
+         counters.forEach((counter, index) => {
+             if (index === activeIndex) {
+                 counter.classList.add('active');
+             } else {
+                 counter.classList.remove('active');
+             }
+         });
+     });
+ });

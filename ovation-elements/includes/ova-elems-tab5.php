@@ -96,7 +96,7 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">${item.title}</h5>
-                                <p class="card-text"><span>Price: </span> $${price}</p>
+                                <p class="card-text"><span>Price: </span> ${price}</p>
                             </div>
                         </div>
                     `;

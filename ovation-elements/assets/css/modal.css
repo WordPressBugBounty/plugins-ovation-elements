@@ -288,7 +288,6 @@ button.ova-elems.templates-load-more{
 }
 .ova-elems-docs-btn {
     background: #BD2130 0% 0% no-repeat padding-box;
-    width: 100%;
 }
 .ova-elems-bundle-btn.is-theme {
     background: #2271B1 0% 0% no-repeat padding-box;
@@ -301,19 +300,15 @@ button.ova-elems.templates-load-more{
 }
 .ova-elems-demo-btn , .ova-elems-buy-now-btn, .ova-elems-docs-btn, .ova-elems-bundle-btn {
     border-radius: 3px;
-    text-align: center;
+    text-align: left;
     letter-spacing: 0px;
     color: #FFFFFF;
     text-decoration: none;
 }
 .ova-elems-demo-btn.is-theme, .ova-elems-buy-now-btn.is-theme, .ova-elems-docs-btn.is-theme {
-    font: normal normal normal 13px/20px Segoe UI;
+    font: normal normal normal 11px/20px Segoe UI;
     padding: 10px;
     font-weight: bold;
-    display: inline-block;
-}
-.ova-elems-demo-btn.is-theme, .ova-elems-buy-now-btn.is-theme{
-    padding: 10px 32px;
 }
 .ova-elems-demo-btn {
     background: #D39E00 0% 0% no-repeat padding-box;
@@ -335,12 +330,12 @@ button.ova-elems.templates-load-more{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 7px;
+    gap: 12px;
     text-align: center;
     margin-top: 20px;
 }
 .ova-elems-side-panel-btn-wrap.not-background {
-    margin-top: unset;
+    margin-bottom: 20px;
 }
 .ova-elems-demo-btn:hover, .ova-elems-buy-now-btn:hover, .ova-elems-docs-btn:hover, .ova-elems-bundle-btn:hover {
     color: #FFFFFF !important;
@@ -352,9 +347,6 @@ button.ova-elems.templates-load-more{
 }
 .ova-elems-side-panel-wrap {
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
 }
 
 .ova-elems-side-panel-img img {

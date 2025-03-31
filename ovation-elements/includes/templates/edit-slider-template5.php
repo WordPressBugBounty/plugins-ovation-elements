@@ -21,52 +21,212 @@ $slides = $slides ? maybe_unserialize($slides) : array();
 $static_settings = get_post_meta($post_id, '_ova_elems_static_settings', true);
 $static_settings = $static_settings ? maybe_unserialize($static_settings) : array();
 $template1_image_url = OVA_ELEMS_URL . 'assets/images/template-5.png';
+$is_premium_user = get_option('ovation_slider_is_premium', false); // modify 
+$ovation_logo = OVA_ELEMS_URL . 'assets/images/logo.png';
 ?>
 
-<!-- Display Template Image -->
-<div id="ovs-edit-page">
+ <!-- Display Template Image -->
+<div id="ovs-edit-page" class="plugin_output_content">
+
+    <div class="logo_review_btn">
+        <div class="logo">
+            <a href="#"><img src="<?php echo esc_url($ovation_logo); ?>" alt="" class="template-preview-image " /></a>
+        </div>
+        <div class="review">
+         <a href="<?php echo esc_url('https://wordpress.org/support/plugin/ovation-elements/'); ?>" class="ov-head-review" target="_blank" rel="noopener noreferrer">Review Now</a>
+       </div>
+    </div>
+    <div class="container">
+        <div class="row content-row">
+            <div class="col-md-6">
+                <div class="image">
+                    <img src="<?php echo esc_url($template1_image_url); ?>" alt="" class="template-preview-image " />
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="content text-center">
+                    <h3 class="plugin_title">Food Slider Template</h3>
+                    <p class="plugin_description">
+                    The Food Slider Template is a dynamic and professional design tool perfect for creating visually stunning, interactive sliders for business websites. With customizable options for images, text, and calls-to-action, it helps businesses showcase their services, portfolio, or announcements effectively.
+                    </p>
+                    <div class="buttons">
+                    <button type="button" id="submit-slider" class="btn btn-primary">Save Slider</button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Preview
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- <div id="ovs-edit-page">
 <div class="template-edit-img">
     <div class="ovs-edit-template-img">
-    <img src="<?php echo esc_url($template1_image_url); ?>" alt="Business Slider Template" class="template-preview-image" />
+    <img src="<?php echo esc_url($template1_image_url); ?>" alt="" class="template-preview-image" />
    
     <h2>Food Slider Template</h2>
     </div>
 </div>
 </div>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  preview
+</button> -->
+<!-- end -->
+
+
+<!-- live preview -->
+<div class="modal fade modal-temp-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="close_button">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button> 
+            </div>
+     
+      <div class="modal-body">
+        <!-- Content of the modal goes here -->
+        <section class="oe-circular-slider oe-circular-slider_food">
+<div class="oe-circular-slider-after">
+    <div class="oe-inner-wrap">
+        <div class="nav-position-helper swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide slide-outer active" style="background-image: url('');">
+                    <div class="after-holder">
+                        <div class="content-wrapper">
+                            <div class="offer-tag">
+                                Head Tag
+                            </div>
+                            <h1 class="heading">
+                                Slide Title
+                            </h1>
+                            <div class="theme-para">
+                                Slide Description
+                            </div>
+                            <div class="slide-number">
+                                01
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="oe-slider-controls-prev swiper-button-prev">
+                <a href="#"><i class="fa-solid fa-chevron-left"></i></a>
+            </div>
+            <div class="oe-slider-controls-next swiper-button-next">
+                <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+        </div>
+
+        <div class="nav-wrapper">
+            <div class="triangle left" style="--r:3px;"></div>
+            <div class="slider-nav">
+                <div class="nav-item" data-index="0">
+                    <div class="item-img">
+                        <img src="thumbnail-url" alt="Thumbnail Title">
+                    </div>
+                    <div class="item-name">
+                        Thumbnail Title
+                    </div>
+                </div>
+            </div>
+            <div class="triangle right" style="--r:3px;"></div>
+        </div>
+
+        <div class="slider-counter">
+            <span class="current-slide">
+                01
+            </span>
+            <span class="total-slides">
+                /02
+            </span>
+        </div>
+    </div>
+</div>
+</section>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- end  -->
+
+
+<!-- live preview code  -->
+
+
+
+
+<!-- live preview code end -->
 <!-- end -->
 
 <div class="wrap">
-    <h1>Edit Slider</h1>
-    <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" enctype="multipart/form-data">
+    <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" enctype="multipart/form-data" id="slider-form">
         <?php wp_nonce_field('ova_elems_save_meta_boxes_data', 'ova_elems_nonce'); ?>
         <input type="hidden" name="action" value="save_ova_elems_data" />
         <input type="hidden" name="post_id" value="<?php echo esc_attr($post_id); ?>" />
 
-        <div id="slider-slides">
+        
+<!-- 
+        <button type="button" id="add_slide_button" class="btn btn-success">Add Slide</button> -->
+
+       
+
+        
+
+        <!-- tab base settings  -->
+
+<div class="tabs_buttons_outer">
+    <ul class="nav nav-tabs" id="settingsTabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="free-tab" data-toggle="tab" href="#free-settings" role="tab" aria-controls="free-settings" aria-selected="true">Content</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" id="advanced-tab" data-toggle="tab" href="#advanced-settings" role="tab" aria-controls="advanced-settings" aria-selected="false">
+        <i class="fa fa-crown"></i> Advanced
+    </a>
+        </li>
+    </ul>
+</div>
+<div class="static-container mb-4 p-3 border rounded">
+<div class="settings-tabs">
+  <!-- <ul class="nav nav-tabs" id="settingsTabs" role="tablist">
+      <li class="nav-item">
+          <a class="nav-link active" id="free-tab" data-toggle="tab" href="#free-settings" role="tab" aria-controls="free-settings" aria-selected="true">Free</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" id="advanced-tab" data-toggle="tab" href="#advanced-settings" role="tab" aria-controls="advanced-settings" aria-selected="false">Advanced</a>
+      </li>
+  </ul> -->
+  <div class="tab-content" id="settingsTabContent">
+      <!-- Free Settings Tab -->
+      <div class="tab-pane fade show active" id="free-settings" role="tabpanel" aria-labelledby="free-tab">
+
+      <!-- slider add -->
+      <div id="slider-slides">
             <?php if (empty($slides)): ?>
                 <div class="slide-container mb-4 p-3 border rounded" data-index="0">
                     <h3>Slide 1</h3>
+
                     <div class="form-group">
                         <label for="slide_image_0">Image</label>
                         <input type="hidden" id="slide_image_0" name="slide_images[]" />
                         <img src="" style="max-width: 100px; max-height: 100px; display: none;" />
                         <button type="button" class="upload_image_button button btn btn-primary mt-2">Upload Image</button>
+                    
+                        <!-- For Background Color -->
+                        <label for="slide_bg_color_0">Background Color:</label>
+                        <input type="color" id="slide_bg_color_0" name="slide_bg_color[]" />
                     </div>
                     <div class="form-group">
                         <label for="slide_title_0">Title</label>
-                        <input type="text" id="slide_title_0" name="slide_titles[]" class="form-control" />
+                        <input type="text" id="slide_title_0" name="slide_titles[]" class="form-control" placeholder="Enter slide title" />
                     </div>
                     <div class="form-group">
                         <label for="slide_description_0">Description</label>
-                        <textarea id="slide_description_0" name="slide_descriptions[]" rows="3" class="form-control"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="slide_button_text_0">Button Text</label>
-                        <input type="text" id="slide_button_text_0" name="slide_button_texts[]" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="slide_button_url_0">Button URL</label>
-                        <input type="url" id="slide_button_url_0" name="slide_button_urls[]" class="form-control" />
+                        <textarea id="slide_description_0" name="slide_descriptions[]" rows="3" class="form-control" placeholder="Enter slide description"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="slide_thumbnail_image_0">Thumbnail Image</label>
@@ -74,20 +234,20 @@ $template1_image_url = OVA_ELEMS_URL . 'assets/images/template-5.png';
                         <img src="" style="max-width: 100px; max-height: 100px; display: none;" />
                         <button type="button" class="upload_image_button button btn btn-primary mt-2">Upload Thumbnail Image</button>
                     </div>
-
                     <div class="form-group">
                         <label for="slide_thumbnail_title_0">Thumbnail Title</label>
-                        <input type="text" id="slide_thumbnail_title_0" name="slide_thumbnail_titles[]" class="form-control" />
+                        <input type="text" id="slide_thumbnail_title_0" name="slide_thumbnail_titles[]" class="form-control" placeholder="Enter thumbnail title" />
                     </div>
-
                     <div class="form-group">
                         <label for="slide_head_tag_0">Head Tag</label>
                         <small class="form-text text-muted">Please enter a relevant head text for the slide. It will display above the title.</small>
-                        <input type="text" id="slide_head_tag_0" name="slide_head_tags[]" class="form-control" />
+                        <input type="text" id="slide_head_tag_0" name="slide_head_tags[]" class="form-control" placeholder="Enter head tag" />
                     </div>
 
 
+
                     <button type="button" class="remove_slide_button btn btn-danger">Remove Slide</button>
+                    <button type="button" class="add_slide_button" class="btn btn-success">Add Slide</button>
                 </div>
             <?php endif; ?>
 
@@ -99,47 +259,239 @@ $template1_image_url = OVA_ELEMS_URL . 'assets/images/template-5.png';
                         <input type="hidden" id="slide_image_<?php echo esc_attr($index); ?>" name="slide_images[]" value="<?php echo esc_attr($slide['image_id']); ?>" />
                         <img src="<?php echo esc_url(wp_get_attachment_url($slide['image_id'])); ?>" style="max-width: 100px; max-height: 100px; display: block;" />
                         <button type="button" class="upload_image_button button btn btn-primary mt-2">Upload Image</button>
+                    
+                        <label for="slide_bg_color_<?php echo esc_attr($index); ?>">Background Color:</label>
+                        <input type="color" id="slide_bg_color_<?php echo esc_attr($index); ?>" name="slide_bg_color[]" value="<?php echo esc_attr($slide['slide_bg_color']); ?>" />
                     </div>
+                    
                     <div class="form-group">
                         <label for="slide_title_<?php echo esc_attr($index); ?>">Title</label>
-                        <input type="text" id="slide_title_<?php echo esc_attr($index); ?>" name="slide_titles[]" value="<?php echo esc_attr($slide['title']); ?>" class="form-control" />
+                        <input type="text" id="slide_title_<?php echo esc_attr($index); ?>" name="slide_titles[]" value="<?php echo esc_attr($slide['title']); ?>" class="form-control" placeholder="Enter slide title" />
                     </div>
+                    
                     <div class="form-group">
                         <label for="slide_description_<?php echo esc_attr($index); ?>">Description</label>
-                        <textarea id="slide_description_<?php echo esc_attr($index); ?>" name="slide_descriptions[]" rows="3" class="form-control"><?php echo esc_textarea($slide['description']); ?></textarea>
+                        <textarea id="slide_description_<?php echo esc_attr($index); ?>" name="slide_descriptions[]" rows="3" class="form-control" placeholder="Enter slide description"><?php echo esc_textarea($slide['description']); ?></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="slide_button_text_<?php echo esc_attr($index); ?>">Button Text</label>
-                        <input type="text" id="slide_button_text_<?php echo esc_attr($index); ?>" name="slide_button_texts[]" value="<?php echo esc_attr($slide['button_text']); ?>" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="slide_button_url_<?php echo esc_attr($index); ?>">Button URL</label>
-                        <input type="url" id="slide_button_url_<?php echo esc_attr($index); ?>" name="slide_button_urls[]" value="<?php echo esc_url($slide['button_url']); ?>" class="form-control" />
-                    </div>
+                    
+                    
                     <div class="form-group">
                         <label for="slide_thumbnail_image_<?php echo esc_attr($index); ?>">Thumbnail Image</label>
                         <input type="hidden" id="slide_thumbnail_image_<?php echo esc_attr($index); ?>" name="slide_thumbnail_images[]" value="<?php echo esc_attr($slide['thumbnail_image_id']); ?>" />
                         <img src="<?php echo esc_url(wp_get_attachment_url($slide['thumbnail_image_id'])); ?>" style="max-width: 100px; max-height: 100px; display: block;" />
                         <button type="button" class="upload_image_button button btn btn-primary mt-2">Upload Thumbnail Image</button>
                     </div>
+                    
                     <div class="form-group">
                         <label for="slide_thumbnail_title_<?php echo esc_attr($index); ?>">Thumbnail Title</label>
-                        <input type="text" id="slide_thumbnail_title_<?php echo esc_attr($index); ?>" name="slide_thumbnail_titles[]" value="<?php echo esc_attr($slide['thumbnail_title']); ?>" class="form-control" />
+                        <input type="text" id="slide_thumbnail_title_<?php echo esc_attr($index); ?>" name="slide_thumbnail_titles[]" value="<?php echo esc_attr($slide['thumbnail_title']); ?>" class="form-control" placeholder="Enter thumbnail title" />
                     </div>
-
+                    
                     <div class="form-group">
                         <label for="slide_head_tag_<?php echo esc_attr($index); ?>">Head Tag</label>
-                        <input type="text" id="slide_head_tag_<?php echo esc_attr($index); ?>" name="slide_head_tags[]" value="<?php echo esc_attr($slide['head_tag']); ?>" class="form-control" />
+                        <input type="text" id="slide_head_tag_<?php echo esc_attr($index); ?>" name="slide_head_tags[]" value="<?php echo esc_attr($slide['head_tag']); ?>" class="form-control" placeholder="Enter head tag" />
                     </div>
+
 
 
                     <button type="button" class="remove_slide_button btn btn-danger">Remove Slide</button>
+                    <button type="button" class="add_slide_button" class="btn btn-success">Add Slide</button>
                 </div>
             <?php endforeach; ?>
         </div>
 
-        <button type="button" id="add_slide_button" class="btn btn-success">Add Slide</button>
+      <!-- slider end -->
 
-        <button type="submit" class="btn btn-primary">Save Slider</button>
+      <div class="row">
+
+      <div class="form-group col-md-6">
+          <label for="bg_slide_image">Slider Background Image</label>
+          <input type="text" id="bg_slide_image" name="bg_slide_image" class="form-control" 
+              value="<?php echo esc_url(isset($static_settings['bg_slide_image']) ? $static_settings['bg_slide_image'] : ''); ?>" 
+              placeholder="Enter or upload background image URL" />
+          <button type="button" class="btn btn-primary upload-bg-slide-image">Upload</button>
+      
+          <?php if (!empty($static_settings['bg_slide_image'])) : ?>
+              <div class="preview-bg-slide-image" style="margin-top: 10px;">
+                  <img src="<?php echo esc_url($static_settings['bg_slide_image']); ?>" alt="Background Image" style="max-width: 150px; height: auto; border: 1px solid #ddd; padding: 5px;">
+              </div>
+          <?php endif; ?>
+      </div>
+      
+
+        
+    <div class="form-group col-md-6"> 
+        <label for="slide_font_size">Head Text Font Size</label>
+        <input type="number" id="head_font_size" name="head_font_size" class="form-control" 
+            value="<?php echo esc_attr(isset($static_settings['head_font_size']) ? $static_settings['head_font_size'] : '16'); ?>" 
+            placeholder="Enter head text font size" /> 
+    </div>
+    
+    <div class="form-group col-md-6"> 
+        <label for="slide_font_size">Title Text Font Size</label>
+        <input type="number" id="heading_font_size" name="heading_font_size" class="form-control" 
+            value="<?php echo esc_attr(isset($static_settings['heading_font_size']) ? $static_settings['heading_font_size'] : '36'); ?>" 
+            placeholder="Enter title text font size" /> 
+    </div>
+    
+    <div class="form-group col-md-6"> 
+        <label for="slide_font_size">Description Text Font Size</label>
+        <input type="number" id="banner_font_size" name="banner_font_size" class="form-control" 
+            value="<?php echo esc_attr(isset($static_settings['banner_font_size']) ? $static_settings['banner_font_size'] : '18'); ?>" 
+            placeholder="Enter description text font size" /> 
+    </div>
+    
+    <div class="form-group col-md-6">
+        <label for="ov_mini_title_font_size">Thumbnail Font Size</label>
+        <input type="number" id="ov_mini_title_font_size" name="ov_mini_title_font_size" class="form-control"
+            value="<?php echo esc_attr(isset($static_settings['ov_mini_title_font_size']) ? $static_settings['ov_mini_title_font_size'] : '22'); ?>" 
+            placeholder="Enter thumbnail font size" />
+    </div>
+
+    </div>
+          <!-- Add more free settings here -->
+      </div>
+
+      <!-- Advanced Settings Tab -->
+      <div class="tab-pane fade" id="advanced-settings" role="tabpanel" aria-labelledby="advanced-tab">
+      <div class="row">
+                     
+                     <div class="col-md-4 mb-4 form-group flex-row d-flex align-items-center">
+                         <label class="mr-2" for="autoplay_setting">Enable Autoplay:</label>
+                         <input type="checkbox" id="autoplay_setting" name="autoplay_setting" 
+                             value="1" <?php checked(!empty($static_settings['autoplay']), true); ?> 
+                             <?php if (!$is_premium_user) echo 'disabled'; ?> />
+                         <?php if (!$is_premium_user): ?>
+                             <!-- <small class="form-text text-muted">Upgrade to the pro version to enable autoplay.</small> -->
+                         <?php endif; ?>
+                     </div>
+                     
+                     <div class="col-md-4 mb-4 d-flex flex-column form-group">
+                         <label for="autoplay_delay">Autoplay Delay Time (ms):</label>
+                         <input type="number" id="autoplay_delay" name="autoplay_delay" 
+                             value="<?php echo esc_attr($static_settings['autoplay_delay'] ?? 1000); ?>" 
+                             <?php if (!$is_premium_user) echo 'disabled'; ?> />
+                         <?php if (!$is_premium_user): ?>
+                              <!-- <small class="form-text text-muted">Upgrade to the pro version to adjust autoplay delay.</small>  -->
+                         <?php endif; ?>
+                     </div>
+                     
+                     <div class="col-md-4 mb-4 d-flex flex-column form-group">
+                         <label for="effect">Select Effect:</label>
+                         <select id="effect" name="effect" <?php if (!$is_premium_user) echo 'disabled'; ?>>
+                             <option value="fade" <?php selected($static_settings['effect'] ?? '', 'fade'); ?>>Fade</option>
+                             <option value="slide" <?php selected($static_settings['effect'] ?? '', 'slide'); ?>>Slide</option>
+                             <option value="cube" <?php selected($static_settings['effect'] ?? '', 'cube'); ?>>Cube</option>
+                             <option value="coverflow" <?php selected($static_settings['effect'] ?? '', 'coverflow'); ?>>Coverflow</option>
+                         </select>
+                         <?php if (!$is_premium_user): ?>
+                              <!-- <small class="form-text text-muted">Upgrade to the pro version to use additional effects.</small>  -->
+                         <?php endif; ?>
+                     </div>
+     
+                     
+                     
+                     
+                     <!-- Social Icon Active Color -->
+                     <div class="col-md-4 mb-4 form-group">
+                         <label for="social_icon_active_color">Social Icon Active Color</label>
+                         <input type="text" id="social_icon_active_color" name="social_icon_active_color" class="form-control" 
+                                 value="<?php echo esc_attr(isset($static_settings['social_icon_active_color']) ? $static_settings['social_icon_active_color'] : '#3b5998'); ?>" 
+                                 <?php if (!$is_premium_user) echo 'disabled'; ?> />
+                         <?php if (!$is_premium_user): ?>
+                              <!-- <small class="form-text text-muted">Upgrade to the pro version to customize social icon active color.</small>  -->
+                         <?php endif; ?>
+                     </div>
+                     
+                     <!-- Social Icon Hover Color -->
+                     <div class="col-md-4 mb-4 form-group">
+                         <label for="social_icon_hover_color">Social Icon Hover Color</label>
+                         <input type="text" id="social_icon_hover_color" name="social_icon_hover_color" class="form-control" 
+                                 value="<?php echo esc_attr(isset($static_settings['social_icon_hover_color']) ? $static_settings['social_icon_hover_color'] : '#2d4373'); ?>" 
+                                 <?php if (!$is_premium_user) echo 'disabled'; ?> />
+                         <?php if (!$is_premium_user): ?>
+                              <!-- <small class="form-text text-muted">Upgrade to the pro version to customize social icon hover color.</small>  -->
+                         <?php endif; ?>
+                     </div>
+                     
+                     <!-- Social Icon Size -->
+                     <div class="col-md-4 mb-4 form-group">
+                         <label for="social_icon_size">Social Icon Size</label>
+                         <input type="number" id="social_icon_size" name="social_icon_size" class="form-control" 
+                                 value="<?php echo esc_attr(isset($static_settings['social_icon_size']) ? $static_settings['social_icon_size'] : '24'); ?>" 
+                                 <?php if (!$is_premium_user) echo 'disabled'; ?> />
+                         <?php if (!$is_premium_user): ?>
+                              <!-- <small class="form-text text-muted">Upgrade to the pro version to customize social icon size.</small> -->
+                         <?php endif; ?>
+                     </div>
+     
+                     <!-- Button Background Color -->
+                     <div class="col-md-4 mb-4 form-group">
+                         <label for="button_bg_color">Button Background Color</label>
+                         <input type="text" id="button_bg_color" name="button_bg_color" class="form-control" 
+                                 value="<?php echo esc_attr(isset($static_settings['button_bg_color']) ? $static_settings['button_bg_color'] : '#000000'); ?>" 
+                                 <?php if (!$is_premium_user) echo 'disabled'; ?> />
+                         <?php if (!$is_premium_user): ?>
+                              <!-- <small class="form-text text-muted">Upgrade to the pro version to customize the button background color.</small>  -->
+                         <?php endif; ?>
+                     </div>
+                     
+                     <!-- Button Hover Background Color -->
+                     <div class="col-md-4 mb-4 form-group">
+                         <label for="button_hover_bg_color">Button Hover Background Color</label>
+                         <input type="text" id="button_hover_bg_color" name="button_hover_bg_color" class="form-control" 
+                                 value="<?php echo esc_attr(isset($static_settings['button_hover_bg_color']) ? $static_settings['button_hover_bg_color'] : '#333333'); ?>" 
+                                 <?php if (!$is_premium_user) echo 'disabled'; ?> />
+                         <?php if (!$is_premium_user): ?>
+                              <!-- <small class="form-text text-muted">Upgrade to the pro version to customize the button hover background color.</small> --> 
+                         <?php endif; ?>
+                     </div>
+                     
+                     <!-- Button Text Color -->
+                     <div class="col-md-4 mb-4 form-group">
+                         <label for="button_text_color">Button Text Color</label>
+                         <input type="text" id="button_text_color" name="button_text_color" class="form-control" 
+                                 value="<?php echo esc_attr(isset($static_settings['button_text_color']) ? $static_settings['button_text_color'] : '#ffffff'); ?>" 
+                                 <?php if (!$is_premium_user) echo 'disabled'; ?> />
+                         <?php if (!$is_premium_user): ?>
+                              <!-- <small class="form-text text-muted">Upgrade to the pro version to customize the button text color.</small> -->
+                         <?php endif; ?>
+                     </div>
+                     
+                     <!-- Button Hover Text Color -->
+                     <div class="col-md-4 mb-4 form-group">
+                         <label for="button_hover_text_color">Button Hover Text Color</label>
+                         <input type="text" id="button_hover_text_color" name="button_hover_text_color" class="form-control" 
+                                 value="<?php echo esc_attr(isset($static_settings['button_hover_text_color']) ? $static_settings['button_hover_text_color'] : '#ffffff'); ?>" 
+                                 <?php if (!$is_premium_user) echo 'disabled'; ?> />
+                         <?php if (!$is_premium_user): ?>
+                             <!-- <small class="form-text text-muted">Upgrade to the pro version to customize the button hover text color.</small> --> 
+                         <?php endif; ?>
+                     </div>
+                     
+                     <!-- Custom CSS Field -->
+                     <div class="col-md-12 mb-4 form-group">
+                         <label for="custom_css">Custom CSS</label>
+                         <textarea id="custom_css" name="custom_css" class="form-control" rows="6" 
+                                 <?php if (!$is_premium_user) echo 'disabled'; ?>><?php echo esc_textarea(isset($static_settings['custom_css']) ? $static_settings['custom_css'] : ''); ?></textarea>
+                         <small class="form-text text-muted">You can add custom CSS rules here. Example: .my-class { color: red; }</small>
+                         <?php if (!$is_premium_user): ?>
+                              <!-- <small class="form-text text-muted">Upgrade to the pro version to add custom CSS.</small> -->
+                         <?php endif; ?>
+                     </div>
+
+                     <small class="form-text upgrade-message">
+                    Enhance your experience by <a href="https://www.ovationthemes.com/products/ovation-elements-pro" target="_blank" rel="noopener noreferrer">upgrading to the Pro version</a> to access advanced settings.
+                </small>
+     
+                 </div>
+  </div>
+</div>
+</div>      
+                         </div>    
+                <!-- end -->
+                <button type="submit" class="btn btn-primary">Save Slider</button>
     </form>
 </div>
+
+
