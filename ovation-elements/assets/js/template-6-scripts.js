@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('sliderData.images is not defined or is null!');
         return;
     }
-     const sliderConfig = window.template7SliderConfig || {
+     const sliderConfig = window.template6SliderConfig || {
         autoplay: false, 
         autoplay_delay: 1000, 
         effect: 'fade', 

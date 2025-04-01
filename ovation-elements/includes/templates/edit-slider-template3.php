@@ -178,7 +178,8 @@ $is_premium_user = get_option('ovation_slider_is_premium', false); // modify
     <!-- <h1 class="editor-heading">Edit Slider</h1> -->
     <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" enctype="multipart/form-data" id="slider-form">
         <?php wp_nonce_field('ova_elems_save_meta_boxes_data', 'ova_elems_nonce'); ?>
-        <input type="hidden" name="action" value="save_ova_elems_data" />
+        <!-- <input type="hidden" name="action" value="save_ova_elems_data" /> -->
+        <input type="hidden" name="action" value="<?php echo $is_premium_user ? 'save_ova_elems_pro_data' : 'save_ova_elems_data' ; ?>" />
         <input type="hidden" name="post_id" value="<?php echo esc_attr($post_id); ?>" />
 
         
@@ -202,14 +203,7 @@ $is_premium_user = get_option('ovation_slider_is_premium', false); // modify
 <div class="static-container mb-4 p-3 border rounded">
 
     <div class="settings-tabs">
-        <!-- <ul class="nav nav-tabs" id="settingsTabs" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="free-tab" data-toggle="tab" href="#free-settings" role="tab" aria-controls="free-settings" aria-selected="true">Free</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="advanced-tab" data-toggle="tab" href="#advanced-settings" role="tab" aria-controls="advanced-settings" aria-selected="false">Advanced</a>
-            </li>
-        </ul> -->
+
   <div class="tab-content" id="settingsTabContent">
     <!-- Free Settings Tab -->
     <div class="tab-pane fade show active" id="free-settings" role="tabpanel" aria-labelledby="free-tab">
@@ -501,40 +495,7 @@ $is_premium_user = get_option('ovation_slider_is_premium', false); // modify
         <div class="tab-pane fade" id="advanced-settings" role="tabpanel" aria-labelledby="advanced-tab">
 
             <div class="row">
-                     
-                     <div class="col-md-4 mb-4 form-group flex-row d-flex align-items-center">
-                         <label class="mr-2" for="autoplay_setting">Enable Autoplay:</label>
-                         <input type="checkbox" id="autoplay_setting" name="autoplay_setting" 
-                             value="1" <?php checked(!empty($static_settings['autoplay']), true); ?> 
-                             <?php if (!$is_premium_user) echo 'disabled'; ?> />
-                         <?php if (!$is_premium_user): ?>
-                         <?php endif; ?>
-                     </div>
-                     
-                     <div class="col-md-4 mb-4 d-flex flex-column form-group">
-                         <label for="autoplay_delay">Autoplay Delay Time (ms):</label>
-                         <input type="number" id="autoplay_delay" name="autoplay_delay" 
-                             value="<?php echo esc_attr($static_settings['autoplay_delay'] ?? 1000); ?>" 
-                             <?php if (!$is_premium_user) echo 'disabled'; ?> />
-                         <?php if (!$is_premium_user): ?>
-                         <?php endif; ?>
-                     </div>
-                     
-                     <div class="col-md-4 mb-4 d-flex flex-column form-group">
-                         <label for="effect">Select Effect:</label>
-                         <select id="effect" name="effect" <?php if (!$is_premium_user) echo 'disabled'; ?>>
-                             <option value="fade" <?php selected($static_settings['effect'] ?? '', 'fade'); ?>>Fade</option>
-                             <option value="slide" <?php selected($static_settings['effect'] ?? '', 'slide'); ?>>Slide</option>
-                             <option value="cube" <?php selected($static_settings['effect'] ?? '', 'cube'); ?>>Cube</option>
-                             <option value="coverflow" <?php selected($static_settings['effect'] ?? '', 'coverflow'); ?>>Coverflow</option>
-                         </select>
-                         <?php if (!$is_premium_user): ?>
-                         <?php endif; ?>
-                     </div>
-     
-                     
-                     
-                     
+
                      <!-- Social Icon Active Color -->
                      <div class="col-md-4 mb-4 form-group">
                          <label for="social_icon_active_color">Social Icon Active Color</label>
@@ -614,9 +575,11 @@ $is_premium_user = get_option('ovation_slider_is_premium', false); // modify
                          <?php if (!$is_premium_user): ?>
                          <?php endif; ?>
                      </div>
-                     <small class="form-text upgrade-message">
+                     <?php if (!$is_premium_user): ?>
+                <small class="form-text upgrade-message">
                     Enhance your experience by <a href="https://www.ovationthemes.com/products/ovation-elements-pro" target="_blank" rel="noopener noreferrer">upgrading to the Pro version</a> to access advanced settings.
                 </small>
+                <?php endif; ?>
      
                  </div>
 

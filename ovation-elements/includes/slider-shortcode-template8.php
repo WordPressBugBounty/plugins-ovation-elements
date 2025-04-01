@@ -16,7 +16,7 @@ $dynamic_settings = [
 wp_enqueue_style('ova-elems-style8', OVA_ELEMS_URL . 'assets/css/style8.css', array(), OVA_ELEMS_VER);
 wp_enqueue_script('ova-elems-template-8-frontend-scripts', OVA_ELEMS_URL . 'assets/js/template-8-scripts.js', array('jquery'), OVA_ELEMS_VER, true);
 // Localize the script
-wp_localize_script('ova-elems-template-8-frontend-scripts', 'template1SliderConfig', $dynamic_settings);
+wp_localize_script('ova-elems-template-8-frontend-scripts', 'template8SliderConfig', $dynamic_settings);
 ?>
 
 

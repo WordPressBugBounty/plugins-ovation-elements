@@ -191,7 +191,8 @@ $ovation_logo = OVA_ELEMS_URL . 'assets/images/logo.png';
     <!-- <h1 class="editor-heading">Edit Slider</h1> -->
     <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" enctype="multipart/form-data" id="slider-form">
         <?php wp_nonce_field('ova_elems_save_meta_boxes_data', 'ova_elems_nonce'); ?>
-        <input type="hidden" name="action" value="save_ova_elems_data" />
+        <!-- <input type="hidden" name="action" value="save_ova_elems_data" /> -->
+        <input type="hidden" name="action" value="<?php echo $is_premium_user ? 'save_ova_elems_pro_data' : 'save_ova_elems_data' ; ?>" />
         <input type="hidden" name="post_id" value="<?php echo esc_attr($post_id); ?>" />
 
         
@@ -662,10 +663,11 @@ $ovation_logo = OVA_ELEMS_URL . 'assets/images/logo.png';
                     <?php if (!$is_premium_user): ?>
                     <?php endif; ?>
                 </div>
-              
+                <?php if (!$is_premium_user): ?>
                 <small class="form-text upgrade-message">
                     Enhance your experience by <a href="https://www.ovationthemes.com/products/ovation-elements-pro" target="_blank" rel="noopener noreferrer">upgrading to the Pro version</a> to access advanced settings.
                 </small>
+                <?php endif; ?>
             </div>
 
             <!-- Add more advanced settings here -->

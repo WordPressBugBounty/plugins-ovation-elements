@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Use dynamic data passed via localized script
-  const sliderConfig = window.template7SliderConfig || {
+  const sliderConfig = window.template2SliderConfig || {
       autoplay: false, 
       autoplay_delay: 1000, 
       effect: 'fade', 

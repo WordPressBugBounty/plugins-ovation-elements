@@ -135,6 +135,10 @@ function add_static_settings_template($template_id) {
                 font-size: {$oe_button_font_size}px !important;
             }
 
+            .ov-mini-title {
+                font-size: {$ov_mini_title_font_size}px !important;
+            }
+
             .oe-stat-head {
                 font-size: {$ov_mini_title_font_size}px !important;
             }

@@ -22,7 +22,7 @@ $activeSlideIndex = $static_settings['active_slide_index'] ?? 0;
 ];
 
 // Localize the script
-wp_localize_script('ova-elems-template-5-frontend-scripts', 'template7SliderConfig', $dynamic_settings);
+wp_localize_script('ova-elems-template-5-frontend-scripts', 'template5SliderConfig', $dynamic_settings);
 ?>
 
 <body>

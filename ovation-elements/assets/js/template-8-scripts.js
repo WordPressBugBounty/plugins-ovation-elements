@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const sliderConfig = window.template7SliderConfig || {
+  const sliderConfig = window.template8SliderConfig || {
       autoplay: false, // Default to false if not provided
       autoplay_delay: 1000, // Default delay time
       effect: 'fade', 

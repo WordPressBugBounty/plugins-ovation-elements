@@ -16,7 +16,7 @@ $dynamic_settings = [
     'autoplay_delay' => isset($static_settings['autoplay_delay']) ? absint($static_settings['autoplay_delay']) : 1000,
 ];
 
-wp_localize_script('ova-elems-template-2-frontend-scripts', 'template1SliderConfig', $dynamic_settings);
+wp_localize_script('ova-elems-template-2-frontend-scripts', 'template2SliderConfig', $dynamic_settings);
 
 wp_enqueue_style('ova-elems-style2', OVA_ELEMS_URL . 'assets/css/style2.css', array(), OVA_ELEMS_VER);
 wp_enqueue_script('ova-elems-template-2-frontend-scripts', OVA_ELEMS_URL . 'assets/js/template-2-scripts.js', array('jquery'), OVA_ELEMS_VER, true);

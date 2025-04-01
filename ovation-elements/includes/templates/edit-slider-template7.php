@@ -256,26 +256,12 @@ $is_premium_user = get_option('ovation_slider_is_premium', false); // modify
     <!-- <h1>Edit Slider</h1> -->
     <!-- <form method="post" action="<?php// echo esc_url(admin_url('admin-post.php')); ?>"> -->
     <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" id="slider-form">
-        <input type="hidden" name="action" value="save_ova_elems_template4_data"  />
+        <!-- <input type="hidden" name="action" value="save_ova_elems_template4_data"  /> -->
+        <input type="hidden" name="action" value="<?php echo $is_premium_user ? 'save_ova_elems_pro_template4_data' : 'save_ova_elems_template4_data' ; ?>" />
         <input type="hidden" name="post_id" value="<?php echo esc_attr($post_id); ?>" />
         <?php wp_nonce_field('ova_elems_save_meta_boxes_data', 'ova_elems_nonce'); ?>
 
-        <!-- Slide Selection -->
-       
 
-        <!-- i add  -->
-
-        
-
-
-        <!-- end  -->
-
-        <!-- <button type="button" class="add_slide_button" class="btn btn-success">Add Slide</button> -->
-        
-        <!-- <h2>Static settings </h2> -->
-
-
-        <!-- tab base settings  -->
 
 <div class="tabs_buttons_outer mt-5">
     <ul class="nav nav-tabs" id="settingsTabs" role="tablist">
@@ -685,11 +671,11 @@ $is_premium_user = get_option('ovation_slider_is_premium', false); // modify
                      
                      <div class="col-md-4 mb-4 form-group flex-row d-flex align-items-center">
                          <label class="mr-2" for="autoplay_setting">Enable Autoplay:</label>
-                         <input type="checkbox" id="autoplay_setting" name="autoplay_setting" 
-                             value="1" <?php checked(!empty($static_settings['autoplay']), true); ?> 
-                             <?php if (!$is_premium_user) echo 'disabled'; ?> />
+                         <input type="hidden" name="autoplay_setting" value="0" />
+                         <input type="checkbox" id="autoplay_setting" name="autoplay_setting" value="1" 
+                                <?php checked(!empty($static_settings['autoplay_setting']), true); ?> 
+                                <?php if (!$is_premium_user) echo 'disabled'; ?> />
                          <?php if (!$is_premium_user): ?>
-                             <!-- <small class="form-text text-muted">Upgrade to the pro version to enable autoplay.</small> -->
                          <?php endif; ?>
                      </div>
                      
@@ -806,9 +792,11 @@ $is_premium_user = get_option('ovation_slider_is_premium', false); // modify
      
                  </div>
         <!-- Add more advanced settings here -->
-        <small class="form-text upgrade-message">
+        <?php if (!$is_premium_user): ?>
+                <small class="form-text upgrade-message">
                     Enhance your experience by <a href="https://www.ovationthemes.com/products/ovation-elements-pro" target="_blank" rel="noopener noreferrer">upgrading to the Pro version</a> to access advanced settings.
                 </small>
+                <?php endif; ?>
          </div>
   </div>
 </div>

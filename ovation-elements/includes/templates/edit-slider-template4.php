@@ -55,37 +55,16 @@ $ovation_logo = OVA_ELEMS_URL . 'assets/images/logo.png';
             </div>
         </div>
     </div>
-    <!-- <div class="template-edit-img">
-        <div class="ovs-edit-template-img">
-        <img src="<?php echo esc_url($template1_image_url); ?>" alt="News Slider Template" class="template-preview-image" />
-    
-            <h2>News Slider Template</h2>
-        </div>
-    </div> -->
     </div>
 <!-- end -->
 
 <div class="wrap">
     <!-- <h1>Edit Slider</h1> -->
     <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" id="slider-form">
-        <input type="hidden" name="action" value="save_ova_elems_template4_data" />
+        <!-- <input type="hidden" name="action" value="save_ova_elems_template4_data" /> -->
+        <input type="hidden" name="action" value="<?php echo $is_premium_user ? 'save_ova_elems_pro_template4_data' : 'save_ova_elems_template4_data' ; ?>" />
         <input type="hidden" name="post_id" value="<?php echo esc_attr($post_id); ?>" />
         <?php wp_nonce_field('ova_elems_save_meta_boxes_data', 'ova_elems_nonce'); ?>
-
-        <!-- Slide Selection -->
-       
-
-        <!-- i add  -->
-       
-
-
-        <!-- end  -->
-
-        
-
-        <!-- tab base settings  -->
-
-
 
 <div class="tabs_buttons_outer">
     <ul class="nav nav-tabs" id="settingsTabs" role="tablist">
@@ -353,13 +332,14 @@ $ovation_logo = OVA_ELEMS_URL . 'assets/images/logo.png';
         <div class="tab-pane fade" id="advanced-settings" role="tabpanel" aria-labelledby="advanced-tab">
             <div class="row">
                      
+
                 <div class="col-md-4 mb-4 form-group flex-row d-flex align-items-center">
                     <label class="mr-2" for="autoplay_setting">Enable Autoplay:</label>
-                    <input type="checkbox" id="autoplay_setting" name="autoplay_setting" 
-                        value="1" <?php checked(!empty($static_settings['autoplay']), true); ?> 
-                        <?php if (!$is_premium_user) echo 'disabled'; ?> />
+                    <input type="hidden" name="autoplay_setting" value="0" />
+                    <input type="checkbox" id="autoplay_setting" name="autoplay_setting" value="1" 
+                           <?php checked(!empty($static_settings['autoplay_setting']), true); ?> 
+                           <?php if (!$is_premium_user) echo 'disabled'; ?> />
                     <?php if (!$is_premium_user): ?>
-                        <!-- <small class="form-text text-muted">Upgrade to the pro version to enable autoplay.</small> -->
                     <?php endif; ?>
                 </div>
                 
@@ -474,9 +454,11 @@ $ovation_logo = OVA_ELEMS_URL . 'assets/images/logo.png';
                     <small class="form-text text-muted">You can add custom CSS rules here. Example: .my-class { color: red; }</small>
                
                 </div>
+                <?php if (!$is_premium_user): ?>
                 <small class="form-text upgrade-message">
                     Enhance your experience by <a href="https://www.ovationthemes.com/products/ovation-elements-pro" target="_blank" rel="noopener noreferrer">upgrading to the Pro version</a> to access advanced settings.
                 </small>
+                <?php endif; ?>
 
             </div>
         </div>

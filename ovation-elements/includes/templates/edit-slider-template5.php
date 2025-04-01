@@ -165,18 +165,11 @@ $ovation_logo = OVA_ELEMS_URL . 'assets/images/logo.png';
 <div class="wrap">
     <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" enctype="multipart/form-data" id="slider-form">
         <?php wp_nonce_field('ova_elems_save_meta_boxes_data', 'ova_elems_nonce'); ?>
-        <input type="hidden" name="action" value="save_ova_elems_data" />
+        <!-- <input type="hidden" name="action" value="save_ova_elems_data" /> -->
+        <input type="hidden" name="action" value="<?php echo $is_premium_user ? 'save_ova_elems_pro_data' : 'save_ova_elems_data' ; ?>" />
         <input type="hidden" name="post_id" value="<?php echo esc_attr($post_id); ?>" />
 
-        
-<!-- 
-        <button type="button" id="add_slide_button" class="btn btn-success">Add Slide</button> -->
 
-       
-
-        
-
-        <!-- tab base settings  -->
 
 <div class="tabs_buttons_outer">
     <ul class="nav nav-tabs" id="settingsTabs" role="tablist">
@@ -192,14 +185,7 @@ $ovation_logo = OVA_ELEMS_URL . 'assets/images/logo.png';
 </div>
 <div class="static-container mb-4 p-3 border rounded">
 <div class="settings-tabs">
-  <!-- <ul class="nav nav-tabs" id="settingsTabs" role="tablist">
-      <li class="nav-item">
-          <a class="nav-link active" id="free-tab" data-toggle="tab" href="#free-settings" role="tab" aria-controls="free-settings" aria-selected="true">Free</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" id="advanced-tab" data-toggle="tab" href="#advanced-settings" role="tab" aria-controls="advanced-settings" aria-selected="false">Advanced</a>
-      </li>
-  </ul> -->
+
   <div class="tab-content" id="settingsTabContent">
       <!-- Free Settings Tab -->
       <div class="tab-pane fade show active" id="free-settings" role="tabpanel" aria-labelledby="free-tab">
@@ -480,9 +466,11 @@ $ovation_logo = OVA_ELEMS_URL . 'assets/images/logo.png';
                          <?php endif; ?>
                      </div>
 
-                     <small class="form-text upgrade-message">
+                     <?php if (!$is_premium_user): ?>
+                <small class="form-text upgrade-message">
                     Enhance your experience by <a href="https://www.ovationthemes.com/products/ovation-elements-pro" target="_blank" rel="noopener noreferrer">upgrading to the Pro version</a> to access advanced settings.
                 </small>
+                <?php endif; ?>
      
                  </div>
   </div>
