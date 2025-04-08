@@ -326,7 +326,7 @@ function ova_elems_slider_dashboard_page() {
                 <a class="nav-link" id="ova_elems_tab1-tab" data-toggle="tab" href="#ova_elems_tab1" role="tab" aria-controls="ova_elems_tab1" aria-selected="true">Dashboard</a>
             </li>
         <li class="nav-item">
-          <a class="nav-link active" id="ova_elems_tab2-tab" data-toggle="tab" href="#ova_elems_tab2" role="tab" aria-controls="ova_elems_tab2" aria-selected="false">Sliders</a>
+          <a class="nav-link" id="ova_elems_tab2-tab" data-toggle="tab" href="#ova_elems_tab2" role="tab" aria-controls="ova_elems_tab2" aria-selected="false">Sliders</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="ova_elems_tab3-tab" data-toggle="tab" href="#ova_elems_tab3" role="tab" aria-controls="ova_elems_tab3" aria-selected="false">Post Type</a>
@@ -335,7 +335,7 @@ function ova_elems_slider_dashboard_page() {
           <a class="nav-link" id="ova_elems_tab4-tab" data-toggle="tab" href="#ova_elems_tab4" role="tab" aria-controls="ova_elems_tab4" aria-selected="false">Page Builder</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="ova_elems_tab5-tab" data-toggle="tab" href="#ova_elems_tab5" role="tab" aria-controls="ova_elems_tab5" aria-selected="false"> Block Themes</a>
+          <a class="nav-link active" id="ova_elems_tab5-tab" data-toggle="tab" href="#ova_elems_tab5" role="tab" aria-controls="ova_elems_tab5" aria-selected="false"> Block Themes</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="ova_elems_tab6-tab" data-toggle="tab" href="#ova_elems_tab6" role="tab" aria-controls="ova_elems_tab6" aria-selected="false">Support</a>
@@ -348,7 +348,7 @@ function ova_elems_slider_dashboard_page() {
           <?php include(plugin_dir_path(__FILE__) . 'ova-elems-tab1.php'); ?>
         </div>
   
-        <div class="tab-pane fade show active" id="ova_elems_tab2" role="tabpanel" aria-labelledby="ova_elems_tab2-tab">
+        <div class="tab-pane fade" id="ova_elems_tab2" role="tabpanel" aria-labelledby="ova_elems_tab2-tab">
           <?php include(plugin_dir_path(__FILE__) . 'ova-elems-tab2.php'); ?>
         </div>
   
@@ -360,7 +360,7 @@ function ova_elems_slider_dashboard_page() {
           <?php include(plugin_dir_path(__FILE__) . 'ova-elems-tab4.php'); ?>
         </div>
   
-        <div class="tab-pane fade" id="ova_elems_tab5" role="tabpanel" aria-labelledby="ova_elems_tab5-tab">
+        <div class="tab-pane fade show active" id="ova_elems_tab5" role="tabpanel" aria-labelledby="ova_elems_tab5-tab">
           <?php include(plugin_dir_path(__FILE__) . 'ova-elems-tab5.php'); ?>
         </div>
   
