@@ -418,23 +418,19 @@ jQuery(document).ready(function ($) {
         .done(function (response) {
             let message = "An error occurred"; 
             try {
-                response = JSON.parse(response); // Attempt to parse as JSON
-                message = response.message || message; //  JSON 
+                response = JSON.parse(response);
+                message = response.message || message;
             } catch (e) {
-                // HTML
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = response;
-                const messageElement = tempDiv.querySelector('p:last-of-type'); // last <p> contains the key message
+                const messageElement = tempDiv.querySelector('p:last-of-type');
                 if (messageElement) {
-                    message = messageElement.textContent.trim(); 
+                    message = messageElement.textContent.trim();
                 }
             }
         
-            // Show the relevant message in an alert
             alert(message);
-            location.reload();
-        
-            // Handle success or failure actions
+            
             if (response.success) {
                 if (response.is_active) {
                     button.text('Tutor LMS Activated').prop('disabled', true);

@@ -315,15 +315,8 @@ $ovation_logo = OVA_ELEMS_URL . 'assets/images/logo.png';
 
                         <div class="col-md-6 form-group halfs">
                             <button type="button" class="remove_slide_button btn btn-danger">Remove Slide</button>
-                            <!-- <button type="button" class="add_slide_button" class="btn btn-success">Add Slide</button> -->
-                            <?php// if (count($slides) < 2 || $is_premium_user): ?>
-                                <button type="button" class="add_slide_button btn btn-success">Add Slide</button>
-                            <?php// else: ?>
-                                <!-- <div class="alert alert-warning mt-3">You have reached the maximum number of slides allowed in the free version. <a href="https://your-upgrade-link.com" target="_blank">Go Pro</a> to add more slides.</div> -->
-                            <?php// endif; ?>
+                            <button type="button" class="add_slide_button btn btn-success">Add Slide</button>
                         </div>
-                            <!-- <button type="button" class="remove_slide_button btn btn-danger">Remove Slide</button>
-                            <button type="button" id="add_slide_button" class="btn btn-success">Add Slide</button> -->
                             
                         </div>
                     </div>

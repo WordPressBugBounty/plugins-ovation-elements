@@ -253,10 +253,8 @@ $is_premium_user = get_option('ovation_slider_is_premium', false); // modify
 <!-- end -->
 
 <div class="wrap">
-    <!-- <h1>Edit Slider</h1> -->
-    <!-- <form method="post" action="<?php// echo esc_url(admin_url('admin-post.php')); ?>"> -->
+    
     <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" id="slider-form">
-        <!-- <input type="hidden" name="action" value="save_ova_elems_template4_data"  /> -->
         <input type="hidden" name="action" value="<?php echo $is_premium_user ? 'save_ova_elems_pro_template4_data' : 'save_ova_elems_template4_data' ; ?>" />
         <input type="hidden" name="post_id" value="<?php echo esc_attr($post_id); ?>" />
         <?php wp_nonce_field('ova_elems_save_meta_boxes_data', 'ova_elems_nonce'); ?>
@@ -557,12 +555,6 @@ $is_premium_user = get_option('ovation_slider_is_premium', false); // modify
                         placeholder="Enter review text" />
                 </div>
 
-                <!-- <div class="col-md-4  form-group">
-                    <label for="ov_review_no">Review No</label>
-                    <input type="number" id="ov_review_no" name="ov_review_no" class="form-control" 
-                        value="<?php// echo isset($static_settings['ov_review_no']) ? intval($static_settings['ov_review_no']) : ''; ?>" 
-                        placeholder="Enter review number" />
-                </div> -->
                 <div class="col-md-4 form-group">
                     <label for="ov_review_no">Review No</label>
                     <input type="text" id="ov_review_no" name="ov_review_no" class="form-control" 

@@ -50,9 +50,6 @@ $template1_image_url = OVA_ELEMS_URL . 'assets/images/template-8.png';
 $ovation_logo = OVA_ELEMS_URL . 'assets/images/logo.png';
 $is_premium_user = get_option('ovation_slider_is_premium', false); // modify 
 
-// // Check if Tutor LMS plugin is installed and/or activated
-// $plugin_slug = 'tutor/tutor.php';
-// $plugin_status = file_exists(WP_PLUGIN_DIR . '/' . $plugin_slug) && is_plugin_active($plugin_slug);
 ?>
 
 <!-- for install tutor plugin -->
@@ -352,7 +349,6 @@ if ($tutor_plugin_active) {
     <h1 class="editor-heading">Edit Slider</h1>
     <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" enctype="multipart/form-data" id="slider-form">
         <?php wp_nonce_field('ova_elems_save_meta_boxes_data', 'ova_elems_nonce'); ?>
-        <!-- <input type="hidden" name="action" value="save_ova_elems_data" /> -->
         <input type="hidden" name="action" value="<?php echo $is_premium_user ? 'save_ova_elems_pro_data' : 'save_ova_elems_data' ; ?>" />
         <input type="hidden" name="post_id" value="<?php echo esc_attr($post_id); ?>" />
 
@@ -542,14 +538,6 @@ if ($tutor_plugin_active) {
                         value="<?php echo isset($static_settings['ov_template_review_text']) ? esc_attr($static_settings['ov_template_review_text']) : ''; ?>" 
                         placeholder="Enter review text" />
                 </div>
-                
-                <!-- <div class="col-md-6 form-group">
-                    <label for="ov_template_review_no">Review No</label>
-                    <small class="form-text text-muted">Ex :(500+, 1.5K+ ).</small>
-                    <input type="number" id="ov_template_review_no" name="ov_template_review_no" class="form-control" 
-                        value="<?php// echo isset($static_settings['ov_template_review_no']) ? intval($static_settings['ov_template_review_no']) : ''; ?>" 
-                        placeholder="Enter review number" />
-                </div> -->
 
                 <div class="col-md-6 form-group">
                     <label for="ov_template_review_no">Review No</label>
@@ -558,9 +546,6 @@ if ($tutor_plugin_active) {
                         value="<?php echo isset($static_settings['ov_template_review_no']) ? esc_attr($static_settings['ov_template_review_no']) : ''; ?>" 
                         placeholder="Enter review number (e.g., 500+, 1.5K+)" pattern="^[\d\+\-\*\.Kk]+$" />
                 </div>
-
-        
-                <!-- end -->
 
                 <div class="col-md-6 form-group mini d-flex align-items-center gap-3">
                     <label for="slide_corner_images_0">Upload Right Corner Image:</label>

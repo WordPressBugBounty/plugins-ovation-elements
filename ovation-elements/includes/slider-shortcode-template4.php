@@ -118,7 +118,7 @@ wp_localize_script('ova-elems-template-4-frontend-scripts', 'template4SliderConf
                                 <?php 
                                         $title = esc_html($post->post_title);
                                         $title = wp_trim_words($title, 10, '...'); 
-                                        echo $title; 
+                                        echo esc_html($title); 
                                     ?>
                             </div>
 
@@ -127,7 +127,7 @@ wp_localize_script('ova-elems-template-4-frontend-scripts', 'template4SliderConf
                                         $title = esc_html($post->post_title);
                                         $title = wp_trim_words($title, 10, '...'); 
                                        // echo $title; 
-                                        echo '<a href="' . esc_url(get_permalink($post->ID)) . '" class="post-title-link">' . $title . '</a>';
+                                        echo '<a href="' . esc_url(get_permalink($post->ID)) . '" class="post-title-link">' . esc_html($title) . '</a>';
                                     ?>
                             </h1>
 

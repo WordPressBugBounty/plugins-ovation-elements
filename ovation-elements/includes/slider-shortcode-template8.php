@@ -2,6 +2,7 @@
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
+
 global $ova_elems_template;
 $ova_elems_template = 'template8';
 
@@ -141,7 +142,7 @@ wp_localize_script('ova-elems-template-8-frontend-scripts', 'template8SliderConf
                                                 <span class="author-avatar-box">
                                                     <?php echo esc_html($author_name); ?>
                                                     <?php if ($author_avatar): ?>
-                                                    <div class="author-avatar"><?php echo $author_avatar; ?></div>
+                                                    <div class="author-avatar"><?php echo wp_kses_post($author_avatar); ?></div>
                                                     <?php endif; ?>
                                                 </span>
                                             </div>

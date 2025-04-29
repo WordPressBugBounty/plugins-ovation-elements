@@ -538,12 +538,6 @@ $ovation_logo = OVA_ELEMS_URL . 'assets/images/logo.png';
                             placeholder="Enter review text" />
                 </div>
          
-                <!-- <div class="form-group col-md-6">
-                    <label for="ov_template_review_no">Review No</label>
-                    <input type="number" id="ov_template_review_no" name="ov_template_review_no" class="form-control" 
-                            value="<?php// echo isset($static_settings['ov_template_review_no']) ? intval($static_settings['ov_template_review_no']) : ''; ?>"
-                            placeholder="Enter review number" />
-                </div> -->
                 <div class="col-md-6 form-group">
                     <label for="ov_template_review_no">Review No</label>
                     <small class="form-text text-muted">Ex: (500+, 1.5K+, 4-5*, etc.)</small>

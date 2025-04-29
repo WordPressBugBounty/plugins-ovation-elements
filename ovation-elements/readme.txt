@@ -2,11 +2,11 @@
 Contributors: pewilliams
 Tags: custom-slider, slider-responsive, slider-plugin, wordPress-slider, visual-slider
 Requires at least: 5.2
-Tested up to: 6.7.2
+Tested up to: 6.8
 Requires PHP: 7.2
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Transform your site with captivating sliders. Perfect for beginners and advanced users. Create and customize with our ultimate slider plugin.
 
@@ -63,6 +63,10 @@ The Ovation Elements bundles the following third-party resources:
 * Copyright 2021 Fonticons, Inc.
 
 == Changelog ==
+
+= 1.1.3 - 2025-26-04 =
+* Minor Bugs Fixes.
+* Plugin Optimized.
 
 = 1.1.2 - 2025-08-04 =
 * Minor Bugs Fixes.

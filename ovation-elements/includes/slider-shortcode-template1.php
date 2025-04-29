@@ -1,7 +1,8 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
+
 // Set a global variable to indicate the current template
 global $ova_elems_template;
 $ova_elems_template = 'template1'; 

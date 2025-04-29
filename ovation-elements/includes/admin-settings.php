@@ -380,8 +380,12 @@ function ova_elems_slider_dashboard_page() {
 
 
 // Handle Template Selection and Redirect to Edit Page
-function ova_elems_handle_template_selection()
-{
+function ova_elems_handle_template_selection() {
+    // Verify nonce
+    if (!isset($_POST['_wpnonce']) || !wp_verify_nonce($_POST['_wpnonce'], 'ova_elems_template_selection')) {
+        wp_die(esc_html__('Security check failed.', 'ovation-elements'));
+    }
+
     if (!current_user_can('edit_posts')) {
         wp_die(esc_html__('You do not have sufficient permissions to access this page.', 'ovation-elements'));
     }
@@ -392,7 +396,7 @@ function ova_elems_handle_template_selection()
         // Create a new post of type 'ova_elems'
         $post_id = wp_insert_post(
             array(
-                'post_title' => 'New Slider', // Default title, can be updated later
+                'post_title' => 'New Slider',
                 'post_type' => 'ova_elems',
                 'post_status' => 'publish',
             )
@@ -402,7 +406,7 @@ function ova_elems_handle_template_selection()
         if ($post_id && !is_wp_error($post_id)) {
             update_post_meta($post_id, '_ova_elems_template_id', $template_id);
 
-            // Redirect to  edit page
+            // Redirect to edit page
             wp_redirect(admin_url('edit.php?post_type=ova_elems&page=edit_slider_template&post=' . $post_id));
             exit;
         }
@@ -417,8 +421,12 @@ add_action('admin_post_select_template', 'ova_elems_handle_template_selection');
 //changes here by removing old for trash 
 
 function ova_elems_custom_trash_action() {
+    if (!current_user_can('delete_posts')) {
+        wp_die(esc_html__('You do not have sufficient permissions to perform this action.', 'ovation-elements'));
+    }
+
     if (isset($_GET['action']) && $_GET['action'] == 'trash' && isset($_GET['post']) && get_post_type($_GET['post']) == 'ova_elems') {
-        $post_id = $_GET['post'];
+        $post_id = absint($_GET['post']);
         if (current_user_can('delete_post', $post_id)) {
             wp_trash_post($post_id);
             wp_redirect(admin_url('edit.php?post_type=ova_elems'));
@@ -787,8 +795,8 @@ function ova_elems_handle_create_slider()
 }
 add_action('admin_post_create_ova_elems', 'ova_elems_handle_create_slider');
 
-function ova_elems_save_data(){
-    
+function ova_elems_save_data() {
+    // Verify nonce
     if (!isset($_POST['ova_elems_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['ova_elems_nonce'])), 'ova_elems_save_meta_boxes_data')) {
         wp_die(esc_html__('Nonce verification failed.', 'ovation-elements'));
     }
@@ -796,6 +804,10 @@ function ova_elems_save_data(){
     $post_id = isset($_POST['post_id']) ? absint($_POST['post_id']) : 0;
     if (!$post_id) {
         wp_die(esc_html__('Invalid post ID.', 'ovation-elements'));
+    }
+
+    if (!current_user_can('edit_post', $post_id)) {
+        wp_die(esc_html__('You do not have sufficient permissions to edit this post.', 'ovation-elements'));
     }
 
     // Retrieve and sanitize slide data
@@ -1183,10 +1195,21 @@ add_action('admin_enqueue_scripts', 'enqueue_wp_color_picker_assets');
 add_action('wp_ajax_upload_cropped_image', 'handle_cropped_image_upload');
 
 function handle_cropped_image_upload() {
-   // check_ajax_referer('upload_cropped_image_nonce', '_ajax_nonce'); // Verify nonce for security
+    // Verify nonce
+    if (!isset($_POST['_ajax_nonce']) || !wp_verify_nonce($_POST['_ajax_nonce'], 'upload_cropped_image_nonce')) {
+        wp_send_json_error(['message' => 'Invalid nonce']);
+        wp_die();
+    }
+
+    // Check user capabilities
+    if (!current_user_can('upload_files')) {
+        wp_send_json_error(['message' => 'Insufficient permissions']);
+        wp_die();
+    }
 
     if (!isset($_FILES['cropped_image']) || empty($_FILES['cropped_image'])) {
         wp_send_json_error(['message' => 'No image file provided.']);
+        wp_die();
     }
 
     $file = $_FILES['cropped_image'];
@@ -1194,12 +1217,14 @@ function handle_cropped_image_upload() {
     // Validate the file
     if ($file['error'] !== UPLOAD_ERR_OK) {
         wp_send_json_error(['message' => 'Error uploading file.']);
+        wp_die();
     }
 
     $upload = wp_handle_upload($file, ['test_form' => false]);
 
     if (!$upload || isset($upload['error'])) {
         wp_send_json_error(['message' => 'Failed to upload image.', 'error' => $upload['error']]);
+        wp_die();
     }
 
     // Insert the uploaded image into the WordPress media library
@@ -1213,6 +1238,7 @@ function handle_cropped_image_upload() {
 
     if (is_wp_error($attachment_id)) {
         wp_send_json_error(['message' => 'Failed to insert image into media library.']);
+        wp_die();
     }
 
     // Generate attachment metadata and update
@@ -1221,6 +1247,7 @@ function handle_cropped_image_upload() {
     wp_update_attachment_metadata($attachment_id, $metadata);
 
     wp_send_json_success(['message' => 'Image uploaded successfully!', 'url' => $upload['url']]);
+    wp_die();
 }
 
 

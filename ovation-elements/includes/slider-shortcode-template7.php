@@ -126,7 +126,7 @@ wp_localize_script('ova-elems-template-7-frontend-scripts', 'template7SliderConf
                                     class="oe-travel-slider-post-bg-bg-box d-flex justify-content-md-start justify-content-sm-center justify-content-center align-items-center">
                                     <span class="oe-travel-slider-post-icon-img me-2 ms-0 position-relative">
                                         <div class="oe-travel-slider-post-icon">
-                                            <?php echo $author_avatar; ?>
+                                            <?php echo wp_kses_post($author_avatar); ?>
                                             <!-- Display avatar -->
                                         </div>
                                     </span>
@@ -147,7 +147,7 @@ wp_localize_script('ova-elems-template-7-frontend-scripts', 'template7SliderConf
                                                    $title = esc_html($post->post_title);
                                                    $title = wp_trim_words($title, 10, '...'); 
                                                   // echo $title; 
-                                                   echo '<a href="' . esc_url(get_permalink($post->ID)) . '" class="post-title-link">' . $title . '</a>';?>
+                                                   echo '<a href="' . esc_url(get_permalink($post->ID)) . '" class="post-title-link">' . esc_html($title) . '</a>';?>
                                         </h1>
 
 
@@ -274,7 +274,7 @@ wp_localize_script('ova-elems-template-7-frontend-scripts', 'template7SliderConf
                     <div class="col-xxl-3 col-xl-3 col-lg-4 col-sm-6 col-12 align-self-end mb-sm-0 mb-3">
                         <div class="oe-travel-slider-review-box d-flex">
                             <div class="oe-travel-slider-review-image align-self-center">
-                                <?php echo '  <img src="' . $ov_client_image . '" alt="Client Image"> ' ;?>
+                                <?php echo '  <img src="' . esc_url($ov_client_image) . '" alt="Client Image"> ' ;?>
                             </div>
                             <div class="oe-travel-slider-review-text text-sm-start text-center align-self-center">
                                 <p class="oe-travel-slider-review-count review-font">
@@ -304,7 +304,7 @@ wp_localize_script('ova-elems-template-7-frontend-scripts', 'template7SliderConf
                             ?>
                             <!-- Remove display: none and ensure posts are always visible -->
                             <div
-                                class="col-xxl-3 col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 oe-travel-slider-carousel-post-boxes post-box-<?php echo $index; ?>">
+                                class="col-xxl-3 col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 oe-travel-slider-carousel-post-boxes post-box-<?php echo esc_attr($index); ?>">
                                 <div class="oe-travel-slider-carousel-post-bg-image"
                                     style="background-image: url(<?php echo esc_url($thumbnail ?: 'default-image-url'); ?>);">
                                     <div class="oe-travel-slider-carousel-post-box">
@@ -316,11 +316,11 @@ wp_localize_script('ova-elems-template-7-frontend-scripts', 'template7SliderConf
                                                 <span
                                                     class="oe-travel-slider-carousel-post-icon-img me-2 ms-0 position-relative">
                                                     <div class="oe-travel-slider-carousel-post-icon">
-                                                        <?php echo $author_avatar; ?>
+                                                        <?php echo wp_kses_post($author_avatar); ?>
                                                     </div>
                                                 </span>
                                                 <span
-                                                    class="oe-travel-slider-carousel-post-sub-head ov-thmb-head"><?php echo $post_author; ?></span>
+                                                    class="oe-travel-slider-carousel-post-sub-head ov-thmb-head"><?php echo esc_html($post_author); ?></span>
                                             </div>
 
                                             <!-- Carousel Post Content -->
@@ -335,7 +335,7 @@ wp_localize_script('ova-elems-template-7-frontend-scripts', 'template7SliderConf
                                         $title = esc_html($post->post_title);
                                         $title = wp_trim_words($title, 10, '...'); 
                                        // echo $title; 
-                                        echo '<a href="' . esc_url(get_permalink($post->ID)) . '" class="post-title-link">' . $title . '</a>';?>
+                                        echo '<a href="' . esc_url(get_permalink($post->ID)) . '" class="post-title-link">' . esc_html($title) . '</a>';?>
                                                     </h1>
 
 
@@ -411,3 +411,8 @@ wp_localize_script('ova-elems-template-7-frontend-scripts', 'template7SliderConf
     <!-- Main Slider Box End -->
 
 </section>
+
+<form method="post" action="" class="ova-elems-slider-form">
+    <?php wp_nonce_field('ova_elems_slider_action', 'ova_elems_slider_nonce'); ?>
+    <!-- Rest of your form fields -->
+</form>

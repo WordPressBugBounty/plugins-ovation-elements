@@ -436,12 +436,12 @@ jQuery(document).ready(function ($) {
                 const fileName = "cropped_image.jpg"; 
                 const formData = new FormData();
                 formData.append("action", "upload_cropped_image");
-                formData.append("cropped_image", blob, fileName); // Set file name here
-                //formData.append("_ajax_nonce", wpVars.nonce); // Pass nonce for security
+                formData.append("cropped_image", blob, fileName);
+                formData.append("_ajax_nonce", wpVars.nonce); // Add nonce to the request
 
                 // AJAX request to upload the cropped image
                 $.ajax({
-                    url: wpVars.ajaxUrl, // WordPress AJAX URL
+                    url: wpVars.ajaxUrl,
                     method: "POST",
                     data: formData,
                     processData: false,
@@ -456,7 +456,7 @@ jQuery(document).ready(function ($) {
                                 wp.media.frame.state().get("library")._requery(true);
                             }
                         } else {
-                            alert("Failed to upload image.");
+                            alert("Failed to upload image: " + response.data.message);
                             console.error(response.data.message);
                         }
                     },

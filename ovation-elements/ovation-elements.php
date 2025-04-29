@@ -3,7 +3,7 @@
  * Plugin Name:       Ovation Elements
  * Plugin URI:        https://www.ovationthemes.com/products/ovation-elements-pro
  * Description:       Transform your site with captivating sliders. Perfect for beginners and advanced users. Create and customize with our ultimate slider plugin.
- * Version:           1.1.2
+ * Version:           1.1.3
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            pewilliams
@@ -23,7 +23,7 @@ define( 'OVA_ELEMS_DIR', plugin_dir_path( OVA_ELEMS_FILE ) );
 define( 'OVA_ELEMS_URL', plugins_url( '/', OVA_ELEMS_FILE ) );
 define( 'OVA_ELEMS_LICENSE_ENDPOINT', 'https://license.ovationthemes.com/api/public/' );
 
-define( 'OVA_ELEMS_VER', '1.1.2' );
+define( 'OVA_ELEMS_VER', '1.1.3' );
 
 // Include necessary files
 include(plugin_dir_path(__FILE__) . 'includes/admin-settings.php');
@@ -84,22 +84,23 @@ function ova_elems_admin_scripts($hook) {
 
         // Localize script 
         if ($hook == 'admin_page_edit-slider-template-template1') {
-
             wp_localize_script($script_handle, 'wpVars', [
                 'ajaxUrl' => admin_url('admin-ajax.php'),
-                //'nonce'   => wp_create_nonce('upload_cropped_image_nonce'),
+                'nonce'   => wp_create_nonce('upload_cropped_image_nonce'),
             ]);
         }
 
         if ($hook == 'admin_page_edit-slider-template-template2') {
             wp_localize_script($script_handle, 'OvimageData', [
                 'plugin_url' => plugin_dir_url(__FILE__),
+                'nonce'     => wp_create_nonce('ova_elems_ajax_nonce'),
             ]);
         }
 
         if ($hook == 'admin_page_edit-slider-template-template4' || $hook == 'admin_page_edit-slider-template-template7') {
             wp_localize_script($script_handle, 'ova_elems_template_script', [
                 'ajaxurl' => admin_url('admin-ajax.php'),
+                'nonce'   => wp_create_nonce('ova_elems_ajax_nonce'),
             ]);
         }
 
@@ -221,7 +222,13 @@ add_action( 'enqueue_block_editor_assets', 'ova_elems_enqueue_block_editor_asset
 
 // Register block script.
 function ova_elems_register_block() {
-    wp_register_script( 'ova-elems-block', plugins_url( 'build/index.js', __FILE__ ), array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components' ) );
+    wp_register_script( 
+        'ova-elems-block', 
+        plugins_url( 'build/index.js', __FILE__ ), 
+        array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components' ),
+        OVA_ELEMS_VER,
+        true
+    );
     register_block_type( 
         'ova-elems/ovation-sliders', 
         array( 
