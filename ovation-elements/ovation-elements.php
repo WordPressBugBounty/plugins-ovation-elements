@@ -3,7 +3,7 @@
  * Plugin Name:       Ovation Elements
  * Plugin URI:        https://www.ovationthemes.com/products/ovation-elements-pro
  * Description:       Transform your site with captivating sliders. Perfect for beginners and advanced users. Create and customize with our ultimate slider plugin.
- * Version:           1.1.3
+ * Version:           1.1.4
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            pewilliams
@@ -23,7 +23,7 @@ define( 'OVA_ELEMS_DIR', plugin_dir_path( OVA_ELEMS_FILE ) );
 define( 'OVA_ELEMS_URL', plugins_url( '/', OVA_ELEMS_FILE ) );
 define( 'OVA_ELEMS_LICENSE_ENDPOINT', 'https://license.ovationthemes.com/api/public/' );
 
-define( 'OVA_ELEMS_VER', '1.1.3' );
+define( 'OVA_ELEMS_VER', '1.1.4' );
 
 // Include necessary files
 include(plugin_dir_path(__FILE__) . 'includes/admin-settings.php');
@@ -200,7 +200,8 @@ function ova_elems_enqueue_block_editor_assets() {
         'admin_ajax'        =>  admin_url( 'admin-ajax.php' ),
         'search_icon'       =>  OVA_ELEMS_URL . 'assets/images/search.png',
         'is_author'         =>  $theme_author === 'pewilliams' ? true : false,
-        'bundle_image'      =>  OVA_ELEMS_URL . 'assets/images/bundle-images.png'
+        'bundle_image'      =>  OVA_ELEMS_URL . 'assets/images/bundle-images.png',
+        'nonce'   => wp_create_nonce('ova_elems_ajax_nonce')
     );
 
     if ($theme_author === 'pewilliams') {

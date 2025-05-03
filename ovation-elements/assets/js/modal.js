@@ -129,11 +129,12 @@
             method: "POST",
             url: ova_elems_modal_js.admin_ajax,
             data: {
-                action: 'ova_elems_get_categories'
+                action: 'ova_elems_get_categories',
+                nonce: ova_elems_modal_js.nonce
             }
         }).done(function( data ) {
 
-            const response = JSON.parse(data);
+            const response = data.data;
             if ( response.code == 200 ) {
                 if (response.data.length) {
                     const categories = response.data;
@@ -155,7 +156,8 @@
             handle: handle,
             search: search,
             cursor: cursor,
-            action: 'ova_elems_get_templates'
+            action: 'ova_elems_get_templates',
+            nonce: ova_elems_modal_js.nonce
         }
         
         $.ajax({
@@ -164,7 +166,7 @@
             data: data
         }).done(function( data ) {
 
-            const response = JSON.parse(data);
+            const response = data.data;
             if ( response.code == 200 ) {
                 if (response.data.products.length) {
                     const templates_arr = response.data;
