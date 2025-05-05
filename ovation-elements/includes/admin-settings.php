@@ -1106,11 +1106,7 @@ function ova_elems_save_template4_data() {
         // New font size settings
         'live_mini_text_font_size' => isset($_POST['live_mini_text_font_size']) ? intval($_POST['live_mini_text_font_size']) : 18,
         'live_title_font_size' => isset($_POST['live_title_font_size']) ? intval($_POST['live_title_font_size']) : 18,
-        'oe_left_side_title_font_size' => isset($_POST['oe_left_side_title_font_size']) ? intval($_POST['oe_left_side_title_font_size']) : 18,
-
-        
-
-
+        'oe_left_side_title_font_size' => isset($_POST['oe_left_side_title_font_size']) ? intval($_POST['oe_left_side_title_font_size']) : 18, 
     );    
     
     update_post_meta($post_id, '_ova_elems_static_settings_template4', maybe_serialize($static_settings));
@@ -1119,13 +1115,10 @@ function ova_elems_save_template4_data() {
     wp_redirect(admin_url('edit.php?post_type=ova_elems'));
 }
 add_action('admin_post_save_ova_elems_template4_data', 'ova_elems_save_template4_data');
-
-
 //end 
 
 
 //for shortcode 
-
 function ova_elems_template_shortcode($atts){
     return ova_elems_shortcode_handler($atts);
 }
@@ -1133,52 +1126,57 @@ function ova_elems_template_shortcode($atts){
 add_shortcode('ova-elems-slider-template', 'ova_elems_template_shortcode');
 
 //for stylesheets according to different templates add
+function ova_elems_maybe_enqueue_assets() {
+    if (is_admin()) {
+        return;
+    }
+    global $post;
+    if (!isset($post) || !is_a($post, 'WP_Post')) {
+        return;
+    }
+
+    // Check if the post content has the shortcode
+    if (has_shortcode($post->post_content, 'ova-elems-slider-template')) {
+        add_action('wp_enqueue_scripts', 'ova_elems_enqueue_styles');
+    }
+}
+add_action('wp', 'ova_elems_maybe_enqueue_assets');
 
 function ova_elems_enqueue_styles() {
-global $ova_elems_template;
+    wp_enqueue_style(
+        'swiper-css',
+        OVA_ELEMS_URL . 'assets/css/swiper-bundle.min.css',
+        [],
+        OVA_ELEMS_VER
+    );
+    wp_enqueue_script(
+        'swiper-js',
+        OVA_ELEMS_URL . 'assets/js/swiper-bundle.min.js',
+        [],
+        OVA_ELEMS_VER,
+        true
+    );
 
-  // Enqueue Swiper CSS and JS locally
-wp_enqueue_style(
-    'swiper-css',
-    OVA_ELEMS_URL . 'assets/css/swiper-bundle.min.css',
-    [],
-    OVA_ELEMS_VER
-);
-wp_enqueue_script(
-    'swiper-js',
-    OVA_ELEMS_URL . 'assets/js/swiper-bundle.min.js',
-    [],
-    OVA_ELEMS_VER,
-    true
-);
-
-wp_enqueue_style(
-    'oe-front-cs',
-    OVA_ELEMS_URL . 'assets/css/bootstrap.min.css',
-    [],
-    OVA_ELEMS_VER
-);
-wp_enqueue_script(
-    'oe-front-js',
-    OVA_ELEMS_URL . 'assets/js/bootstrap.bundle.min.js',
-    [],
-    OVA_ELEMS_VER,
-    true
-);
-
+    wp_enqueue_style(
+        'oe-front-cs',
+        OVA_ELEMS_URL . 'assets/css/bootstrap.min.css',
+        [],
+        OVA_ELEMS_VER
+    );
+    wp_enqueue_script(
+        'oe-front-js',
+        OVA_ELEMS_URL . 'assets/js/bootstrap.bundle.min.js',
+        [],
+        OVA_ELEMS_VER,
+        true
+    );
 
     wp_enqueue_style('ova-elems-google-fonts-montserrat-outfit', 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap', array(), OVA_ELEMS_VER, '');
     wp_enqueue_style('ova-elems-font-awesome', OVA_ELEMS_URL . 'assets/css/font.all.min.css', array(), OVA_ELEMS_VER);
- }
-
- add_action('wp_enqueue_scripts', 'ova_elems_enqueue_styles' , 10 );
-
- 
-
-//end
+}
+// end 
 
 //for color picker
-
 function enqueue_wp_color_picker_assets($hook) {
     // Enqueue color picker CSS and JS
     wp_enqueue_style('wp-color-picker');
@@ -1189,9 +1187,7 @@ add_action('admin_enqueue_scripts', 'enqueue_wp_color_picker_assets');
 //end
 
 
-
 //for compressor and croping 
-
 add_action('wp_ajax_upload_cropped_image', 'handle_cropped_image_upload');
 
 function handle_cropped_image_upload() {

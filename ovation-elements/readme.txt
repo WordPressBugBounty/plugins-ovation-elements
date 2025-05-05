@@ -4,7 +4,7 @@ Tags: custom-slider, slider-responsive, slider-plugin, wordPress-slider, visual-
 Requires at least: 5.2
 Tested up to: 6.8
 Requires PHP: 7.2
-Stable tag: 1.1.4
+Stable tag: 1.1.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -63,6 +63,9 @@ The Ovation Elements bundles the following third-party resources:
 * Copyright 2021 Fonticons, Inc.
 
 == Changelog ==
+
+= 1.1.5 - 2025-05-05 =
+* Frontend performance improved.
 
 = 1.1.4 - 2025-02-05 =
 * Minor Bugs Fixes.
