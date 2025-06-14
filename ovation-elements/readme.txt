@@ -4,7 +4,7 @@ Tags: image-slider, responsive-slider, slideshow, wordPress-slider, video-slider
 Requires at least: 5.2
 Tested up to: 6.8
 Requires PHP: 7.2
-Stable tag: 1.1.6
+Stable tag: 1.1.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -64,7 +64,10 @@ The Ovation Elements bundles the following third-party resources:
 
 == Changelog ==
 
-= 1.1.5 - 2025-16-05 =
+= 1.1.7 - 2025-13-06 =
+* Minor Bugs Fixes.
+
+= 1.1.6 - 2025-16-05 =
 * Minor Bugs Fixes.
 
 = 1.1.5 - 2025-05-05 =
