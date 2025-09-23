@@ -28,10 +28,9 @@ jQuery(document).ready(function ($) {
     }
 
     // new for upload bg image 
-    
-    // ended here 
 
-    $('#submit-slider, .btn.btn-primary[type="submit"]').click(function() {
+    // ended here 
+    $('#submit-slider, .btn.btn-primary[type="submit"]').click(function () {
         $('#slider-form').submit(); // Submit the form
     });
 
@@ -66,7 +65,7 @@ jQuery(document).ready(function ($) {
 
         fileFrameCornerImages.open();
     });
-    
+
     //add for vedio 
     $('.upload_video_button').on('click', function (e) {
         e.preventDefault();
@@ -119,7 +118,7 @@ jQuery(document).ready(function ($) {
     initializeImageUpload('.upload_icon_button', 'input[type="hidden"]', 'img');
 
     // Add slide functionality with upload button initialization
-   // $('#add_slide_button').click(function () {
+    // $('#add_slide_button').click(function () {
     $('#slider-slides').on('click', '.add_slide_button', function () {
         const slideCount = $('.slide-container').length;
 
@@ -133,11 +132,11 @@ jQuery(document).ready(function ($) {
                     </button>
                 </div>
             `;
-    
+
             if (!$('.slide-container').eq(slideCount - 1).find('.go-pro-container').length) {
                 $('.slide-container').eq(slideCount - 1).append(proButton);
             }
-            return; 
+            return;
         }
         //ended
 
@@ -199,7 +198,6 @@ jQuery(document).ready(function ($) {
             </div>
         `;
         $('#slider-slides').append(newSlide);
-        // initializeImageUpload('.upload_image_button', 'input[type="hidden"]', 'img');
     });
 
     // Remove slide functionality
@@ -223,8 +221,8 @@ jQuery(document).on('click', '.minihead_upload_image_button', function (e) {
     })
         .on('select', function () {
             let attachment = customUploader.state().get('selection').first().toJSON();
-            inputField.val(attachment.url); 
-            imgPreview.attr('src', attachment.url).show(); 
+            inputField.val(attachment.url);
+            imgPreview.attr('src', attachment.url).show();
         })
         .open();
 });
@@ -233,38 +231,38 @@ jQuery(document).on('click', '.minihead_upload_image_button', function (e) {
 
 // for live preview 
 
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
     function updateLivePreview() {
         console.log('Live preview update triggered');
-         var slideImageID = $('#slide_image_0').val();
-         var slideBgColor = $('#slide_bg_color_0').val();
-         var previewSlideImage = $('.oe-restaurant-slider-bg-image'); 
-         
-         if (slideImageID) {
-             var attachment = wp.media.attachment(slideImageID);
-             attachment.fetch().then(function() {
-                 if (attachment && attachment.get('url')) {
-                     var imageUrl = attachment.get('url'); 
+        var slideImageID = $('#slide_image_0').val();
+        var slideBgColor = $('#slide_bg_color_0').val();
+        var previewSlideImage = $('.oe-restaurant-slider-bg-image');
 
-                     if (previewSlideImage) {
-                         previewSlideImage.css('background-image' , 'url('+ imageUrl +')');
-                         previewSlideImage.css('background-color', slideBgColor); // Apply the background color
-                     }
-                 } else {
-                     console.error("Attachment URL not found for ID:", slideImageID);
-                 }
-             }).catch(function(err) {
-                 console.error("Error fetching attachment:", err);
-             });
-         } else {
-             if (previewSlideImage) {
-                 previewSlideImage.attr('src', 'https://via.placeholder.com/1200x600?text=Default+Image');
-                 previewSlideImage.css('background-color', slideBgColor);
-             }
-         }
+        if (slideImageID) {
+            var attachment = wp.media.attachment(slideImageID);
+            attachment.fetch().then(function () {
+                if (attachment && attachment.get('url')) {
+                    var imageUrl = attachment.get('url');
 
-          var headTag = $('#slide_head_tag_0').val();
-          $('.oe-restaurant-slider-sub-head').text(headTag || 'New Arrival');
+                    if (previewSlideImage) {
+                        previewSlideImage.css('background-image', 'url(' + imageUrl + ')');
+                        previewSlideImage.css('background-color', slideBgColor); // Apply the background color
+                    }
+                } else {
+                    console.error("Attachment URL not found for ID:", slideImageID);
+                }
+            }).catch(function (err) {
+                console.error("Error fetching attachment:", err);
+            });
+        } else {
+            if (previewSlideImage) {
+                previewSlideImage.attr('src', 'https://via.placeholder.com/1200x600?text=Default+Image');
+                previewSlideImage.css('background-color', slideBgColor);
+            }
+        }
+
+        var headTag = $('#slide_head_tag_0').val();
+        $('.oe-restaurant-slider-sub-head').text(headTag || 'New Arrival');
 
 
 
@@ -287,13 +285,13 @@ jQuery(document).ready(function($) {
 
         var miniTitle = $('#slide_mini_title_0').val();
         $('.oe-restaurant-slider-address-box').eq(0).find('.oe-restaurant-slider-address-title').text(miniTitle || '');
-        
+
         var miniDescription = $('#slide_mini_description_0').val();
         $('.oe-restaurant-slider-address-box').eq(0).find('.oe-restaurant-slider-address-para').text(miniDescription || '.');
 
         var miniTitle2 = $('#slide_mini_title2_0').val();
         $('.oe-restaurant-slider-call-box').eq(0).find('.oe-restaurant-slider-call-title').text(miniTitle2 || 'Mini Title 2');
-        
+
         var miniDescription = $('#slide_no').val();
         $('.oe-restaurant-slider-call-box').eq(0).find('.oe-restaurant-slider-call-para').text(miniDescription || 'number');
 
@@ -309,16 +307,16 @@ jQuery(document).ready(function($) {
         var listdes = $('#list_description').val();
         $('.oe-restaurant-slider-special-box').find('.oe-restaurant-slider-special-text').text(listdes || '');
 
-        
-        var enterList = $('#enter_list').val(); 
+
+        var enterList = $('#enter_list').val();
         if (enterList) {
-            var listItems = enterList.split(',').map(function(item) {
-                return item.trim(); 
+            var listItems = enterList.split(',').map(function (item) {
+                return item.trim();
             });
 
             var listHtml = '';
-            listItems.forEach(function(item) {
-                listHtml += '<li>' + item + '</li>'; 
+            listItems.forEach(function (item) {
+                listHtml += '<li>' + item + '</li>';
             });
             $('.oe-restaurant-slider-special-points-box ul').html(listHtml);
         } else {
@@ -330,69 +328,123 @@ jQuery(document).ready(function($) {
 
         var miniImage1 = $('#slide_mini_head_image_0').val();
         if (miniImage1) {
-          $('.oe-restaurant-slider-icon').eq(0).find('.icon img').attr('src', wp.media.attachment(miniImage1).get('url'));
+            $('.oe-restaurant-slider-icon').eq(0).find('.icon img').attr('src', wp.media.attachment(miniImage1).get('url'));
         }
 
         var miniImage2 = $('#slide_mini_image_2_0').val();
         if (miniImage2) {
-          $('.information-card').eq(1).find('.icon img').attr('src', wp.media.attachment(miniImage2).get('url'));
+            $('.information-card').eq(1).find('.icon img').attr('src', wp.media.attachment(miniImage2).get('url'));
         }
 
         var ovclientimage = $('#slide_corner_images_0').val();
         if (ovclientimage) {
-          $('.oe-restaurant-slider-review-image').eq(0).find('.icon img').attr('src', wp.media.attachment(ovclientimage).get('url'));
+            $('.oe-restaurant-slider-review-image').eq(0).find('.icon img').attr('src', wp.media.attachment(ovclientimage).get('url'));
         }
 
         //for font size settings live preview
 
-        var fontSize1 = $('#head_font_size').val(); 
-        $('.oe-restaurant-slider-banner-content-box .oe-restaurant-slider-sub-head').css('font-size', fontSize1 + 'px'); 
-        
-        var fontSize2 = $('#heading_font_size').val(); 
-        $('.oe-restaurant-slider-banner-content-box .oe-restaurant-slider-banner-main-head').css('font-size', fontSize2 + 'px'); 
+        var fontSize1 = $('#head_font_size').val();
+        $('.oe-restaurant-slider-banner-content-box .oe-restaurant-slider-sub-head').css('font-size', fontSize1 + 'px');
 
-        var fontSize3 = $('#banner_font_size').val(); 
-        $('.oe-restaurant-slider-banner-content-box .oe-restaurant-slider-banner-sec-para').css('font-size', fontSize3 + 'px'); 
+        var fontSize2 = $('#heading_font_size').val();
+        $('.oe-restaurant-slider-banner-content-box .oe-restaurant-slider-banner-main-head').css('font-size', fontSize2 + 'px');
 
-        var fontSize4 = $('#button_font_size').val(); 
-        $('.oe-restaurant-slider-banner-content-box .oe-restaurant-slider-explore-btn').css('font-size', fontSize4 + 'px'); 
+        var fontSize3 = $('#banner_font_size').val();
+        $('.oe-restaurant-slider-banner-content-box .oe-restaurant-slider-banner-sec-para').css('font-size', fontSize3 + 'px');
 
-        var fontSize5 = $('#ov_mini_title_font_size').val(); 
-        $('.oe-restaurant-slider-address-box .oe-restaurant-slider-address-title').css('font-size', fontSize5 + 'px'); 
+        var fontSize4 = $('#button_font_size').val();
+        $('.oe-restaurant-slider-banner-content-box .oe-restaurant-slider-explore-btn').css('font-size', fontSize4 + 'px');
 
-        var fontSize6 = $('#mini_description_font_size').val(); 
-        $('.oe-restaurant-slider-address-box .oe-restaurant-slider-address-para').css('font-size', fontSize6 + 'px'); 
+        var fontSize5 = $('#ov_mini_title_font_size').val();
+        $('.oe-restaurant-slider-address-box .oe-restaurant-slider-address-title').css('font-size', fontSize5 + 'px');
 
-
-        var fontSize7 = $('#ov_mini_title_font_size').val(); 
-        $('.oe-restaurant-slider-call-box .oe-restaurant-slider-call-title').css('font-size', fontSize7 + 'px'); 
-
-        var fontSize8 = $('#mini_description_font_size').val(); 
-        $('.oe-restaurant-slider-call-box .oe-restaurant-slider-call-para').css('font-size', fontSize8 + 'px'); 
+        var fontSize6 = $('#mini_description_font_size').val();
+        $('.oe-restaurant-slider-address-box .oe-restaurant-slider-address-para').css('font-size', fontSize6 + 'px');
 
 
+        var fontSize7 = $('#ov_mini_title_font_size').val();
+        $('.oe-restaurant-slider-call-box .oe-restaurant-slider-call-title').css('font-size', fontSize7 + 'px');
 
-        var fontSize9 = $('#list_title_font_size').val(); 
-        $('.oe-restaurant-slider-special-box .oe-restaurant-slider-special-title').css('font-size', fontSize9 + 'px'); 
-
-        var fontSize10 = $('#list_description_font_size').val(); 
-        $('.oe-restaurant-slider-special-box .oe-restaurant-slider-special-text').css('font-size', fontSize10 + 'px'); 
-
-        
-
-        var fontSize11 = $('#list_content_font_size').val(); 
-         $('.oe-restaurant-slider-special-points-box ul li').css('font-size', fontSize11 + 'px');
+        var fontSize8 = $('#mini_description_font_size').val();
+        $('.oe-restaurant-slider-call-box .oe-restaurant-slider-call-para').css('font-size', fontSize8 + 'px');
 
 
-         var fontSize12 = $('#review_text_font_size').val(); 
-         $('.oe-restaurant-slider-review-text .oe-restaurant-slider-review-count-text').css('font-size', fontSize12 + 'px');
 
-         var fontSize13 = $('#review_no_font_size').val(); 
-         $('.oe-restaurant-slider-review-text .oe-restaurant-slider-review-count').css('font-size', fontSize13 + 'px');
+        var fontSize9 = $('#list_title_font_size').val();
+        $('.oe-restaurant-slider-special-box .oe-restaurant-slider-special-title').css('font-size', fontSize9 + 'px');
+
+        var fontSize10 = $('#list_description_font_size').val();
+        $('.oe-restaurant-slider-special-box .oe-restaurant-slider-special-text').css('font-size', fontSize10 + 'px');
+
+
+
+        var fontSize11 = $('#list_content_font_size').val();
+        $('.oe-restaurant-slider-special-points-box ul li').css('font-size', fontSize11 + 'px');
+
+
+        var fontSize12 = $('#review_text_font_size').val();
+        $('.oe-restaurant-slider-review-text .oe-restaurant-slider-review-count-text').css('font-size', fontSize12 + 'px');
+
+        var fontSize13 = $('#review_no_font_size').val();
+        $('.oe-restaurant-slider-review-text .oe-restaurant-slider-review-count').css('font-size', fontSize13 + 'px');
+
+
+
+        var buttonBgColor = $('#button_bg_color').val();
+        $('.oe-restaurant-slider-banner-btn-box .oe-restaurant-slider-explore-btn').css('background-color', buttonBgColor);
+
+        var buttonTextColor = $('#button_text_color').val();
+        $('.oe-restaurant-slider-banner-btn-box .oe-restaurant-slider-explore-btn').css('color', buttonTextColor);
+
+        var buttonBgColor = $('#button_bg_color').val();
+        $('.oe-restaurant-slider-banner-btn-box .oe-restaurant-slider-appointement-btn').css('background-color', buttonBgColor);
+
+        var buttonTextColor = $('#button_text_color').val();
+        $('.oe-restaurant-slider-banner-btn-box .oe-restaurant-slider-appointement-btn').css('color', buttonTextColor);
+
+
+        // New for Button Hover Background Color
+        var buttonHoverBgColor = $('#button_hover_bg_color').val();
+        var buttonHoverTextColor = $('#button_hover_text_color').val();
+
+        // Remove older
+        $('#button-hover-bg-style').remove();
+
+        // Add new hover
+        if (buttonHoverBgColor) {
+            var hoverStyle = `
+                <style id="button-hover-bg-style">
+                .oe-restaurant-slider-banner-btn-box .oe-restaurant-slider-explore-btn .a:hover {
+                        
+                        background-color: ${buttonHoverBgColor} !important;
+                        color: ${buttonHoverTextColor} !important;
+                    }
+
+                    .oe-restaurant-slider-explore-btn:hover {
+                        background-color: ${buttonHoverBgColor} !important;
+                        color: ${buttonHoverTextColor} !important;
+                    }
+
+                    .oe-restaurant-slider-banner-btn-box .oe-restaurant-slider-appointement-btn .a:hover {
+                        
+                        background-color: ${buttonHoverBgColor} !important;
+                        color: ${buttonHoverTextColor} !important;
+                    }
+
+                    .oe-restaurant-slider-appointement-btn:hover {
+                        background-color: ${buttonHoverBgColor} !important;
+                        color: ${buttonHoverTextColor} !important;
+                    }
+
+                </style>
+            `;
+            $('head').append(hoverStyle);
+        }
+        //end
 
 
     }
-    $('#review_no_font_size, #review_text_font_size, #list_content_font_size, #list_description_font_size, #list_title_font_size, #mini_description_font_size, #ov_mini_title_font_size ,#mini_description_font_size ,#ov_mini_title_font_size ,#button_font_size, #banner_font_size ,#heading_font_size ,#head_font_size ,#slide_image_0, #slide_title_0, #slide_description_0, #slide_head_tag_0, #slide_button_text_0, #slide_button_url_0, #slide_mini_title_0, #slide_mini_description_0, #slide_mini_title2_0, #slide_mini_description2_0, #slide_email, #slide_no, #slide_mini_image_1_0, #slide_mini_image_2_0, #slide_corner_images_0 , #slide_bg_color_0 , #ov-imp-client ').on('input change paste keyup mouseenter oncontextmenu', function() {
+    $('#review_no_font_size, #review_text_font_size, #list_content_font_size, #list_description_font_size, #list_title_font_size, #mini_description_font_size, #ov_mini_title_font_size ,#mini_description_font_size ,#ov_mini_title_font_size ,#button_font_size, #banner_font_size ,#heading_font_size ,#head_font_size ,#slide_image_0, #slide_title_0, #slide_description_0, #slide_head_tag_0, #slide_button_text_0, #slide_button_url_0, #slide_mini_title_0, #slide_mini_description_0, #slide_mini_title2_0, #slide_mini_description2_0, #slide_email, #slide_no, #slide_mini_image_1_0, #slide_mini_image_2_0, #slide_corner_images_0 , #slide_bg_color_0 , #ov-imp-client , .static-container, #advanced-settings ').on('input change paste keyup mouseenter oncontextmenu', function () {
         updateLivePreview();
     });
 
@@ -416,7 +468,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //color picker code
 
-jQuery(document).ready(function($){
+jQuery(document).ready(function ($) {
     console.log('color picker load');
     //for check button is disable or not
     if (!$('#button_bg_color').prop('disabled')) {
@@ -448,20 +500,20 @@ jQuery(document).ready(function($){
 //end
 
 //vedio bg img
-jQuery(document).ready(function($) {
-    $('.upload_video_bg_image').click(function(e) {
+jQuery(document).ready(function ($) {
+    $('.upload_video_bg_image').click(function (e) {
         e.preventDefault();
-        
+
         var frame = wp.media({
             title: 'Select or Upload Video Background Image',
             button: { text: 'Use this image' },
             multiple: false
         });
 
-        frame.on('select', function() {
+        frame.on('select', function () {
             var attachment = frame.state().get('selection').first().toJSON();
             $('#video_bg_image').val(attachment.url);
-            $('#video_bg_preview').html('<img src="'+attachment.url+'" width="100" height="auto">');
+            $('#video_bg_preview').html('<img src="' + attachment.url + '" width="100" height="auto">');
         });
 
         frame.open();

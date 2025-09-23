@@ -1,8 +1,8 @@
-jQuery(document).ready(function($) {
-  
+jQuery(document).ready(function ($) {
+
     function addSlide() {
         var index = $('#slider-slides .slide-container').length;
-    
+
         // Check if the user is free and has reached the max slides limit
         if (!sliderData.isPremiumUser && index >= sliderData.maxSlides) {
             const proButton = `
@@ -14,20 +14,20 @@ jQuery(document).ready(function($) {
                     </button>
                 </div>
             `;
-    
+
             if (!$('.slide-container').eq(index - 1).find('.go-pro-container').length) {
                 $('.slide-container').eq(index - 1).append(proButton);
             }
             return; // Stop further execution if limit is reached
         }
-    
+
         $.ajax({
             url: ova_elems_template_script.ajaxurl,
             type: 'POST',
             data: {
                 action: 'ova_elems_get_posts_for_slider'
             },
-            success: function(response) {
+            success: function (response) {
                 var newSlideHtml = `
                     <div class="slide-container mb-4 p-3 border rounded" data-index="${index}">
                         <h3>Slide ${index + 1}</h3>
@@ -46,20 +46,16 @@ jQuery(document).ready(function($) {
         });
     }
 
-    // Trigger the add slide functionality automatically on page load
-    //addSlide();
-
-    // Optionally, you can still keep the manual add button functionality
     $('#slider-slides').on('click', '.add_slide_button', function () {
         addSlide();
     });
 
-    $('#submit-slider, .btn.btn-primary[type="submit"]').click(function() {
+    $('#submit-slider, .btn.btn-primary[type="submit"]').click(function () {
         $('#slider-form').submit(); // Submit the form
     });
 
     // Remove slide functionality
-    $(document).on('click', '.remove_slide_button', function() {
+    $(document).on('click', '.remove_slide_button', function () {
         $(this).closest('.slide-container').remove();
     });
 });
@@ -79,13 +75,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // end 
 
-
-
 //color picker code
 
-jQuery(document).ready(function($){
+jQuery(document).ready(function ($) {
     console.log('color picker load');
-    //for check button is disable or not
     if (!$('#button_bg_color').prop('disabled')) {
         $('#button_bg_color').wpColorPicker();
     }

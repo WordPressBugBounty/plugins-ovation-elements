@@ -6,10 +6,6 @@
     <!-- Add more dashboard content here -->
 </div>
 
-
-
-
-
 <body>
     <div class=" ov-feature-outer svg-helper">
         <?php
@@ -133,11 +129,12 @@
         </div>
         <div class="grid-item item-3">
 
-            <a href="<?php echo esc_url('https://wordpress.org/support/plugin/ovation-elements/'); ?>" class="button review-button" target="_blank" rel="noopener noreferrer">Review
+            <a href="<?php echo esc_url('https://wordpress.org/support/plugin/ovation-elements/'); ?>"
+                class="button review-button" target="_blank" rel="noopener noreferrer">Review
                 Now</a>
         </div>
     </div>
     <div class="ov-text-container mt-5">
-    <p>Thank you for using Ovation Elements Plugin!</p>
+        <p>Thank you for using Ovation Elements Plugin!</p>
     </div>
 </body>

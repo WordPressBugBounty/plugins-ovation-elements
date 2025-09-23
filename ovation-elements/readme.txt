@@ -4,7 +4,7 @@ Tags: image-slider, responsive-slider, slideshow, wordPress-slider, video-slider
 Requires at least: 5.2
 Tested up to: 6.8
 Requires PHP: 7.2
-Stable tag: 1.1.7
+Stable tag: 1.1.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,57 +12,73 @@ Transform your site with captivating sliders. Perfect for beginners and advanced
 
 == Description ==
 
-Introducing the Ovation Elements WordPress Plugin – the ultimate slider plugin designed to transform your website with visually captivating sliders. Whether you're a beginner or an advanced user, this plugin offers a seamless experience in creating and customizing sliders to enhance your site's appeal.
+The Ovation Elements WordPress Plugin is a premium slider solution designed to elevate your website’s visual presentation. This powerful plugin allows you to create fully responsive, visually stunning sliders that enhance user engagement and improve the overall user experience. Ideal for both beginners and advanced users, Ovation Elements provides a smooth, intuitive interface to build and customize sliders that perfectly align with your website’s design and branding.
 
 **Key Features**
 
-**Multiple Slider Templates:** Choose from 5-6 beautifully designed slider templates. Each template is crafted to provide a unique look and feel, ensuring your website stands out.
+**Multiple Slider Templates:** Access 5-6 professionally designed slider templates, each crafted to provide a unique aesthetic. These templates are suitable for various industries and website types, ensuring your content is presented in an appealing and modern layout.
 
-**Easy Customization:** Editing your slider has never been easier. With the Ovation Elements Plugin, you can:
+**Advanced Customization Options:** Ovation Elements allows complete control over your sliders. 
+Users can:
 
-* **Add Photos:** Easily upload and manage images for each slide.
-* **Edit Text:** Customize headlines, descriptions, and other text elements.
-* **Icons:** Incorporate icons to enhance visual storytelling.
-* **Social Sharing:** Add social media profile links to increase engagement.
+* Upload and manage images effortlessly for each slide.
+* Customize text including headings, subheadings, and descriptive content
+* Incorporate icons and graphic elements to enhance visual storytelling
+* Integrate social media links to encourage audience engagement and sharing
+* Integrate social media links to encourage audience engagement and sharing
+* Apply unique transition effects to make your sliders more dynamic
 
-**Effortless Integration:** Once you’ve customized your slider, the plugin generates a shortcode that you can use anywhere on your website. This shortcode ensures your slider integrates smoothly with any page or post.
+**Seamless Integration:** After designing your slider, Ovation Elements generates a simple shortcode that can be used on any page, post, or widget area. This ensures effortless integration across your website without requiring technical knowledge.
 
-**Optimized for Popular Page Builders:** The Ovation Elements Plugin is fully optimized for all major page builders, including:
+**Optimized for All Major Page Builders:** Ovation Elements is fully compatible with the most popular WordPress page builders, including:
 
 * **Elementor**
 * **Divi**
 * **Gutenberg Block Builder**
 
-This compatibility guarantees a seamless experience regardless of the page builder you use.
+This compatibility ensures a consistent, high-quality experience regardless of the page builder you use.
 
-**User-Friendly Interface:** Designed for both beginners and advanced users, the plugin offers:
+**User-Friendly Interface:** The plugin is designed to be accessible for beginners while offering advanced tools for experienced designers. Key interface features include:
 
-* **Real-Time Previews:** See your changes instantly as you customize your slider.
-* **Live Customization:** Make adjustments on the fly and watch them take effect immediately.
+* Real-time previews to instantly see changes as you customize slides
+* Live customization that allows immediate updates and refinements
+* Drag-and-drop functionality for effortless slide management
 
-**Technical Specifications**
+Responsive and SEO-Friendly: Every slider created with Ovation Elements is fully responsive, ensuring your content looks perfect on desktops, tablets, and mobile devices. Optimized coding also supports faster load times and improved SEO performance.
+
+Performance and Compatibility: Ovation Elements is designed to work seamlessly with the latest WordPress standards and PHP versions
 
 * **WordPress Version:** 5.2 or higher
 * **Tested Up To:** WordPress 6.6.1
 * **PHP Version:** 7.2 or higher
 
-With the Ovation Elements WordPress Plugin, creating stunning sliders is simple, efficient, and fun. Elevate your website's visual appeal and engage your audience with sliders that are as easy to create as they are beautiful.
 
-**Download the Ovation Elements Plugin today and start customizing!**
+**Third-Party Resources Included**
 
-The Ovation Elements bundles the following third-party resources:
+* Bootstrap (Copyright 2011-2020 The Bootstrap Authors, Twitter, Inc.)
+* Font Awesome Free 6.0.0-beta3 by @fontawesome (Copyright 2021 Fonticons, Inc.)
 
-= Bootstrap =
+**Why Choose Ovation Elements Plugin**
 
-* Copyright 2011-2020 The Bootstrap Authors
-* Copyright 2011-2020 Twitter, Inc.
+Ovation Elements is more than just a slider plugin. It empowers website owners to showcase products, services, and content in a visually compelling way. With its combination of ready-made templates, live customization, and page builder compatibility, it simplifies the design process while ensuring professional results. Whether you are running a corporate website, online store, or creative portfolio, Ovation Elements provides the flexibility and functionality you need.
 
-= Font Awesome =
+**Upgrade to Ovation Elements Pro**
 
-* Font Awesome Free 6.0.0-beta3 by @fontawesome
-* Copyright 2021 Fonticons, Inc.
+Unlock additional templates, advanced animation effects, and premium support by upgrading to [Ovation Elements Pro](https://www.ovationthemes.com/products/ovation-elements-pro).
+
+**Explore Premium WordPress Themes**
+
+Pair your sliders with professionally designed website themes to create a cohesive and visually stunning website. Explore our [Premium WordPress Themes](https://www.ovationthemes.com/collections/professional-wordpress-themes).
+
+**Access Free WordPress Themes**
+Get started immediately with our collection of [Free WordPress Themes](https://www.ovationthemes.com/collections/free-wordpress-themes), offering modern designs that are easy to customize and fully responsive.
+
+The Ovation Elements WordPress Plugin is your all-in-one solution for creating beautiful, professional, and highly functional sliders. Transform your website today and deliver a visually engaging experience that captivates your visitors and enhances your brand’s online presence.
 
 == Changelog ==
+
+= 1.1.8 - 2025-22-09 =
+* Added Business 2 Premium Slider.
 
 = 1.1.7 - 2025-13-06 =
 * Minor Bugs Fixes.

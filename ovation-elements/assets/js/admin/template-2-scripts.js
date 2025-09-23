@@ -27,11 +27,10 @@ jQuery(document).ready(function ($) {
         });
     }
 
-    $('#submit-slider, .btn.btn-primary[type="submit"]').click(function() {
+    $('#submit-slider, .btn.btn-primary[type="submit"]').click(function () {
         $('#slider-form').submit(); // Submit the form
     });
 
-    // Specific initialization for the corner images button to ensure image display in .corner-images-container
     $(document).on('click', '.upload_corner_images_button', function (e) {
         e.preventDefault();
 
@@ -65,18 +64,15 @@ jQuery(document).ready(function ($) {
     });
 
     // Initialize image upload for other buttons
-   
     initializeImageUpload('.upload_image_button', 'input[type="hidden"]', 'img');
     initializeImageUpload('.upload_icon_button', 'input[type="hidden"]', 'img');
 
-    // Add slide functionality with upload button initialization
-   // $('#add_slide_button').click(function () {
     $('#slider-slides').on('click', '.add_slide_button', function () {
         const slideCount = $('.slide-container').length;
 
-           //new add 
-           if (!sliderData.isPremiumUser && slideCount >= sliderData.maxSlides) {
-              const proButton = `
+        //new add 
+        if (!sliderData.isPremiumUser && slideCount >= sliderData.maxSlides) {
+            const proButton = `
                   <div class="go-pro-container text-center mt-3">
                       <button class="btn btn-primary go-pro-button">
                           <a href="https://www.ovationthemes.com/products/ovation-elements-pro" target="_blank" style="color: white; text-decoration: none;">
@@ -85,13 +81,13 @@ jQuery(document).ready(function ($) {
                       </button>
                   </div>
               `;
-      
-              if (!$('.slide-container').eq(slideCount - 1).find('.go-pro-container').length) {
-                  $('.slide-container').eq(slideCount - 1).append(proButton);
-              }
-              return; // Stop adding new slides
-          }
-          //new end
+
+            if (!$('.slide-container').eq(slideCount - 1).find('.go-pro-container').length) {
+                $('.slide-container').eq(slideCount - 1).append(proButton);
+            }
+            return; // Stop adding new slides
+        }
+        //new end
 
 
         const newSlide = `
@@ -148,7 +144,7 @@ jQuery(document).ready(function ($) {
 
 // for live preview 
 
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
     function updateLivePreview() {
         console.log('trigger');
         var slideImageID = $('#slide_image_0').val();
@@ -156,19 +152,19 @@ jQuery(document).ready(function($) {
         var swiperContainer = document.querySelector('.swiper-container.oe-travel-slider-main'); // Select the swiper container element
 
         var previewSlideImage = document.querySelector('#preview-slide-image'); // Select the image inside the navigation slide
-        
+
         if (slideImageID) {
             var attachment = wp.media.attachment(slideImageID);
             attachment.fetch().then(function () {
                 if (attachment && attachment.get('url')) {
-                    var imageUrl = attachment.get('url'); 
-        
+                    var imageUrl = attachment.get('url');
+
                     if (swiperContainer) {
                         swiperContainer.style.backgroundImage = `url(${imageUrl})`;
-                        swiperContainer.style.backgroundSize = 'cover';  
-                        swiperContainer.style.backgroundPosition = 'center center'; 
+                        swiperContainer.style.backgroundSize = 'cover';
+                        swiperContainer.style.backgroundPosition = 'center center';
                         swiperContainer.style.backgroundColor = slideBgColor;
-                         
+
                     }
 
                     // Set the image source for the preview slide image
@@ -185,17 +181,17 @@ jQuery(document).ready(function($) {
         } else {
             // Set default fallback image when no image is selected
             if (swiperContainer) {
-                const defaultImageUrl = `${OvimageData.plugin_url}assets/images/default.png`;  
+                const defaultImageUrl = `${OvimageData.plugin_url}assets/images/default.png`;
                 swiperContainer.style.backgroundImage = `url('${defaultImageUrl}')`;
-                swiperContainer.style.backgroundSize = 'cover'; 
-                swiperContainer.style.backgroundPosition = 'center center'; 
-                swiperContainer.style.backgroundColor = slideBgColor; 
+                swiperContainer.style.backgroundSize = 'cover';
+                swiperContainer.style.backgroundPosition = 'center center';
+                swiperContainer.style.backgroundColor = slideBgColor;
 
-            
+
             }
         }
 
-      
+
 
 
         //new for review text
@@ -208,22 +204,22 @@ jQuery(document).ready(function($) {
 
         var title = $('#slide_title_0').val();
         $('#preview-title').text(title || 'Slide Title');
-     //   $('#preview-slide-head-ov').text(title || 'Slide Title');
-    
+        //   $('#preview-slide-head-ov').text(title || 'Slide Title');
+
         var description = $('#slide_description_0').val();
         $('#preview-description').text(description || 'Description');
-    
+
         var headTag = $('#slide_head_tag_0').val();
         $('#preview-head-tag').text(headTag || 'Heading Tag');
         $('#preview-slide-head-ov').text(headTag || 'Slide head');
-    
+
         var buttonText = $('#slide_button_text_0').val();
         var buttonUrl = $('#slide_button_url_0').val();
         $('#preview-button').text(buttonText || 'Button Text').attr('href', buttonUrl || '#');
-    
+
         var miniDescription2 = $('#slide_mini_description2_0').val();
         $('#preview-mini-description2').text(miniDescription2 || 'Mini Description 2');
-    
+
         var cornerImages = $('#slide_corner_images_0').val();
         if (cornerImages) {
             var cornerImageUrl = wp.media.attachment(cornerImages.split(',')[0]).get('url');
@@ -232,35 +228,94 @@ jQuery(document).ready(function($) {
 
         //for font size settings live preview
 
-        var fontSize1 = $('#head_font_size').val(); 
-        $('.oe-travel-slider-content .heading-tag').css('font-size', fontSize1 + 'px'); 
-        
-        var fontSize2 = $('#heading_font_size').val(); 
-        $('.oe-travel-slider-content .ov-travel2').css('font-size', fontSize2 + 'px'); 
+        var fontSize1 = $('#head_font_size').val();
+        $('.oe-travel-slider-content .heading-tag').css('font-size', fontSize1 + 'px');
 
-        var fontSize3 = $('#banner_font_size').val(); 
-        $('.oe-travel-slider-content .banner-para').css('font-size', fontSize3 + 'px'); 
+        var fontSize2 = $('#heading_font_size').val();
+        $('.oe-travel-slider-content .ov-travel2').css('font-size', fontSize2 + 'px');
 
-        var fontSize4 = $('#button_font_size').val(); 
-        $('.oe-travel-slider-content .theme-btn').css('font-size', fontSize4 + 'px'); 
+        var fontSize3 = $('#banner_font_size').val();
+        $('.oe-travel-slider-content .banner-para').css('font-size', fontSize3 + 'px');
 
-        var fontSize5 = $('#ov_mini_title_font_size').val(); 
-        $('.oe-travel-nav-slide .slide-title').css('font-size', fontSize5 + 'px'); 
+        var fontSize4 = $('#button_font_size').val();
+        $('.oe-travel-slider-content .theme-btn').css('font-size', fontSize4 + 'px');
 
-        var fontSize6 = $('#mini_description_font_size').val(); 
-        $('.oe-travel-slider-content .banner-para').css('font-size', fontSize6 + 'px'); 
+        var fontSize5 = $('#ov_mini_title_font_size').val();
+        $('.oe-travel-nav-slide .slide-title').css('font-size', fontSize5 + 'px');
 
-        var fontSize7 = $('#ov_review_text_font_size').val(); 
+        var fontSize6 = $('#mini_description_font_size').val();
+        $('.oe-travel-slider-content .banner-para').css('font-size', fontSize6 + 'px');
+
+        var fontSize7 = $('#ov_review_text_font_size').val();
         $('.happy_client_tags .oe-clent-text').css('font-size', fontSize7 + 'px');
 
-         var fontSize8 = $('#ov_social_text_font_size').val(); 
-         $('.social-media-wrap .follow-title').css('font-size', fontSize8 + 'px');
+        var fontSize8 = $('#ov_social_text_font_size').val();
+        $('.social-media-wrap .follow-title').css('font-size', fontSize8 + 'px');
+
+        //new css 
+
+        var socialIconColor = $('#social_icon_active_color').val();
+        $('.oe-icons-container .icons a i').css('color', socialIconColor); // Update the icon color
+        var socialIconHoverColor = $('#social_icon_hover_color').val();
+
+        // Remove any hover
+        $('#social-icon-hover-style').remove();
+        // remove hover
+        if (socialIconHoverColor) {
+            var hoverStyle = `
+                <style id="social-icon-hover-style">
+                   
+                .icons i:hover {
+
+                    color: ${socialIconHoverColor} !important;
+                    background: #ff7700;
+                }
+ 
+                </style>
+            `;
+            $('head').append(hoverStyle);
+        }
+
+        // Social Icon Size
+        var socialIconSize = $('#social_icon_size').val();
+        $('.social-media-wrap .icons a i').css('font-size', socialIconSize + 'px');
+
+
+        //slide button
+        var buttonBgColor = $('#button_bg_color').val();
+        $('.oe-travel-slider-content .theme-btn').css('background-color', buttonBgColor);
+
+        var buttonTextColor = $('#button_text_color').val();
+        $('.oe-travel-slider-content .theme-btn').css('color', buttonTextColor);
+
+
+        // New for Button Hover Background Color
+        var buttonHoverBgColor = $('#button_hover_bg_color').val();
+        var buttonHoverTextColor = $('#button_hover_text_color').val();
+
+        // Remove older
+        $('#button-hover-bg-style').remove();
+
+        // Add new hover
+        if (buttonHoverBgColor) {
+            var hoverStyle = `
+               <style id="button-hover-bg-style">
+                   .theme-btn:hover {
+                    background-color: ${buttonHoverBgColor} !important;
+                    color: ${buttonHoverTextColor} !important;
+                }
+
+               </style>
+           `;
+            $('head').append(hoverStyle);
+        }
+        //end
 
 
     }
-    
-    $('#slide_image_0, #slide_title_0, #slide_description_0, #slide_head_tag_0, #slide_button_text_0, #slide_button_url_0, #slide_mini_description2_0, #slide_corner_images_0 , #ov_template_review_text , #ov_template_social_review_text , #slide_bg_color_0 , #head_font_size , #heading_font_size , #banner_font_size , #button_font_size , #ov_mini_title_font_size , #mini_description_font_size , #ov_review_text_font_size , #ov_social_text_font_size , #ov-client-right-img')
-        .on('input change paste keyup mouseenter oncontextmenu', function() {
+
+    $('#slide_image_0, #slide_title_0, #slide_description_0, #slide_head_tag_0, #slide_button_text_0, #slide_button_url_0, #slide_mini_description2_0, #slide_corner_images_0 , #ov_template_review_text , #ov_template_social_review_text , #slide_bg_color_0 , #head_font_size , #heading_font_size , #banner_font_size , #button_font_size , #ov_mini_title_font_size , #mini_description_font_size , #ov_review_text_font_size , #ov_social_text_font_size , #ov-client-right-img , .social_icon_active_color , .static-container , #advanced-settings , .plugin_output_content')
+        .on('input change paste keyup mouseenter oncontextmenu', function () {
             updateLivePreview();
         });
     updateLivePreview();
@@ -283,7 +338,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //color picker code
 
-jQuery(document).ready(function($){
+jQuery(document).ready(function ($) {
     console.log('color picker load');
     //for check button is disable or not
     if (!$('#button_bg_color').prop('disabled')) {

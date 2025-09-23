@@ -1,20 +1,21 @@
 <body>
-    <div class="grid-container ">
-        <?php
-        $plugin_url = plugins_url('../assets/images/', __FILE__);
-        ?>
+  <div class="grid-container ">
+    <?php
+    $plugin_url = plugins_url('../assets/images/', __FILE__);
+    ?>
 
 
-    </div>
-    <br>
+  </div>
+  <br>
 
-    <h1 class="coming-soon mt-5"><?php echo esc_html__('COMING SOON!', 'ovation-elements'); ?></h1>
+  <h1 class="coming-soon mt-5"><?php echo esc_html__('COMING SOON!', 'ovation-elements'); ?></h1>
 
-    <br>
-    <p class="coming-soon-text"><?php echo esc_html__('We are working hard to bring you comprehensive tools for creating and managing custom post types. Stay tuned for updates!.', 'ovation-elements'); ?>
-    </p>
+  <br>
+  <p class="coming-soon-text">
+    <?php echo esc_html__('We are working hard to bring you comprehensive tools for creating and managing custom post types. Stay tuned for updates!.', 'ovation-elements'); ?>
+  </p>
 
-    <div class="main-grid" id="gird-bottom">
+  <div class="main-grid" id="gird-bottom">
     <div class="grid-item item-1">
       <svg xmlns="http://www.w3.org/2000/svg" width="264.277" height="116.764" viewBox="0 0 264.277 116.764">
         <g id="Group_10" data-name="Group 10" transform="translate(0 -142.893)">
@@ -59,7 +60,8 @@
     </div>
     <div class="grid-item item-3">
 
-      <a href="<?php echo esc_url('https://wordpress.org/support/plugin/ovation-elements/'); ?>" class="button review-button" target="_blank" rel="noopener noreferrer">Review
+      <a href="<?php echo esc_url('https://wordpress.org/support/plugin/ovation-elements/'); ?>"
+        class="button review-button" target="_blank" rel="noopener noreferrer">Review
         Now</a>
     </div>
   </div>

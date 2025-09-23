@@ -202,31 +202,31 @@ wp_enqueue_style('custom-slider-tab-css', plugin_dir_url(__FILE__) . '../assets/
         <div class="requirement">
           <h4>System Requirements</h4>
           <ul>
-    <li>
-        <div class="check">
-            <img src="<?php echo esc_url(OVA_ELEMS_URL . 'assets/images/check-img.png'); ?>" alt="">
-            PHP Version: Currently: 8.1.27
-        </div>
-    </li>
-    <li>
-        <div class="check">
-            <img src="<?php echo esc_url(OVA_ELEMS_URL . 'assets/images/check-img.png'); ?>" alt="">
-            Max execution time: Currently: 480
-        </div>
-    </li>
-    <li>
-        <div class="check">
-            <img src="<?php echo esc_url(OVA_ELEMS_URL . 'assets/images/check-img.png'); ?>" alt="">
-            Memory Limit: Currently: 12288M
-        </div>
-    </li>
-    <li>
-        <div class="check">
-            <img src="<?php echo esc_url(OVA_ELEMS_URL . 'assets/images/check-img.png'); ?>" alt="">
-            Max Post Limit: Currently: 12288M
-        </div>
-    </li>
-</ul>
+            <li>
+              <div class="check">
+                <img src="<?php echo esc_url(OVA_ELEMS_URL . 'assets/images/check-img.png'); ?>" alt="">
+                PHP Version: Currently: 8.1.27
+              </div>
+            </li>
+            <li>
+              <div class="check">
+                <img src="<?php echo esc_url(OVA_ELEMS_URL . 'assets/images/check-img.png'); ?>" alt="">
+                Max execution time: Currently: 480
+              </div>
+            </li>
+            <li>
+              <div class="check">
+                <img src="<?php echo esc_url(OVA_ELEMS_URL . 'assets/images/check-img.png'); ?>" alt="">
+                Memory Limit: Currently: 12288M
+              </div>
+            </li>
+            <li>
+              <div class="check">
+                <img src="<?php echo esc_url(OVA_ELEMS_URL . 'assets/images/check-img.png'); ?>" alt="">
+                Max Post Limit: Currently: 12288M
+              </div>
+            </li>
+          </ul>
 
         </div>
       </div>
@@ -235,7 +235,9 @@ wp_enqueue_style('custom-slider-tab-css', plugin_dir_url(__FILE__) . '../assets/
           <h2>WORDPRESS THEME BUNDLE</h2>
           <p class="bundle-text">Access 125+ Gutenberg Block WordPress themes</p>
           <div class="bundle-image">
-          <a href="<?php echo esc_url('https://www.ovationthemes.com/products/wordpress-bundle?via=true-parameter'); ?>" target="_blank"><img src="<?php echo esc_url(OVA_ELEMS_URL . 'assets/images/bundle-images.png'); ?>" alt=""></a>
+            <a href="<?php echo esc_url('https://www.ovationthemes.com/products/wordpress-bundle?via=true-parameter'); ?>"
+              target="_blank"><img src="<?php echo esc_url(OVA_ELEMS_URL . 'assets/images/bundle-images.png'); ?>"
+                alt=""></a>
 
           </div>
         </div>
@@ -288,7 +290,8 @@ wp_enqueue_style('custom-slider-tab-css', plugin_dir_url(__FILE__) . '../assets/
     </div>
     <div class="grid-item item-3">
 
-      <a href="<?php echo esc_url('https://wordpress.org/support/plugin/ovation-elements/'); ?>" class="button review-button" target="_blank" rel="noopener noreferrer">Review
+      <a href="<?php echo esc_url('https://wordpress.org/support/plugin/ovation-elements/'); ?>"
+        class="button review-button" target="_blank" rel="noopener noreferrer">Review
         Now</a>
     </div>
   </div>

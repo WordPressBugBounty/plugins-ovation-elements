@@ -3,41 +3,41 @@ document.addEventListener('DOMContentLoaded', function () {
     const sliderConfig = window.template7SliderConfig || {
         autoplay: false, // Default to false if not provided
         autoplay_delay: 1000, // Default delay time
-        effect: 'fade', 
-        crossFade: true, 
-        lazyLoad: false, 
+        effect: 'fade',
+        crossFade: true,
+        lazyLoad: false,
     };
     const swiper = new Swiper('.swiper', {
         loop: true,
-        slidesPerView: 1,        
-        spaceBetween: 20,        
-        centeredSlides: true,    
+        slidesPerView: 1,
+        spaceBetween: 20,
+        centeredSlides: true,
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
         },
         pagination: {
             el: '.swiper-pagination',
-            clickable: true, 
+            clickable: true,
             renderBullet: function (index, className) {
                 // Format numbers with leading zeros
-                let formattedIndex = (index + 1).toString().padStart(2, '0'); 
+                let formattedIndex = (index + 1).toString().padStart(2, '0');
                 return `<span class="${className}">${formattedIndex}</span>`;
             },
         },
-        
+
         autoplay: sliderConfig.autoplay ? {
-            delay: sliderConfig.autoplay_delay || 1000, 
+            delay: sliderConfig.autoplay_delay || 1000,
             disableOnInteraction: false,
-        } : false, 
+        } : false,
         effect: sliderConfig.effect,
         fadeEffect: {
             crossFade: sliderConfig.crossFade,
         },
         lazy: {
-            loadPrevNext: true, 
-            loadOnTransitionStart: true, 
-        },   
+            loadPrevNext: true,
+            loadOnTransitionStart: true,
+        },
     });
 
     swiper.on('slideChange', function () {
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //for popup vedio
 
-  document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     const videoBtns = document.querySelectorAll(".myVideoBtns");
     const modal = document.getElementById("myVideoNewModals");
     const videoEmbed = document.getElementById("videoEmbed");

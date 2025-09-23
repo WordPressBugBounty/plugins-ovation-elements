@@ -1,52 +1,52 @@
 document.addEventListener('DOMContentLoaded', function () {
   const sliderConfig = window.template8SliderConfig || {
-      autoplay: false, // Default to false if not provided
-      autoplay_delay: 1000, // Default delay time
-      effect: 'fade', 
-      crossFade: true, 
-      lazyLoad: false, 
+    autoplay: false, // Default to false if not provided
+    autoplay_delay: 1000, // Default delay time
+    effect: 'fade',
+    crossFade: true,
+    lazyLoad: false,
   };
   const swiper = new Swiper('.swiper-container', {
-      loop: true,             
-      slidesPerView: 1,        
-      spaceBetween: 0,         
-      centeredSlides: true,     
-      navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true, 
-        renderBullet: function (index, className) {
-            // Format numbers with leading zeros
-            let formattedIndex = (index + 1).toString().padStart(2, '0'); 
-            return `<span class="${className}">${formattedIndex}</span>`;
-        },
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 0,
+    centeredSlides: true,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
     },
-      autoplay: sliderConfig.autoplay ? {
-          delay: sliderConfig.autoplay_delay || 1000, 
-          disableOnInteraction: false,
-      } : false, 
-      effect: sliderConfig.effect,
-      fadeEffect: {
-          crossFade: sliderConfig.crossFade,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      renderBullet: function (index, className) {
+        // Format numbers with leading zeros
+        let formattedIndex = (index + 1).toString().padStart(2, '0');
+        return `<span class="${className}">${formattedIndex}</span>`;
       },
-      lazy: {
-          loadPrevNext: true, 
-          loadOnTransitionStart: true, 
-      },
+    },
+    autoplay: sliderConfig.autoplay ? {
+      delay: sliderConfig.autoplay_delay || 1000,
+      disableOnInteraction: false,
+    } : false,
+    effect: sliderConfig.effect,
+    fadeEffect: {
+      crossFade: sliderConfig.crossFade,
+    },
+    lazy: {
+      loadPrevNext: true,
+      loadOnTransitionStart: true,
+    },
   });
 
   swiper.on('slideChange', function () {
-      document.querySelectorAll('.slider-nav .nav-item').forEach(item => {
-          item.classList.remove('active');
-      });
-      const activeIndex = swiper.realIndex; 
-      const activeNavItem = document.querySelectorAll('.slider-nav .nav-item')[activeIndex];
-      if (activeNavItem) {
-          activeNavItem.classList.add('active');
-      }
+    document.querySelectorAll('.slider-nav .nav-item').forEach(item => {
+      item.classList.remove('active');
+    });
+    const activeIndex = swiper.realIndex;
+    const activeNavItem = document.querySelectorAll('.slider-nav .nav-item')[activeIndex];
+    if (activeNavItem) {
+      activeNavItem.classList.add('active');
+    }
   });
 });
 
@@ -72,9 +72,8 @@ Array.from(circularProgress).forEach((progressBar) => {
     )}`;
 
 
-    progressBar.style.background = `conic-gradient(${progressColor} ${
-      startValue * 3.6
-    }deg,${progressBar.getAttribute("data-bg-color")} 0deg)`;
+    progressBar.style.background = `conic-gradient(${progressColor} ${startValue * 3.6
+      }deg,${progressBar.getAttribute("data-bg-color")} 0deg)`;
     if (startValue === endValue) {
       clearInterval(progress);
     }
@@ -86,47 +85,44 @@ Array.from(circularProgress).forEach((progressBar) => {
 document.addEventListener("DOMContentLoaded", function () {
   const videoBtns = document.querySelectorAll(".myVideoBtns");
   videoBtns.forEach((btn) => {
-      btn.addEventListener("click", function (event) {
-          event.preventDefault(); 
+    btn.addEventListener("click", function (event) {
+      event.preventDefault();
 
-          // get vedio url
-          const videoUrl = this.getAttribute("data-url");
-          // Find the modal and embed element
-          const modal = document.getElementById("myVideoNewModals");
-          const videoEmbed = document.getElementById("videoEmbed");
+      // get vedio url
+      const videoUrl = this.getAttribute("data-url");
+      // Find the modal and embed element
+      const modal = document.getElementById("myVideoNewModals");
+      const videoEmbed = document.getElementById("videoEmbed");
 
-          if (videoUrl && videoUrl !== "#") {
-              videoEmbed.setAttribute("src", videoUrl); // Set video URL
-              modal.classList.add("show"); // Show modal
-          }
-      });
+      if (videoUrl && videoUrl !== "#") {
+        videoEmbed.setAttribute("src", videoUrl); // Set video URL
+        modal.classList.add("show"); // Show modal
+      }
+    });
   });
 
   // Close button functionality
   document.querySelector(".close-one").addEventListener("click", function () {
-      const modal = document.getElementById("myVideoNewModals");
-      const videoEmbed = document.getElementById("videoEmbed");
-      
-      modal.classList.remove("show"); 
-      videoEmbed.setAttribute("src", ""); 
+    const modal = document.getElementById("myVideoNewModals");
+    const videoEmbed = document.getElementById("videoEmbed");
+
+    modal.classList.remove("show");
+    videoEmbed.setAttribute("src", "");
   });
 });
 //end
 
 
 
-jQuery("#slide_splice").html(function() {
+jQuery("#slide_splice").html(function () {
   var text = jQuery(this).text().trim();
   var words = text.split(" ");
-  
-  // Wrap the specific words with a span and class
+
   if (words.length >= 4) {
-    // Only proceed if there are at least 7 words
-    words[4] = "<span class='span2'>" + words[4] + "</span>"; // 3rd word
+    words[4] = "<span class='span2'>" + words[4] + "</span>";
 
   }
 
-  // Join all words to form the updated text
   var updatedText = words.join(" ");
   return updatedText;
 });

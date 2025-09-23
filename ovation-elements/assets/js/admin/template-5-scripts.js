@@ -1,6 +1,6 @@
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
     function initializeImageUpload(buttonClass) {
-        $(document).on('click', buttonClass, function(e) {
+        $(document).on('click', buttonClass, function (e) {
             e.preventDefault();
 
             const button = $(this);
@@ -11,7 +11,7 @@ jQuery(document).ready(function($) {
                 multiple: false
             });
 
-            file_frame.on('select', function() {
+            file_frame.on('select', function () {
                 const attachment = file_frame.state().get('selection').first().toJSON();
                 button.siblings('input[type="hidden"]').val(attachment.id);
                 button.siblings('img').attr('src', attachment.url).show();
@@ -21,13 +21,13 @@ jQuery(document).ready(function($) {
         });
     }
 
-    $('#submit-slider, .btn.btn-primary[type="submit"]').click(function() {
+    $('#submit-slider, .btn.btn-primary[type="submit"]').click(function () {
         $('#slider-form').submit(); // Submit the form
     });
 
     initializeImageUpload('.upload_image_button');
 
-   // $('#add_slide_button').click(function() {
+    // $('#add_slide_button').click(function() {
     $('#slider-slides').on('click', '.add_slide_button', function () {
         const slideCount = $('.slide-container').length;
 
@@ -41,14 +41,14 @@ jQuery(document).ready(function($) {
                     </button>
                 </div>
             `;
-    
+
             if (!$('.slide-container').eq(slideCount - 1).find('.go-pro-container').length) {
                 $('.slide-container').eq(slideCount - 1).append(proButton);
             }
-            return; 
+            return;
         }
         //ended
-        
+
         const newSlide = `
             <div class="slide-container mb-4 p-3 border rounded" data-index="${slideCount}">
                 <h3>Slide ${slideCount + 1}</h3>
@@ -94,7 +94,7 @@ jQuery(document).ready(function($) {
         // initializeImageUpload('.upload_image_button');
     });
 
-    $(document).on('click', '.remove_slide_button', function() {
+    $(document).on('click', '.remove_slide_button', function () {
         $(this).closest('.slide-container').remove();
     });
 });
@@ -102,18 +102,18 @@ jQuery(document).ready(function($) {
 
 // for live preview 
 
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
     function updateLivePreview() {
         console.log('Live preview update triggered');
-        var slideImageID = $('#slide_image_0').val(); 
+        var slideImageID = $('#slide_image_0').val();
         var slideBgColor = $('#slide_bg_color_0').val();
-        var slidePreview = $('.swiper-slide.slide-outer.active'); 
+        var slidePreview = $('.swiper-slide.slide-outer.active');
 
         if (slideImageID) {
             var attachment = wp.media.attachment(slideImageID);
-            attachment.fetch().then(function() {
+            attachment.fetch().then(function () {
                 if (attachment && attachment.get('url')) {
-                    var imageUrl = attachment.get('url'); 
+                    var imageUrl = attachment.get('url');
                     slidePreview.css('background-image', 'url(' + imageUrl + ')');
                     slidePreview.css('background-color', slideBgColor); // Apply the background color
                 }
@@ -138,14 +138,14 @@ jQuery(document).ready(function($) {
         var buttonURL = $('#slide_button_url_0').val();
         $('.swiper-slide.active .theme-btn').attr('href', buttonURL || '#');
 
-        var thumbnailImageID = $('#slide_thumbnail_image_0').val(); 
-        var thumbnailPreview = $('.slider-nav .nav-item[data-index="0"] .item-img img'); 
+        var thumbnailImageID = $('#slide_thumbnail_image_0').val();
+        var thumbnailPreview = $('.slider-nav .nav-item[data-index="0"] .item-img img');
 
         if (thumbnailImageID) {
             var thumbnailAttachment = wp.media.attachment(thumbnailImageID);
-            thumbnailAttachment.fetch().then(function() {
+            thumbnailAttachment.fetch().then(function () {
                 if (thumbnailAttachment && thumbnailAttachment.get('url')) {
-                    var thumbnailUrl = thumbnailAttachment.get('url'); 
+                    var thumbnailUrl = thumbnailAttachment.get('url');
                     thumbnailPreview.attr('src', thumbnailUrl);
                 }
             });
@@ -159,22 +159,22 @@ jQuery(document).ready(function($) {
 
         //for font size settings live preview
 
-        var fontSize1 = $('#head_font_size').val(); 
-        $('.content-wrapper .offer-tag').css('font-size', fontSize1 + 'px'); 
-        
-        var fontSize2 = $('#heading_font_size').val(); 
-        $('.content-wrapper .heading').css('font-size', fontSize2 + 'px'); 
+        var fontSize1 = $('#head_font_size').val();
+        $('.content-wrapper .offer-tag').css('font-size', fontSize1 + 'px');
 
-        var fontSize3 = $('#banner_font_size').val(); 
-        $('.content-wrapper .theme-para').css('font-size', fontSize3 + 'px'); 
+        var fontSize2 = $('#heading_font_size').val();
+        $('.content-wrapper .heading').css('font-size', fontSize2 + 'px');
+
+        var fontSize3 = $('#banner_font_size').val();
+        $('.content-wrapper .theme-para').css('font-size', fontSize3 + 'px');
 
 
-        var fontSize5 = $('#ov_mini_title_font_size').val(); 
-        $('.nav-item .item-name').css('font-size', fontSize5 + 'px'); 
+        var fontSize5 = $('#ov_mini_title_font_size').val();
+        $('.nav-item .item-name').css('font-size', fontSize5 + 'px');
 
     }
 
-    $('#ov_mini_title_font_size , #banner_font_size , #heading_font_size ,#head_font_size ,#slide_image_0, #slide_title_0, #slide_description_0, #slide_head_tag_0, #slide_button_text_0, #slide_button_url_0, #slide_thumbnail_image_0, #slide_thumbnail_title_0 , #slide_bg_color_0').on('input change paste keyup mouseenter oncontextmenu', function() {
+    $('#ov_mini_title_font_size , #banner_font_size , #heading_font_size ,#head_font_size ,#slide_image_0, #slide_title_0, #slide_description_0, #slide_head_tag_0, #slide_button_text_0, #slide_button_url_0, #slide_thumbnail_image_0, #slide_thumbnail_title_0 , #slide_bg_color_0').on('input change paste keyup mouseenter oncontextmenu', function () {
         updateLivePreview();
     });
 
@@ -199,9 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //color picker code
 
-jQuery(document).ready(function($){
-    console.log('color picker load');
-    //for check button is disable or not
+jQuery(document).ready(function ($) {
     if (!$('#button_bg_color').prop('disabled')) {
         $('#button_bg_color').wpColorPicker();
     }
@@ -232,8 +230,8 @@ jQuery(document).ready(function($){
 
 
 //upload bg image for all slider 
-jQuery(document).ready(function($) {
-    $('.upload-bg-slide-image').click(function(e) {
+jQuery(document).ready(function ($) {
+    $('.upload-bg-slide-image').click(function (e) {
         e.preventDefault();
         var imageFrame;
         if (imageFrame) {
@@ -246,10 +244,10 @@ jQuery(document).ready(function($) {
             library: { type: 'image' },
             button: { text: 'Use this image' }
         });
-        imageFrame.on('select', function() {
+        imageFrame.on('select', function () {
             var attachment = imageFrame.state().get('selection').first().toJSON();
             $('#bg_slide_image').val(attachment.url);
-            
+
             // Update the preview image dynamically
             if ($('.preview-bg-slide-image img').length) {
                 $('.preview-bg-slide-image img').attr('src', attachment.url);

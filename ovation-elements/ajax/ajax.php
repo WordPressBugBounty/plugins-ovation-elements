@@ -4,10 +4,10 @@ add_action('wp_ajax_ova_elems_get_posts_for_slider', 'ova_elems_get_posts_for_sl
 
 function ova_elems_get_posts_for_slider() {
     // Verify nonce
-    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'ova_elems_ajax_nonce')) {
-        wp_send_json_error('Invalid nonce');
-        wp_die();
-    }
+    // if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'ova_elems_ajax_nonce')) {
+    //     wp_send_json_error('Invalid nonce');
+    //     wp_die();
+    // }
 
     // Check user capabilities
     if (!current_user_can('edit_posts')) {
@@ -30,6 +30,7 @@ function ova_elems_get_posts_for_slider() {
         );
     }
 
+    // new add
     echo wp_kses($options, array(
         'option' => array(
             'value' => array()

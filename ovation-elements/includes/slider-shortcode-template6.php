@@ -5,8 +5,6 @@ if (!defined('ABSPATH')) {
 
 global $ova_elems_template;
 $ova_elems_template = 'template6';
-
-
 $slide_images = array();
 $slide_background_colors = array();
 
@@ -15,16 +13,13 @@ if (!empty($slides)) {
         if (!empty($slide['image_id'])) {
             $slide_images[] = wp_get_attachment_url($slide['image_id']);
         }
-        // Store background colors if defined
         if (!empty($slide['slide_bg_color'])) {
             $slide_background_colors[] = $slide['slide_bg_color'];
         } else {
-            $slide_background_colors[] = '#2d4373'; // Default color
+            $slide_background_colors[] = '#2d4373';
         }
     }
 }
-
-// Prepare dynamic settings for the slider
 $dynamic_settings = [
     'autoplay' => (!empty($static_settings['autoplay']) && $static_settings['autoplay'] == '1') ? ($static_settings['autoplay_delay'] ?? 1000) : false, // Autoplay delay
     'effect' => $static_settings['effect'] ?? 'fade',
@@ -42,10 +37,8 @@ wp_localize_script('ova-elems-template-6-frontend-scripts', 'sliderData', array(
     'images' => $slide_images,
     'background_colors' => $slide_background_colors,
 ));
-
 $index = 1;
 ?>
-
 
 <section id="oe-restaurant-slider-main-box" class="oe-restaurant-slider-main-box_self">
     <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="" data-bs-interval="1500">
@@ -64,63 +57,61 @@ $index = 1;
                                     <div class="swiper-container">
                                         <div class="swiper-wrapper">
                                             <!-- This will hold all the slides -->
-                                            <?php if (!empty($slides)) : ?>
-                                            <?php foreach ($slides as $index => $slide): ?>
-                                            <!-- sliding functionality start -->
-                                            <div class="swiper-slide">
-                                                <div
-                                                    class="col-xl-6 col-lg-7 col-md-12 col-sm-12 col-12 oe-restaurant-slider-content-inner-box align-self-center">
-                                                    <div class="oe-restaurant-slider-banner-content-box">
+                                            <?php if (!empty($slides)): ?>
+                                                <?php foreach ($slides as $index => $slide): ?>
+                                                    <!-- sliding functionality start -->
+                                                    <div class="swiper-slide">
                                                         <div
-                                                            class="d-flex flex-column gap-2 oe-restaurant-slider-banner-content-main">
+                                                            class="col-xl-6 col-lg-7 col-md-12 col-sm-12 col-12 oe-restaurant-slider-content-inner-box align-self-center">
+                                                            <div class="oe-restaurant-slider-banner-content-box">
+                                                                <div
+                                                                    class="d-flex flex-column gap-2 oe-restaurant-slider-banner-content-main">
 
-                                                            <div
-                                                                class="d-flex justify-content-md-start justify-content-sm-center justify-content-center align-items-center">
-                                                                <span
-                                                                    class="oe-restaurant-slider-icon-img me-2 ms-0 position-relative">
-                                                                    <div class="oe-restaurant-slider-icon">
-                                                                        <img src="<?php echo esc_url(wp_get_attachment_url($slide['mini_head_image'])); ?>"
-                                                                            alt="">
+                                                                    <div
+                                                                        class="d-flex justify-content-md-start justify-content-sm-center justify-content-center align-items-center">
+                                                                        <span
+                                                                            class="oe-restaurant-slider-icon-img me-2 ms-0 position-relative">
+                                                                            <div class="oe-restaurant-slider-icon">
+                                                                                <img src="<?php echo esc_url(wp_get_attachment_url($slide['mini_head_image'])); ?>"
+                                                                                    alt="">
+                                                                            </div>
+                                                                        </span>
+                                                                        <span
+                                                                            class="oe-restaurant-slider-sub-head ovheadtag-<?php echo esc_attr($post_id); ?>">
+                                                                            <?php echo esc_html($slide['head_tag']); ?>
+                                                                        </span>
                                                                     </div>
-                                                                </span>
-                                                                <span
-                                                                    class="oe-restaurant-slider-sub-head ovheadtag-<?php echo esc_attr($post_id); ?>">
-                                                                    <?php echo esc_html($slide['head_tag']); ?>
-                                                                </span>
-                                                            </div>
-                                                            <div class="oe-restaurant-slider-banner-heading-box">
-                                                                <h1
-                                                                    class="oe-restaurant-slider-banner-main-head text-md-start text-sm-center text-center title-<?php echo esc_attr($post_id); ?>">
-                                                                    <?php echo esc_html($slide['title']); ?>
-                                                                </h1>
-                                                            </div>
-                                                            <p
-                                                                class="oe-restaurant-slider-banner-sec-para text-lg-left text-md-start text-sm-center text-center description-<?php echo esc_attr($post_id); ?>">
-                                                                <?php echo esc_html($slide['description']); ?>
-                                                            </p>
-                                                            <div
-                                                                class="d-flex gap-md-4 gap-sm-2 gap-2 align-items-center oe-restaurant-slider-banner-btn-box pt-3 ">
-                                                                <a class="oe-restaurant-slider-explore-btn slider-btn-<?php echo esc_attr($post_id); ?>"
-                                                                    href="<?php echo esc_url($slide['button_url']); ?>">
-                                                                    <?php echo esc_html($slide['button_text']); ?>
-                                                                </a>
-                                                                <a class="oe-restaurant-slider-appointement-btn slider-btn-<?php echo esc_attr($post_id); ?>"
-                                                                    href="<?php echo esc_url($slide['button2_url']); ?>">
-                                                                    <?php echo esc_html($slide['button2_text']); ?>
-                                                                </a>
+                                                                    <div class="oe-restaurant-slider-banner-heading-box">
+                                                                        <h1
+                                                                            class="oe-restaurant-slider-banner-main-head text-md-start text-sm-center text-center title-<?php echo esc_attr($post_id); ?>">
+                                                                            <?php echo esc_html($slide['title']); ?>
+                                                                        </h1>
+                                                                    </div>
+                                                                    <p
+                                                                        class="oe-restaurant-slider-banner-sec-para text-lg-left text-md-start text-sm-center text-center description-<?php echo esc_attr($post_id); ?>">
+                                                                        <?php echo esc_html($slide['description']); ?>
+                                                                    </p>
+                                                                    <div
+                                                                        class="d-flex gap-md-4 gap-sm-2 gap-2 align-items-center oe-restaurant-slider-banner-btn-box pt-3 ">
+                                                                        <a class="oe-restaurant-slider-explore-btn slider-btn-<?php echo esc_attr($post_id); ?> ov-btn-<?php echo esc_attr($post_id); ?>"
+                                                                            href="<?php echo esc_url($slide['button_url']); ?>">
+                                                                            <?php echo esc_html($slide['button_text']); ?>
+                                                                        </a>
+                                                                        <a class="oe-restaurant-slider-appointement-btn slider-btn-<?php echo esc_attr($post_id); ?> ov-btn-<?php echo esc_attr($post_id); ?>"
+                                                                            href="<?php echo esc_url($slide['button2_url']); ?>">
+                                                                            <?php echo esc_html($slide['button2_text']); ?>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
 
-                                            </div>
-                                            <!-- sliding functionality end -->
-                                            <?php endforeach; ?>
+                                                    </div>
+                                                    <!-- sliding functionality end -->
+                                                <?php endforeach; ?>
                                             <?php endif; ?>
                                         </div> <!-- End of swiper-wrapper -->
                                     </div> <!-- End of swiper-container -->
-
-
 
                                 </div>
                             </div>
@@ -139,20 +130,8 @@ $index = 1;
                                 <div class="col-xl-8 col-lg-8 oe-restaurant-slider-address-content-box">
                                     <div class="slider-nav-arrow">
 
-                                        <!-- <div class="swiper-pagination"></div> -->
                                         <div class="swiper-button-next"></div>
                                         <div class="swiper-button-prev"></div>
-                                        <!-- <a class="carousel-control-prev" data-bs-target="#carouselExampleIndicators" role="button" data-bs-slide-to="prev">
-                                            <i class="fa-solid fa-angle-left slider-icon"></i>
-                                            <span class="carousel-control-prev-icon visually-hidden" aria-hidden="true">
-                                            </span>
-                                        </a>
-                                        <a class="carousel-control-next" data-bs-target="#carouselExampleIndicators" role="button" data-bs-slide-to="next">
-                                            <i class="fa-solid fa-angle-right slider-icon"></i>
-                                        <span class="carousel-control-next-icon visually-hidden" aria-hidden="true">
-                                        </span>
-                                        </a> -->
-
                                     </div>
                                     <div class="row oe-restaurant-slider-address-outer-box">
                                         <div
@@ -270,21 +249,18 @@ $index = 1;
                     </div>
                     <div class="icon-list-box">
                         <div class="icons-list">
+                            <div class="icons"><a href="<?php echo esc_url($static_settings['facebook_url'] ?? '#'); ?>"
+                                    target="_blank"><i class="fa-brands fa-facebook-f ov-social-icon"></i></a></div>
                             <div class="icons"><a
-                                    href="<?php echo esc_url($static_settings['facebook_url'] ?? '#'); ?>" target="_blank"><i
-                                        class="fa-brands fa-facebook-f"></i></a></div>
+                                    href="<?php echo esc_url($static_settings['instagram_url'] ?? '#'); ?>"
+                                    target="_blank"><i class="fa-brands fa-instagram ov-social-icon"></i></a></div>
+                            <div class="icons"><a href="<?php echo esc_url($static_settings['youtube_url'] ?? '#'); ?>"
+                                    target="_blank"><i class="fa-brands fa-youtube ov-social-icon"></i></a></div>
                             <div class="icons"><a
-                                    href="<?php echo esc_url($static_settings['instagram_url'] ?? '#'); ?>" target="_blank"><i
-                                        class="fa-brands fa-instagram"></i></a></div>
-                            <div class="icons"><a
-                                    href="<?php echo esc_url($static_settings['youtube_url'] ?? '#'); ?>" target="_blank"><i
-                                        class="fa-brands fa-youtube"></i></a></div>
-                            <div class="icons"><a
-                                    href="<?php echo esc_url($static_settings['basketball_url'] ?? '#'); ?>" target="_blank"><i
-                                        class="fa-solid fa-basketball"></i></a></div>
-                            <div class="icons"><a
-                                    href="<?php echo esc_url($static_settings['twitter_url'] ?? '#'); ?>" target="_blank"><i
-                                        class="fa-brands fa-twitter"></i></a></div>
+                                    href="<?php echo esc_url($static_settings['basketball_url'] ?? '#'); ?>"
+                                    target="_blank"><i class="fa-solid fa-basketball ov-social-icon"></i></a></div>
+                            <div class="icons"><a href="<?php echo esc_url($static_settings['twitter_url'] ?? '#'); ?>"
+                                    target="_blank"><i class="fa-brands fa-twitter ov-social-icon"></i></a></div>
                         </div>
                     </div>
 
@@ -293,21 +269,14 @@ $index = 1;
 
 
         </div>
-
-
-
-
-
     </div>
-
-
 </section>
 
 
 
 <script>
-// left menu
-jQuery(".Show").on('click', function() {
-    jQuery(".left_menu_col").toggleClass("open");
-});
+    // left menu
+    jQuery(".Show").on('click', function () {
+        jQuery(".left_menu_col").toggleClass("open");
+    });
 </script>

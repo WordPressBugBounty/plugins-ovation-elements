@@ -18,7 +18,7 @@
         let endCursor = null;
         let searchQuery = '';
         let selectedCollection = '';
-        let debounceTimeout = null; // To store debounce timeout
+        let debounceTimeout = null; 
 
         function fetchCollections() {
             return fetch(apiEndpoint, {
@@ -32,24 +32,24 @@
         }
 
         function fetchApiData(afterCursor = null, append = false) {
-    return fetch(apiEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            action: 'getProducts',
-            collectionHandle: selectedCollection,
-            productHandle: searchQuery,
-            paginationParams: { first: 12, afterCursor: afterCursor, reverse: true } 
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        displayData(data, append);
-        endCursor = data.data.pageInfo.endCursor;
-        document.getElementById('load-more').style.display = data.data.pageInfo.hasNextPage ? 'block' : 'none';
-    })
-    .catch(error => console.error('Error fetching products:', error));
-}
+            return fetch(apiEndpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    action: 'getProducts',
+                    collectionHandle: selectedCollection,
+                    productHandle: searchQuery,
+                    paginationParams: { first: 12, afterCursor: afterCursor, reverse: true }
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    displayData(data, append);
+                    endCursor = data.data.pageInfo.endCursor;
+                    document.getElementById('load-more').style.display = data.data.pageInfo.hasNextPage ? 'block' : 'none';
+                })
+                .catch(error => console.error('Error fetching products:', error));
+        }
 
 
         function populateDropdown(data) {
@@ -83,7 +83,7 @@
                     const item = product.node;
                     const imageSrc = item.images.edges[0]?.node.src || 'default-image.jpg';
                     const price = item.variants.edges[0]?.node.price || 'N/A';
-                    const demoLink = item.metafield?.value || '#';  // Fetch demo link or use '#' if not available
+                    const demoLink = item.metafield?.value || '#';  
 
                     const colElement = document.createElement('div');
                     colElement.classList.add('col-12', 'col-md-6', 'col-lg-3', 'mb-3');
@@ -132,7 +132,7 @@
             fetchApiData();
         });
 
-        fetchCollections(); // Fetch collections on page load
-        fetchApiData(); // Fetch products initially
+        fetchCollections(); 
+        fetchApiData(); 
     });
 </script>

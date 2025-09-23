@@ -21,6 +21,8 @@ jQuery(document).ready(function ($) {
                     button.siblings(hiddenInputClass).val(attachment.id);
                     button.siblings(imgTag).attr('src', attachment.url).show();
 
+                    //new add for remove bg image
+                    // Show the "Remove Background Image" button when an image is selected
                     const removeButton = button.siblings('.remove_image_button');
                     if (attachment.url) {
                         removeButton.show(); // Show the button
@@ -79,6 +81,14 @@ jQuery(document).ready(function ($) {
     initializeImageUpload('.upload_icon_button', 'input[type="hidden"]', 'img');
 
 
+
+    // Add slide functionality with upload button initialization
+    // $('#add_slide_button').click(function () {
+
+    //limit checked
+
+
+
     $('#slider-slides').on('click', '.add_slide_button', function () {
         const slideCount = $('.slide-container').length;
 
@@ -122,10 +132,6 @@ jQuery(document).ready(function ($) {
                     <input type="text" id="slide_title_${slideCount}" name="slide_titles[]" class="form-control" placeholder="Enter slide title here" />
                 </div>
                 <div class="form-group">
-                    <label for="slide_description_${slideCount}">Description:</label>
-                    <textarea id="slide_description_${slideCount}" name="slide_descriptions[]" rows="3" class="form-control" placeholder="Enter slide description here"></textarea>
-                </div>
-                <div class="form-group">
                     <label for="slide_button_text_${slideCount}">Button Text:</label>
                     <input type="text" id="slide_button_text_${slideCount}" name="slide_button_texts[]" class="form-control" placeholder="Enter button text here" />
                 </div>
@@ -145,6 +151,8 @@ jQuery(document).ready(function ($) {
 
     });
 
+    //new add for remove bg image
+    // Handle remove image functionality
     // Handle remove image functionality
     $(document).on('click', '.remove_image_button', function () {
         const parent = $(this).closest('.form-group');
@@ -155,7 +163,9 @@ jQuery(document).ready(function ($) {
         if (imageElement.length > 0) {
             imageElement.attr('src', '').hide();
         }
-        $(this).hide();
+
+        // Hide the "Remove Background Image" button after clearing the image
+        $(this).hide(); // Hide the button after removing the image
     });
     //end
 
@@ -165,6 +175,9 @@ jQuery(document).ready(function ($) {
     });
 });
 
+
+//live preview
+
 jQuery(document).ready(function ($) {
     function updateLivePreview() {
         console.log('Live preview update triggered');
@@ -173,6 +186,8 @@ jQuery(document).ready(function ($) {
         var slideImageID = $('#slide_image_0').val();
         var slideBgColor = $('#slide_bg_color_0').val();
         var swiperWrapper = $('.swiper-wrapper.swiper-wrapper-business');
+        var swiperSlide = $('.swiper-slide');
+        var slideImage = swiperSlide.find('img');
 
         if (slideImageID) {
             var attachment = wp.media.attachment(slideImageID);
@@ -180,12 +195,12 @@ jQuery(document).ready(function ($) {
             attachment.fetch().then(function () {
                 if (attachment && attachment.get('url')) {
                     var imageUrl = attachment.get('url');
-                    swiperWrapper.css({
-                        'background': 'url(' + imageUrl + ') no-repeat center center',
-                        'background-size': 'cover',
-                        'background-color': slideBgColor
-                    });
 
+                    // Update the img src in the swiper-slide
+                    slideImage.attr('src', imageUrl);
+
+                    // Optionally, set the background color for the swiper-slide (if needed)
+                    swiperSlide.css('background-color', slideBgColor);
                 } else {
                     console.error("Attachment URL not found for ID:", slideImageID);
                 }
@@ -193,114 +208,49 @@ jQuery(document).ready(function ($) {
                 console.error("Error fetching attachment:", err);
             });
         } else {
-            swiperWrapper.css({
-                'background': 'url(https://via.placeholder.com/1200x600?text=Default+Image) no-repeat center center',
-                'background-size': 'cover',
-                'background-color': slideBgColor // Apply the selected background color
-            });
+            // default image
+            slideImage.attr('src', '');
+            swiperSlide.css('background-color', slideBgColor);
         }
-
-        //new add for bg
-        // Update background color dynamically when color picker value changes
-        $('#slide_bg_color_0').on('input', function () {
-            var newColor = $(this).val();
-            swiperWrapper.css('background-color', newColor);
-        });
-
         //end
 
 
         //new for review text
         var ovreview = $('#ov_template_review_text').val();
-        $('.social-media-wrap').eq(0).find('.follow-title').text(ovreview || 'reviewtext');
-
-        var ovreview = $('#ov_template_social_review_text').val();
-        $('.client-images').eq(0).find('.oe-client-text').text(ovreview || 'happy client');
-        //end
+        $('.business-follower-main').eq(0).find('.business-title').text(ovreview || 'reviewtext');
 
         var title = $('#slide_title_0').val();
-        $('.oe-slider-content h1').text(title || 'Slide Title');
+        $('.foremost .foremost-title1').text(title || 'Slide Title');
 
-        var description = $('#slide_description_0').val();
-        $('.oe-slider-content p').text(description || 'Slide description goes here.');
 
         var buttonText = $('#slide_button_text_0').val();
-        $('.oe-slider-content .theme-btn').text(buttonText || 'Button Text');
+        $('.explore-more-div .explore-more').text(buttonText || 'Button Text');
 
         var buttonURL = $('#slide_button_url_0').val();
-        $('.oe-slider-content .theme-btn').attr('href', buttonURL || '#');
+        $('.explore-more-div .explore-more').attr('href', buttonURL || '#');
 
-        var miniTitle = $('#slide_mini_title_0').val();
-        $('.information-card').eq(0).find('.heading').text(miniTitle || 'Mini Title 1');
 
-        var miniDescription = $('#slide_mini_description_0').val();
-        $('.information-card').eq(0).find('.description').text(miniDescription || 'Mini description goes here.');
 
-        var miniTitle2 = $('#slide_mini_title2_0').val();
-        $('.information-card').eq(1).find('.heading').text(miniTitle2 || 'Mini Title 2');
-
-        var miniDescription2 = $('#slide_mini_description2_0').val();
-        $('.information-card').eq(1).find('.description').text(miniDescription2 || 'Mini description 2 goes here.');
-
-        var miniImage1 = $('#slide_mini_image_1_0').val();
-        if (miniImage1) {
-            var miniImageAttachment1 = wp.media.attachment(miniImage1);
-            miniImageAttachment1.fetch().then(function () {
-                $('.information-card').eq(0).find('.icon img').attr('src', miniImageAttachment1.get('url'));
-            });
-        }
-
-        var miniImage2 = $('#slide_mini_image_2_0').val();
-        if (miniImage2) {
-            var miniImageAttachment2 = wp.media.attachment(miniImage2);
-            miniImageAttachment2.fetch().then(function () {
-                $('.information-card').eq(1).find('.icon img').attr('src', miniImageAttachment2.get('url'));
-            });
-        }
-
-        var cornerImages = $('#slide_corner_images_0').val();
-        var cornerImagesContainer = $('.oe-slider-clients .corner-images-container');
-        cornerImagesContainer.empty();
-
-        if (cornerImages) {
-            var cornerImageIds = cornerImages.split(',');
-            cornerImageIds.forEach(function (imageID) {
-                var attachment = wp.media.attachment(imageID);
-                attachment.fetch().then(function () {
-                    cornerImagesContainer.append(
-                        '<img src="' + attachment.get('url') + '" style="max-width: 100px; max-height: 100px; margin-right: 10px;" alt="Corner Image" />'
-                    );
-                });
-            });
-        }
 
         //for font size settings live preview
 
         var fontSize1 = $('#heading_font_size').val();
-        $('.oe-slider-content h1').css('font-size', fontSize1 + 'px');
+        $('.foremost .foremost-title1').css('font-size', fontSize1 + 'px');
 
-        var fontSize2 = $('#banner_font_size').val();
-        $('.oe-slider-content p').css('font-size', fontSize2 + 'px');
 
         var fontSize3 = $('#button_font_size').val();
-        $('.oe-slider-content .theme-btn').css('font-size', fontSize3 + 'px');
+        $('.explore-more-div .explore-more').css('font-size', fontSize3 + 'px');
 
-        var fontSize4 = $('#ov_mini_title_font_size').val();
-        $('.info-inner .heading').css('font-size', fontSize4 + 'px');
-
-        var fontSize5 = $('#mini_description_font_size').val();
-        $('.info-inner .description').css('font-size', fontSize5 + 'px');
-
-        var fontSize6 = $('#ov_review_text_font_size').val();
-        $('.client-images .oe-client-text').css('font-size', fontSize6 + 'px');
 
         var fontSize7 = $('#ov_social_text_font_size').val();
-        $('.social-media-wrap .follow-title').css('font-size', fontSize7 + 'px');
+        $('.business-follower-main .business-title').css('font-size', fontSize7 + 'px');
 
-        //new css 
-
+        //new css
         var socialIconColor = $('#social_icon_active_color').val();
-        $('.oe-icons-container .icons a i').css('color', socialIconColor); // Update the icon color
+        console.log(socialIconColor);
+        $('.social-media-div .icons a i').css('color', socialIconColor); // Update the icon color
+
+
         var socialIconHoverColor = $('#social_icon_hover_color').val();
 
         // Remove any hover
@@ -310,34 +260,61 @@ jQuery(document).ready(function ($) {
             var hoverStyle = `
                 <style id="social-icon-hover-style">
                    
-                .icons i:hover {
+                    .icons i:hover {
 
-                    color: ${socialIconHoverColor} !important;
-                    background: #0090FF !important;
-                }
- 
+                        color: ${socialIconHoverColor} !important;
+                    }
                 </style>
             `;
             $('head').append(hoverStyle);
         }
 
         // Social Icon Size
-
         var socialIconSize = $('#social_icon_size').val();
-        $('.social-media-wrap .icons a i').css('font-size', socialIconSize + 'px');
+        $('.social-media-div .icons a i').css('font-size', socialIconSize + 'px');
 
 
         //slide button
         var buttonBgColor = $('#button_bg_color').val();
-        $('.oe-slider-content .theme-btn').css('background-color', buttonBgColor);
+        $('.explore-more-div .explore-more').css('background-color', buttonBgColor);
 
         var buttonTextColor = $('#button_text_color').val();
-        $('.oe-slider-content .theme-btn').css('color', buttonTextColor);
-
+        $('.explore-more-div .explore-more').css('color', buttonTextColor);
 
         // New for Button Hover Background Color
         var buttonHoverBgColor = $('#button_hover_bg_color').val();
         var buttonHoverTextColor = $('#button_hover_text_color').val();
+        //for overlay color
+        // var imageOverlayColor = $('#image_overlay').val();
+        // $('.swiper-slide .oe-overlay').css('background-color', imageOverlayColor);
+
+        var imageOverlayColor = $('#image_overlay').val();
+
+        if (imageOverlayColor) {
+            var overlayStyle = `
+                <style id="swiper-slide-overlay-style">
+                    .swiper-slide::before {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: ${imageOverlayColor};
+                        z-index: 99;
+                        pointer-events: none;
+                        opacity: 0.6;
+                    }
+                </style>
+            `;
+
+            // Remove existing style tag if already present to avoid duplicates
+            $('#swiper-slide-overlay-style').remove();
+
+            // Append new style to head
+            $('head').append(overlayStyle);
+        }
+
 
         // Remove older
         $('#button-hover-bg-style').remove();
@@ -346,27 +323,20 @@ jQuery(document).ready(function ($) {
         if (buttonHoverBgColor) {
             var hoverStyle = `
                 <style id="button-hover-bg-style">
-                .oe-slider-content .theme-btn .a:hover {
-                        
+                    .explore-more-div .explore-more:hover {
                         background-color: ${buttonHoverBgColor} !important;
                         color: ${buttonHoverTextColor} !important;
                     }
-
-                    .theme-btn:hover {
-                        background-color: ${buttonHoverBgColor} !important;
-                        color: ${buttonHoverTextColor} !important;
-                    }
-
                 </style>
             `;
             $('head').append(hoverStyle);
         }
-        //end
 
+        //end
 
     }
 
-    $('body').on('input change paste keyup mouseenter oncontextmenu', '#slide_image_0, #slide_title_0, #slide_description_0, #slide_button_text_0, #slide_button_url_0, #slide_mini_title_0, #slide_mini_description_0, #slide_mini_title2_0, #slide_mini_description2_0, #slide_mini_image_1_0, #slide_mini_image_2_0, #slide_corner_images_0 , #ov_template_review_text ,#ov_template_social_review_text , #heading_font_size , #banner_font_size , #button_font_size, #ov_mini_title_font_size , #mini_description_font_size , #ov_review_text_font_size , #ov_social_text_font_size , #social_icon_active_color , .social_icon_active_color , .static-container , #advanced-settings , .plugin_output_content ', function () {
+    $('body').on('input change paste keyup mouseenter oncontextmenu', '#slide_image_0, #slide_title_0, #slide_description_0, #slide_button_text_0, #slide_button_url_0, #slide_mini_title_0, #slide_mini_description_0, #slide_mini_title2_0, #slide_mini_description2_0, #slide_mini_image_1_0, #slide_mini_image_2_0, #slide_corner_images_0 , #ov_template_review_text ,#ov_template_social_review_text , #heading_font_size , #banner_font_size , #button_font_size, #ov_mini_title_font_size , #mini_description_font_size , #ov_review_text_font_size , #ov_social_text_font_size , #social_icon_active_color , .social_icon_active_color , .static-container , #advanced-settings , .plugin_output_content', function () {
         updateLivePreview();
     });
 
@@ -415,90 +385,57 @@ jQuery(document).ready(function ($) {
     if (!$('#social_icon_hover_color').prop('disabled')) {
         $('#social_icon_hover_color').wpColorPicker();
     }
+
+    if (!$('#image_overlay').prop('disabled')) {
+        $('#image_overlay').wpColorPicker();
+    }
+
+
 });
 
 //end
 
 
-//for compressor and croping 
-
+//upload bg image for slider
 jQuery(document).ready(function ($) {
-    const fileInput = $("#slider_image");
-    const compressedImage = $("#compressed_image");
-    const cropButton = $("#crop_button");
-    const previewContainer = $("#compressed_image_preview");
-
-    let cropper;
-
-    fileInput.on("change", function (e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (event) {
-                const img = new Image();
-                img.src = event.target.result;
-                img.id = "cropper_image"; // Add ID for reference
-
-                // Clear any previous cropper and image
-                previewContainer.empty();
-                previewContainer.append(img);
-
-                img.onload = function () {
-                    // Initialize cropper on the newly added image
-                    if (cropper) cropper.destroy();
-                    cropper = new Cropper(img, {
-                        aspectRatio: 16 / 9,
-                        rotatable: true,
-                    });
-                };
-
-                compressedImage.attr("src", img.src).show();
-            };
-            reader.readAsDataURL(file);
+    var savedBgImage = $('#bg_slide_image').val();
+    if (savedBgImage) {
+        $('.business-foremost-container').css('background-image', 'url(' + savedBgImage + ')');
+    }
+    $('.upload-bg-slide-image').click(function (e) {
+        e.preventDefault();
+        var imageFrame;
+        if (imageFrame) {
+            imageFrame.open();
+            return;
         }
-    });
+        imageFrame = wp.media({
+            title: 'Select Background Image',
+            multiple: false,
+            library: { type: 'image' },
+            button: { text: 'Use this image' }
+        });
+        imageFrame.on('select', function () {
+            var attachment = imageFrame.state().get('selection').first().toJSON();
 
-    cropButton.on("click", function () {
-        if (cropper) {
-            const croppedCanvas = cropper.getCroppedCanvas();
+            var imageUrl = attachment.url;
 
-            // Convert canvas to blob and prepare for upload
-            croppedCanvas.toBlob((blob) => {
-                const fileName = "cropped_image.jpg";
-                const formData = new FormData();
-                formData.append("action", "upload_cropped_image");
-                formData.append("cropped_image", blob, fileName);
-                formData.append("_ajax_nonce", wpVars.nonce); // Add nonce to the request
+            // Update the value in the input field
+            $('#bg_slide_image').val(imageUrl);
 
-                // AJAX request to upload the cropped image
-                $.ajax({
-                    url: wpVars.ajaxUrl,
-                    method: "POST",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function (response) {
-                        if (response.success) {
-                            alert("Image uploaded successfully!");
-                            console.log("Uploaded Image URL:", response.data.url);
+            $('#bg_slide_image').val(attachment.url);
 
-                            // Refresh WordPress Media Library
-                            if (wp && wp.media) {
-                                wp.media.frame.state().get("library")._requery(true);
-                            }
-                        } else {
-                            alert("Failed to upload image: " + response.data.message);
-                            console.error(response.data.message);
-                        }
-                    },
-                    error: function (error) {
-                        alert("Error occurred while uploading.");
-                        console.error(error);
-                    },
-                });
-            }, "image/jpeg");
-        } else {
-            alert("No image is loaded for cropping.");
-        }
+            // Update the preview image dynamically
+            if ($('.preview-bg-slide-image img').length) {
+                $('.preview-bg-slide-image img').attr('src', attachment.url);
+            } else {
+                $('.preview-bg-slide-image').remove();
+                $('#bg_slide_image').after('<div class="preview-bg-slide-image" style="margin-top: 10px;"><img src="' + attachment.url + '" style="max-width: 150px; height: auto; border: 1px solid #ddd; padding: 5px;"></div>');
+            }
+
+            //live preview
+            $('.business-foremost-container').css('background-image', 'url(' + imageUrl + ')');
+        });
+        imageFrame.open();
     });
 });

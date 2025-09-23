@@ -58,7 +58,8 @@
         </div>
         <div class="grid-item item-3">
 
-            <a href="<?php echo esc_url('https://wordpress.org/support/plugin/ovation-elements/'); ?>" class="button review-button" target="_blank" rel="noopener noreferrer">Review
+            <a href="<?php echo esc_url('https://wordpress.org/support/plugin/ovation-elements/'); ?>"
+                class="button review-button" target="_blank" rel="noopener noreferrer">Review
                 Now</a>
         </div>
     </div>

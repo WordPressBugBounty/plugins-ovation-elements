@@ -425,3 +425,55 @@ button.btn.btn-primary {
 	margin-bottom: 20px;
 	margin-top: 80px;
 }
+
+
+
+/* template1 remove bg image button */
+.remove_image_button.button.btn.btn-danger.mt-2 {
+	display: none !important;
+  }
+
+
+/* pro icon */
+.fa-crown {
+    margin-right: 5px;
+}
+
+
+/* oe free */
+.badge.oe-free {
+	color: white;
+	/* background-color: violet; */
+	background: transparent linear-gradient(90deg, #0023C4 0%, #FD5CF4 100%) 0% 0% no-repeat padding-box;
+	color: #fff;
+  }
+
+  .ot-elems-coming-soon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* .oe-crown {
+	margin-left: 185px;
+	margin-top: 140px;
+} */
+
+a.btn.btn-primary {
+	font: 18px / 23px Outfit;
+	font-weight: 500;
+	background: #5E2CED;
+	padding: 9px 25px;
+	border: none;
+	color: white;
+}
+
+/* p {
+	margin-top: 0;
+	margin-bottom: 1rem;
+	display: inline-block;
+} */
+
+.slider-card .mt-2{
+	display: inline-block !important;
+	}

@@ -1,5 +1,5 @@
 <?php
-if (! defined('ABSPATH')) {
+if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
@@ -28,14 +28,20 @@ wp_enqueue_script('ova-elems-template-2-frontend-scripts', OVA_ELEMS_URL . 'asse
         <div class="oe-inner-wrap">
             <div class="social-media-wrap">
                 <div class="oe-icons-container">
-                    <div class="icons"><a href="<?php echo esc_url($static_settings['facebook_url'] ?? '#'); ?>" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></div>
-                    <div class="icons"><a href="<?php echo esc_url($static_settings['instagram_url'] ?? '#'); ?>" target="_blank"><i class="fa-brands fa-instagram"></i></a></div>
-                    <div class="icons"><a href="<?php echo esc_url($static_settings['youtube_url'] ?? '#'); ?>" target="_blank"><i class="fa-brands fa-youtube"></i></a></div>
-                    <div class="icons"><a href="<?php echo esc_url($static_settings['basketball_url'] ?? '#'); ?>" target="_blank"><i class="fa-solid fa-basketball"></i></a></div>
-                    <div class="icons"><a href="<?php echo esc_url($static_settings['twitter_url'] ?? '#'); ?>" target="_blank"><i class="fa-brands fa-twitter"></i></a></div>
+                    <div class="icons"><a href="<?php echo esc_url($static_settings['facebook_url'] ?? '#'); ?>"
+                            target="_blank"><i class="fa-brands fa-facebook-f ov-social-icon"></i></a></div>
+                    <div class="icons"><a href="<?php echo esc_url($static_settings['instagram_url'] ?? '#'); ?>"
+                            target="_blank"><i class="fa-brands fa-instagram ov-social-icon"></i></a></div>
+                    <div class="icons"><a href="<?php echo esc_url($static_settings['youtube_url'] ?? '#'); ?>"
+                            target="_blank"><i class="fa-brands fa-youtube ov-social-icon"></i></a></div>
+                    <div class="icons"><a href="<?php echo esc_url($static_settings['basketball_url'] ?? '#'); ?>"
+                            target="_blank"><i class="fa-solid fa-basketball ov-social-icon"></i></a></div>
+                    <div class="icons"><a href="<?php echo esc_url($static_settings['twitter_url'] ?? '#'); ?>"
+                            target="_blank"><i class="fa-brands fa-twitter ov-social-icon"></i></a></div>
 
                 </div>
-                <div class="follow-title"><?php echo esc_html($static_settings['ov_template_review_text'] ?? ''); ?></div>
+                <div class="follow-title ov_social_text_font_size">
+                    <?php echo esc_html($static_settings['ov_template_review_text'] ?? ''); ?></div>
             </div>
 
             <div class="oe-travel-slider-inner">
@@ -49,22 +55,29 @@ wp_enqueue_script('ova-elems-template-2-frontend-scripts', OVA_ELEMS_URL . 'asse
                     <div class="swiper-container oe-travel-slider-main">
                         <div class="swiper-wrapper">
                             <?php foreach ($slides as $index => $slide): ?>
-                                <div class="swiper-slide slider-main-image-<?php echo esc_attr($post->ID); ?>-<?php echo esc_attr($index); ?>" style="background-image: url('<?php echo esc_url(wp_get_attachment_url($slide['image_id'])); ?>');">
+                                <div class="swiper-slide slider-main-image-<?php echo esc_attr($post->ID); ?>-<?php echo esc_attr($index); ?>"
+                                    style="background-image: url('<?php echo esc_url(wp_get_attachment_url($slide['image_id'])); ?>');">
                                     <div class="oe-travel-slider-content oe-travel-slider-content-main">
-                                        <span class="heading-tag ovheadtag-<?php echo esc_attr($post_id); ?>"><?php echo esc_html($slide['head_tag']); ?></span>
-                                        <h1 class="title-<?php echo esc_attr($post_id); ?>"><?php echo esc_html($slide['title']); ?><?php echo esc_html($slide['title']); ?></h1>
-                                        <p class="banner-para description-<?php echo esc_attr($post_id); ?>"> <?php echo esc_html($slide['description']); ?></p>
-                                        <a class="theme-btn ov-btn-<?php echo esc_attr($post_id); ?> slider-btn-<?php echo esc_attr($post_id); ?>" href="<?php echo esc_url($slide['button_url']); ?>" class="theme-btn"><?php echo esc_html($slide['button_text']); ?></a>
+                                        <span
+                                            class="heading-tag ovheadtag-<?php echo esc_attr($post_id); ?>"><?php echo esc_html($slide['head_tag']); ?></span>
+                                        <h1 class="title-<?php echo esc_attr($post_id); ?>">
+                                            <?php echo esc_html($slide['title']); ?>    <?php echo esc_html($slide['title']); ?>
+                                        </h1>
+                                        <p class="banner-para description-<?php echo esc_attr($post_id); ?>">
+                                            <?php echo esc_html($slide['description']); ?></p>
+                                        <a class="theme-btn ov-btn-<?php echo esc_attr($post_id); ?> slider-btn-<?php echo esc_attr($post_id); ?>"
+                                            href="<?php echo esc_url($slide['button_url']); ?>"
+                                            class="theme-btn"><?php echo esc_html($slide['button_text']); ?></a>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
                         </div>
                         <!-- Swiper navigation -->
-                         <div class="swiper-sliders-buttons">
-                         <div class="swiper-button-prev"></div>
-                         <div class="swiper-button-next"></div>
-                         </div>
-                  
+                        <div class="swiper-sliders-buttons">
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+
                     </div>
 
                     <!-- newly end -->
@@ -77,14 +90,16 @@ wp_enqueue_script('ova-elems-template-2-frontend-scripts', OVA_ELEMS_URL . 'asse
                                                 src="<?php echo esc_url(wp_get_attachment_url($slide['image_id'])); ?>"
                                                 alt="Banner Image"></div>
                                         <div class="slide-count"><?php echo esc_html(sprintf('%02d.', $index + 1)); ?></div>
-                                        <div class="slide-title ov-mini-title"><?php echo esc_html($slide['head_tag']); ?></div>
+                                        <div class="slide-title ov-mini-title"><?php echo esc_html($slide['head_tag']); ?>
+                                        </div>
                                     </div>
                                 <?php endforeach; ?>
 
                                 <div class="oe-travel-slider-content">
 
 
-                                    <p class="banner-para ov-mini-description"><?php echo esc_html($static_settings['mini_description2'][0]); ?></p>
+                                    <p class="banner-para ov-mini-description">
+                                        <?php echo esc_html($static_settings['mini_description2'][0]); ?></p>
 
                                 </div>
                             </div>

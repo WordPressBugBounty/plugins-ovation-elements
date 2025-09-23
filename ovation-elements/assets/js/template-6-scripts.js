@@ -1,16 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('sliderData:', sliderData);  
+    console.log('sliderData:', sliderData);
 
     if (!sliderData || !sliderData.images) {
         console.error('sliderData.images is not defined or is null!');
         return;
     }
-     const sliderConfig = window.template6SliderConfig || {
-        autoplay: false, 
-        autoplay_delay: 1000, 
-        effect: 'fade', 
-        crossFade: true, 
-        lazyLoad: false, 
+    const sliderConfig = window.template6SliderConfig || {
+        autoplay: false,
+        autoplay_delay: 1000,
+        effect: 'fade',
+        crossFade: true,
+        lazyLoad: false,
     };
 
     const swiper = new Swiper('.swiper-container', {
@@ -30,16 +30,16 @@ document.addEventListener('DOMContentLoaded', function () {
             },
         },
         autoplay: sliderConfig.autoplay ? {
-            delay: sliderConfig.autoplay_delay || 1000, 
+            delay: sliderConfig.autoplay_delay || 1000,
             disableOnInteraction: false,
-        } : false, 
+        } : false,
         effect: sliderConfig.effect,
         fadeEffect: {
             crossFade: sliderConfig.crossFade,
         },
         lazy: {
-            loadPrevNext: true, 
-            loadOnTransitionStart: true, 
+            loadPrevNext: true,
+            loadOnTransitionStart: true,
         },
     });
 
@@ -52,9 +52,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         var sliderBackgroundElement = document.getElementById('slider-background');
         sliderBackgroundElement.style.backgroundImage = 'url(' + newBackgroundImageUrl + ')';
-        sliderBackgroundElement.style.backgroundColor = newBackgroundColor; // Apply the background color
+        sliderBackgroundElement.style.backgroundColor = newBackgroundColor; 
 
-        //Update current slide number
         document.getElementById("current-slide").textContent = (activeIndex + 1).toString().padStart(2, '0');
     });
 
@@ -63,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var sliderBackgroundElement = document.getElementById('slider-background');
     sliderBackgroundElement.style.backgroundImage = 'url(' + initialBackgroundImageUrl + ')';
-    sliderBackgroundElement.style.backgroundColor = initialBackgroundColor; 
+    sliderBackgroundElement.style.backgroundColor = initialBackgroundColor;
 
     // new i add for slide no 
     document.getElementById("current-slide").textContent = (swiper.realIndex + 1).toString().padStart(2, '0');
@@ -72,14 +71,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //for popup vedio
 document.addEventListener("DOMContentLoaded", function () {
-    // Get all play buttons
     var videoButtons = document.querySelectorAll(".myVideoBtns");
 
     videoButtons.forEach(function (button) {
         button.addEventListener("click", function (event) {
-            event.preventDefault(); 
+            event.preventDefault();
 
-            var videoUrl = button.getAttribute("data-url"); // Get video URL
+            var videoUrl = button.getAttribute("data-url"); 
             var modal = document.getElementById("myVideoNewModals");
             var iframe = document.getElementById("videoEmbed");
 
@@ -97,11 +95,11 @@ document.addEventListener("DOMContentLoaded", function () {
         var iframe = document.getElementById("videoEmbed");
 
         modal.style.display = "none";
-        iframe.src = ""; // Stop video 
+        iframe.src = ""; 
     });
 });
 
-  //end
+//end
 
 
 

@@ -27,7 +27,7 @@ jQuery(document).ready(function ($) {
         });
     }
 
-    $('#submit-slider, .btn.btn-primary[type="submit"]').click(function() {
+    $('#submit-slider, .btn.btn-primary[type="submit"]').click(function () {
         $('#slider-form').submit(); // Submit the form
     });
 
@@ -70,11 +70,11 @@ jQuery(document).ready(function ($) {
     initializeImageUpload('.upload_icon_button', 'input[type="hidden"]', 'img');
 
     // Add slide functionality with upload button initialization
-   // $('#add_slide_button').click(function () {
+    // $('#add_slide_button').click(function () {
     $('#slider-slides').on('click', '.add_slide_button', function () {
         const slideCount = $('.slide-container').length;
 
-         if (!sliderData.isPremiumUser && slideCount >= sliderData.maxSlides) {
+        if (!sliderData.isPremiumUser && slideCount >= sliderData.maxSlides) {
             const proButton = `
                 <div class="go-pro-container text-center mt-3">
                     <button class="btn btn-primary go-pro-button">
@@ -84,11 +84,11 @@ jQuery(document).ready(function ($) {
                     </button>
                 </div>
             `;
-    
+
             if (!$('.slide-container').eq(slideCount - 1).find('.go-pro-container').length) {
                 $('.slide-container').eq(slideCount - 1).append(proButton);
             }
-            return; 
+            return;
         }
         //ended
 
@@ -128,7 +128,7 @@ jQuery(document).ready(function ($) {
             </div>
         `;
         $('#slider-slides').append(newSlide);
-        // initializeImageUpload('.upload_image_button', 'input[type="hidden"]', 'img');
+
     });
 
     // Remove slide functionality
@@ -140,39 +140,38 @@ jQuery(document).ready(function ($) {
 
 
 // for live preview 
-
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
     function updateLivePreview() {
         console.log('Live preview update triggered');
 
-         var slideImageID = $('#slide_image_0').val(); 
-         var previewSlideImage = $('.item-image img'); 
-         
-         if (slideImageID) {
-             var attachment = wp.media.attachment(slideImageID);
-             attachment.fetch().then(function() {
-                 if (attachment && attachment.get('url')) {
-                     var imageUrl = attachment.get('url'); 
+        var slideImageID = $('#slide_image_0').val();
+        var previewSlideImage = $('.item-image img');
 
-                     if (previewSlideImage) {
-                         previewSlideImage.attr('src', imageUrl);
-                     }
-                 } else {
-                     console.error("Attachment URL not found for ID:", slideImageID);
-                 }
-             }).catch(function(err) {
-                 console.error("Error fetching attachment:", err);
-             });
-         } else {
-             if (previewSlideImage) {
-                 previewSlideImage.attr('src', 'https://via.placeholder.com/1200x600?text=Default+Image');
-             }
-         }
-         
-         var ovreview = $('#ov_template_review_text').val();
+        if (slideImageID) {
+            var attachment = wp.media.attachment(slideImageID);
+            attachment.fetch().then(function () {
+                if (attachment && attachment.get('url')) {
+                    var imageUrl = attachment.get('url');
+
+                    if (previewSlideImage) {
+                        previewSlideImage.attr('src', imageUrl);
+                    }
+                } else {
+                    console.error("Attachment URL not found for ID:", slideImageID);
+                }
+            }).catch(function (err) {
+                console.error("Error fetching attachment:", err);
+            });
+        } else {
+            if (previewSlideImage) {
+                previewSlideImage.attr('src', 'https://via.placeholder.com/1200x600?text=Default+Image');
+            }
+        }
+
+        var ovreview = $('#ov_template_review_text').val();
         $('.social-media-wrap').eq(0).find('.follow-title').text(ovreview || 'followtext');
 
-         
+
         var title = $('#slide_title_0').val();
         $('.oe-banner-img h1').text(title || 'Slide Title');
 
@@ -190,60 +189,123 @@ jQuery(document).ready(function($) {
 
         var miniTitle = $('#slide_mini_title_0').val();
         $('.information-card').eq(0).find('.heading').text(miniTitle || 'Mini Title');
-        
+
         var miniDescription = $('#slide_mini_description_0').val();
         $('.information-card').eq(0).find('.description').text(miniDescription || 'Mini description goes here.');
 
         var miniTitle2 = $('#slide_mini_title2_0').val();
         $('.information-card').eq(1).find('.heading').text(miniTitle2 || 'Mini Title 2');
-        
+
         var miniDescription2 = $('#slide_mini_description2_0').val();
         $('.information-card').eq(1).find('.description').text(miniDescription2 || 'Mini description 2 goes here.');
 
         var miniImage1 = $('#slide_mini_image_1_0').val();
         if (miniImage1) {
-          $('.information-card').eq(0).find('.icon img').attr('src', wp.media.attachment(miniImage1).get('url'));
+            $('.information-card').eq(0).find('.icon img').attr('src', wp.media.attachment(miniImage1).get('url'));
         }
 
         var miniImage2 = $('#slide_mini_image_2_0').val();
         if (miniImage2) {
-          $('.information-card').eq(1).find('.icon img').attr('src', wp.media.attachment(miniImage2).get('url'));
+            $('.information-card').eq(1).find('.icon img').attr('src', wp.media.attachment(miniImage2).get('url'));
         }
 
 
         //for font size settings live preview
 
-        var fontSize1 = $('#head_font_size').val(); 
-        $('.oe-banner-img .heading-tag').css('font-size', fontSize1 + 'px'); 
-        
-        var fontSize2 = $('#heading_font_size').val(); 
-        $('.oe-banner-img h1').css('font-size', fontSize2 + 'px'); 
+        var fontSize1 = $('#head_font_size').val();
+        $('.oe-banner-img .heading-tag').css('font-size', fontSize1 + 'px');
 
-        var fontSize3 = $('#banner_font_size').val(); 
-        $('.oe-banner-img .banner-para').css('font-size', fontSize3 + 'px'); 
+        var fontSize2 = $('#heading_font_size').val();
+        $('.oe-banner-img h1').css('font-size', fontSize2 + 'px');
 
-        var fontSize4 = $('#button_font_size').val(); 
-        $('.oe-banner-img .theme-btn').css('font-size', fontSize4 + 'px'); 
+        var fontSize3 = $('#banner_font_size').val();
+        $('.oe-banner-img .banner-para').css('font-size', fontSize3 + 'px');
 
-        var fontSize5 = $('#ov_mini_title_font_size').val(); 
-        $('.info-inner .heading').css('font-size', fontSize5 + 'px'); 
+        var fontSize4 = $('#button_font_size').val();
+        $('.oe-banner-img .theme-btn').css('font-size', fontSize4 + 'px');
 
-        var fontSize6 = $('#mini_description_font_size').val(); 
-        $('.info-inner .description').css('font-size', fontSize6 + 'px'); 
+        var fontSize5 = $('#ov_mini_title_font_size').val();
+        $('.info-inner .heading').css('font-size', fontSize5 + 'px');
 
-        var fontSize55 = $('#slide_email_font_size').val(); 
-        $('.info-wrap .info').css('font-size', fontSize55 + 'px'); 
+        var fontSize6 = $('#mini_description_font_size').val();
+        $('.info-inner .description').css('font-size', fontSize6 + 'px');
 
-        var fontSize66 = $('#slide_no_font_size').val(); 
-        $('.info-wrap .info').css('font-size', fontSize66 + 'px'); 
+        var fontSize55 = $('#slide_email_font_size').val();
+        $('.info-wrap .info').css('font-size', fontSize55 + 'px');
+
+        var fontSize66 = $('#slide_no_font_size').val();
+        $('.info-wrap .info').css('font-size', fontSize66 + 'px');
 
 
-         var fontSize8 = $('#ov_social_text_font_size').val(); 
-         $('.social-media-wrap .follow-title').css('font-size', fontSize8 + 'px');
+        var fontSize8 = $('#ov_social_text_font_size').val();
+        $('.social-media-wrap .follow-title').css('font-size', fontSize8 + 'px');
+
+
+        //new css 
+        var socialIconColor = $('#social_icon_active_color').val();
+        $('.icons i').css('color', socialIconColor); // Update the icon color
+        var socialIconHoverColor = $('#social_icon_hover_color').val();
+
+        // Remove any hover
+        $('#social-icon-hover-style').remove();
+        // remove hover
+        if (socialIconHoverColor) {
+            var hoverStyle = `
+                <style id="social-icon-hover-style">
+
+                .icons i{
+                    background: #000;
+                }
+                   
+                .icons i:hover {
+
+                    color: ${socialIconHoverColor} !important;
+                    background: #000;
+                }
+ 
+                </style>
+            `;
+            $('head').append(hoverStyle);
+        }
+
+        // Social Icon Size
+        var socialIconSize = $('#social_icon_size').val();
+        $('.social-media-wrap .icons a i').css('font-size', socialIconSize + 'px');
+
+
+        //slide button
+        var buttonBgColor = $('#button_bg_color').val();
+        $('.oe-circular-slider-custom-nav .theme-btn').css('background-color', buttonBgColor);
+
+        var buttonTextColor = $('#button_text_color').val();
+        $('.oe-circular-slider-custom-nav .theme-btn').css('color', buttonTextColor);
+
+
+        // New for Button Hover Background Color
+        var buttonHoverBgColor = $('#button_hover_bg_color').val();
+        var buttonHoverTextColor = $('#button_hover_text_color').val();
+
+        // Remove older
+        $('#button-hover-bg-style').remove();
+
+        // Add new hover
+        if (buttonHoverBgColor) {
+            var hoverStyle = `
+               <style id="button-hover-bg-style">
+                    .theme-btn:hover {
+                     background-color: ${buttonHoverBgColor} !important;
+                     color: ${buttonHoverTextColor} !important;
+                 }
+
+               </style>
+           `;
+            $('head').append(hoverStyle);
+        }
+        //end
 
     }
 
-    $('#ov_social_text_font_size , #slide_no_font_size , #slide_email_font_size , #mini_description_font_size, #ov_mini_title_font_size, #head_font_size, #heading_font_size, #banner_font_size ,#button_font_size ,  #slide_image_0, #slide_title_0, #slide_description_0, #slide_head_tag_0, #slide_button_text_0, #slide_button_url_0, #slide_mini_title_0, #slide_mini_description_0, #slide_mini_title2_0, #slide_mini_description2_0, #slide_email, #slide_no, #slide_mini_image_1_0, #slide_mini_image_2_0, #slide_corner_images_0 , #ov_template_review_text').on('input change paste keyup mouseenter oncontextmenu', function() {
+    $('#ov_social_text_font_size , #slide_no_font_size , #slide_email_font_size , #mini_description_font_size, #ov_mini_title_font_size, #head_font_size, #heading_font_size, #banner_font_size ,#button_font_size ,  #slide_image_0, #slide_title_0, #slide_description_0, #slide_head_tag_0, #slide_button_text_0, #slide_button_url_0, #slide_mini_title_0, #slide_mini_description_0, #slide_mini_title2_0, #slide_mini_description2_0, #slide_email, #slide_no, #slide_mini_image_1_0, #slide_mini_image_2_0, #slide_corner_images_0 , #ov_template_review_text , .social_icon_active_color , .static-container , #advanced-settings , .plugin_output_content').on('input change paste keyup mouseenter oncontextmenu', function () {
         updateLivePreview();
     });
 
@@ -268,7 +330,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //color picker code
 
-jQuery(document).ready(function($){
+jQuery(document).ready(function ($) {
     console.log('color picker load');
     //for check button is disable or not
     if (!$('#button_bg_color').prop('disabled')) {

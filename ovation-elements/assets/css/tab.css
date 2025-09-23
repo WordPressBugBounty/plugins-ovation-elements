@@ -921,3 +921,15 @@ select#category {
         font: normal normal 900 36px / 50px Segoe UI, Outfit !important;
     }
 }
+
+
+/* new add */
+a.btn.btn-primary {
+	font: 18px / 23px Outfit;
+	font-weight: 500;
+	background: #5E2CED;
+	padding: 9px 25px;
+	border: none;
+	color: white;
+}
+/* end */

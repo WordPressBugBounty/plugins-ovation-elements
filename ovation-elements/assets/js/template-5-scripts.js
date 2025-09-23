@@ -39,11 +39,10 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         on: {
             slideChangeTransitionEnd: function () {
-                this.update(); // Recalculate layout on slide change
+                this.update();
             },
         },
         breakpoints: {
-            // Adjust settings for responsiveness
             320: {
                 slidesPerView: 1, // Adjust for tablets
                 spaceBetween: 30,
@@ -63,7 +62,6 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         on: {
             slideChange: function () {
-                // Update current slide number
                 const currentSlideNumber = document.querySelector('.current-slide');
                 if (currentSlideNumber) {
                     currentSlideNumber.textContent = String(this.realIndex + 1).padStart(2, '0');
@@ -91,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.nav-item').forEach((navItem) => {
         navItem.addEventListener('click', function () {
             const index = parseInt(this.getAttribute('data-index'));
-            swiper.slideToLoop(index); // Moves to the corresponding slide
+            swiper.slideToLoop(index);
         });
     });
 
