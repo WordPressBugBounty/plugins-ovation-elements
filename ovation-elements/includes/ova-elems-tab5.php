@@ -91,12 +91,15 @@
                         <div class="card">
                             <div class="card-img-wrap">
                                 <img src="${imageSrc}" class="card-img-top" alt="${item.title}">
-                                <div class="ov-button-wrapper"><a href="${item.onlineStoreUrl}" class="btn btn-primary" target="_blank">Buy Now</a>
-                                <a href="${demoLink}" class="btn btn-primary demo" target="_blank" style="margin-left: 10px;">Demo</a></div>
+                                <div class="ov-button-wrapper">
+                                <div class= "ov-box">
+                                    <a href="${item.onlineStoreUrl}" class="btn btn-primary" target="_blank">Buy Now</a>
+                                    <a href="${demoLink}" class="btn btn-primary demo" target="_blank" style="margin-left: 10px;">Demo</a>
+                                </div>                            
+                                <div class="card-text"><span>Price: </span> ${price}</div></div>
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">${item.title}</h5>
-                                <p class="card-text"><span>Price: </span> ${price}</p>
                             </div>
                         </div>
                     `;

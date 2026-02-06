@@ -92,9 +92,9 @@ function ova_elems_slider_add_menu_pages()
         'OT Elements',
         'manage_options',
         'ovation_elements',
-        'ova_elems_slider_dashboard_page', // Dashboard callback function
+        'ova_elems_slider_dashboard_page',
         'dashicons-admin-multisite',
-        6 // Position in the menu
+        6
     );
     add_submenu_page(
         'ovation_elements',
@@ -115,8 +115,6 @@ function ova_elems_slider_add_menu_pages()
         ''
     );
 
-
-    // Check if the premium plugin is activated
     if (is_plugin_active('ovation-elements-pro/ovation-elements-pro.php')) {
         add_submenu_page(
             'ovation_elements',
@@ -136,7 +134,6 @@ function ova_elems_slider_add_menu_pages()
             ''
         );
     }
-
 
     add_submenu_page(
         'edit.php?post_type=ova_elems',
@@ -345,20 +342,16 @@ function ova_elems_slider_dashboard_page()
                     aria-controls="ova_elems_tab2" aria-selected="false">Sliders</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="ova_elems_tab3-tab" data-toggle="tab" href="#ova_elems_tab3" role="tab"
-                    aria-controls="ova_elems_tab3" aria-selected="false">Post Type</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="ova_elems_tab4-tab" data-toggle="tab" href="#ova_elems_tab4" role="tab"
-                    aria-controls="ova_elems_tab4" aria-selected="false">Page Builder</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link active" id="ova_elems_tab5-tab" data-toggle="tab" href="#ova_elems_tab5" role="tab"
                     aria-controls="ova_elems_tab5" aria-selected="false"> Block Themes</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="ova_elems_tab6-tab" data-toggle="tab" href="#ova_elems_tab6" role="tab"
                     aria-controls="ova_elems_tab6" aria-selected="false">Support</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="ova_elems_tab7-tab" data-toggle="tab" href="#ova_elems_tab7" role="tab"
+                    aria-controls="ova_elems_tab7" aria-selected="false">Services</a>
             </li>
         </ul>
 
@@ -371,15 +364,6 @@ function ova_elems_slider_dashboard_page()
             <div class="tab-pane fade" id="ova_elems_tab2" role="tabpanel" aria-labelledby="ova_elems_tab2-tab">
                 <?php include(plugin_dir_path(__FILE__) . 'ova-elems-tab2.php'); ?>
             </div>
-
-            <div class="tab-pane fade" id="ova_elems_tab3" role="tabpanel" aria-labelledby="ova_elems_tab3-tab">
-                <?php include(plugin_dir_path(__FILE__) . 'ova-elems-tab3.php'); ?>
-            </div>
-
-            <div class="tab-pane fade" id="ova_elems_tab4" role="tabpanel" aria-labelledby="ova_elems_tab4-tab">
-                <?php include(plugin_dir_path(__FILE__) . 'ova-elems-tab4.php'); ?>
-            </div>
-
             <div class="tab-pane fade show active" id="ova_elems_tab5" role="tabpanel" aria-labelledby="ova_elems_tab5-tab">
                 <?php include(plugin_dir_path(__FILE__) . 'ova-elems-tab5.php'); ?>
             </div>
@@ -387,11 +371,13 @@ function ova_elems_slider_dashboard_page()
             <div class="tab-pane fade" id="ova_elems_tab6" role="tabpanel" aria-labelledby="ova_elems_tab6-tab">
                 <?php include(plugin_dir_path(__FILE__) . 'ova-elems-tab6.php'); ?>
             </div>
+            <div class="tab-pane fade" id="ova_elems_tab7" role="tabpanel" aria-labelledby="ova_elems_tab7-tab">
+                <?php include(plugin_dir_path(__FILE__) . 'ova-elems-tab7.php'); ?>
+            </div>
         </div>
     </div>
     <?php
 }
-
 
 //end
 
@@ -435,14 +421,18 @@ add_action('admin_post_select_template', 'ova_elems_handle_template_selection');
 
 
 //changes here by removing old for trash 
-
 function ova_elems_custom_trash_action()
 {
-    if (!current_user_can('delete_posts')) {
-        wp_die(esc_html__('You do not have sufficient permissions to perform this action.', 'ovation-elements'));
-    }
+    if (
+        is_admin() &&
+        isset($_GET['action'], $_GET['post']) &&
+        $_GET['action'] === 'trash' &&
+        get_post_type($_GET['post']) === 'ova_elems'
+    ) {
+        if (!current_user_can('delete_posts')) {
+            wp_die(esc_html__('You do not have sufficient permissions to perform this action.', 'ovation-elements'));
+        }
 
-    if (isset($_GET['action']) && $_GET['action'] == 'trash' && isset($_GET['post']) && get_post_type($_GET['post']) == 'ova_elems') {
         $post_id = absint($_GET['post']);
         if (current_user_can('delete_post', $post_id)) {
             wp_trash_post($post_id);
@@ -721,41 +711,36 @@ function ova_elems_slider_select_template_page()
                             <!-- i change -->
                             <div class="heading-wrapper mt-2">
                                 <h5 class="card-title"><?php echo esc_html($template['title']); ?></h5>
-                                <?php
-                                $coming_soon_ids = [10, 11, 12, 13, 14, 15];
-                                if (in_array($template['id'], $coming_soon_ids)) {
-                                    // Coming soon templates
-                                    echo '<div class="ot-elems-coming-soon">';
-                                    if (!$is_premium_user) {
-                                        echo '<a href="https://www.ovationthemes.com/products/ovation-elements-pro" target="_blank" class="btn btn-link btn btn-primary">Upgrade to Pro</a>';
-                                    } else {
-                                        echo '<button class="btn btn-secondary" disabled>Select Template</button>';
-                                    }
-                                    echo '<img src="' . esc_url(OVA_ELEMS_URL . 'assets/images/coming-soon.png') . '" alt="" class="coming-soon-image" />';
-                                    echo '</div>';
-                                } elseif (!$is_premium_user && $is_pro_template) {
 
+                                <div class="template-actions">
+                                    <?php
+                                    $coming_soon_ids = [10, 11, 12, 13, 14, 15];
+
+                                    if (in_array($template['id'], $coming_soon_ids)) {
+                                        // echo '<div class="ot-elems-coming-soon">';
+                                        if (!$is_premium_user) {
+                                            echo '<a href="https://www.ovationthemes.com/products/ovation-elements-pro" target="_blank" class="btn btn-primary">Upgrade to Pro</a>';
+                                        } else {
+                                            echo '<button class="btn btn-secondary" disabled>Select Template</button>';
+                                        }
+                                        echo '<img src="' . esc_url(OVA_ELEMS_URL . 'assets/images/coming-soon.png') . '" alt="" class="coming-soon-image" />';
+                                        // echo '</div>';
+                                    } elseif (!$is_premium_user && $is_pro_template) {
+                                        echo '<a href="https://www.ovationthemes.com/products/ovation-elements-pro" target="_blank" class="btn btn-primary">Upgrade to Pro</a>';
+                                    } else {
+                                        echo '<a href="' . esc_url(admin_url('admin-post.php?action=create_ova_elems&template_id=' . $template['id'])) . '" class="btn btn-primary">Select Template</a>';
+                                    }
+
+                                    // Badge section
+                                    if (!in_array($template['id'], $coming_soon_ids)) {
+                                        if ($is_pro_template) {
+                                            echo '<span class="oe-crown"><i class="fa-solid fa-crown"></i> PRO</span>';
+                                        } else {
+                                            echo '<span class="badge oe-free">FREE</span>';
+                                        }
+                                    }
                                     ?>
-                                    <p class="mt-2">
-                                        <a href="https://www.ovationthemes.com/products/ovation-elements-pro" target="_blank"
-                                            class="btn btn-link btn btn-primary">
-                                            Upgrade to Pro
-                                        </a>
-                                    </p>
-                                <?php } else { ?>
-                                    <a href="<?php echo esc_url(admin_url('admin-post.php?action=create_ova_elems&template_id=' . $template['id'])); ?>"
-                                        class="btn btn-primary">Select Template</a>
-                                <?php } ?>
-                                <?php
-                                $coming_soon_ids = [10, 11, 12, 13, 14, 15];
-                                if (!in_array($template['id'], $coming_soon_ids)) {
-                                    if ($is_pro_template): ?>
-                                        <span class="oe-crown"><i class="fa-solid fa-crown"></i>PRO</span>
-                                    <?php else: ?>
-                                        <span class="badge oe-free">FREE</span>
-                                    <?php endif;
-                                }
-                                ?>
+                                </div>
                             </div>
                             <!-- end -->
                         </div>

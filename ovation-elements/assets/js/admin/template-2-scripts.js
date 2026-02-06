@@ -369,6 +369,55 @@ jQuery(document).ready(function ($) {
 
 //end
 
+document.addEventListener('DOMContentLoaded', function () {
+    const headerLinks = document.querySelectorAll('.nav-link-slider');
+
+    headerLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            // Get the clicked category name (trim extra spaces)
+            const categoryName = this.textContent.trim();
+            console.log("Clicked category:", categoryName);
+
+            // Example API endpoint – adjust based on your real API
+            const apiUrl = `https://example.com/api/categories/${encodeURIComponent(categoryName)}`;
+
+            // Optional: Show loading state in dropdown
+            const dropdown = document.getElementById('api-response-dropdown');
+            dropdown.innerHTML = '<option>Loading...</option>';
+
+            // Fetch data from your API
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    populateDropdown(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    dropdown.innerHTML = '<option>Error loading data</option>';
+                });
+        });
+    });
+});
+
+function populateDropdown(data) {
+    const dropdown = document.getElementById('api-response-dropdown');
+    dropdown.innerHTML = '<option value="">Themes Categories</option>';
+
+    if (data && data.data && Array.isArray(data.data)) {
+        data.data.forEach(collection => {
+            const option = document.createElement('option');
+            option.value = collection.handle;
+            option.textContent = collection.title;
+            dropdown.appendChild(option);
+        });
+    } else {
+        console.error('Data format is incorrect:', data);
+    }
+}
+
+
 
 
 

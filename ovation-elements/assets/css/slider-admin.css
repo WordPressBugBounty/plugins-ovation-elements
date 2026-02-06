@@ -442,11 +442,11 @@ button.btn.btn-primary {
 
 /* oe free */
 .badge.oe-free {
-	color: white;
-	/* background-color: violet; */
-	background: transparent linear-gradient(90deg, #0023C4 0%, #FD5CF4 100%) 0% 0% no-repeat padding-box;
-	color: #fff;
-  }
+    color: #1D2327;
+    font-size: 19px;
+    font-weight: bold;
+    font-family: 'Segoe UI';
+}
 
   .ot-elems-coming-soon {
     display: flex;
@@ -474,6 +474,24 @@ a.btn.btn-primary {
 	display: inline-block;
 } */
 
-.slider-card .mt-2{
-	display: inline-block !important;
-	}
+
+/* select template action */
+
+.template-actions {
+	padding: 0px 15px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+	align-items: center;
+}
+
+
+/* .slider-card {
+	border-radius: 6px;
+	background-color: #E6E6E6;
+	border: 1px solid #707070;
+	height: 100%;
+} */
+
+

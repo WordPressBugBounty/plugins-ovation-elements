@@ -8,9 +8,6 @@
 
 <body>
     <div class=" ov-feature-outer svg-helper">
-        <?php
-        $plugin_url = plugins_url('../assets/images/', __FILE__);
-        ?>
         <div class="grid-item">
             <svg id="Group_27" data-name="Group 27" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink" width="98.798" height="87.168" viewBox="0 0 98.798 87.168">

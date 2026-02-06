@@ -3,7 +3,7 @@
  * Plugin Name:       Ovation Elements
  * Plugin URI:        https://www.ovationthemes.com/products/ovation-elements-pro
  * Description:       Transform your site with captivating sliders. Perfect for beginners and advanced users. Create and customize with our ultimate slider plugin.
- * Version:           1.1.8
+ * Version:           1.2.2
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            pewilliams
@@ -21,16 +21,18 @@ define('OVA_ELEMS_FILE', __FILE__);
 define('OVA_ELEMS_BASE', plugin_basename(OVA_ELEMS_FILE));
 define('OVA_ELEMS_DIR', plugin_dir_path(OVA_ELEMS_FILE));
 define('OVA_ELEMS_URL', plugins_url('/', OVA_ELEMS_FILE));
-define('OVA_ELEMS_LICENSE_ENDPOINT', 'https://license.ovationthemes.com/api/public/');
-define('OVA_ELEMS_VER', '1.1.8');
+define('OVATION_ELEMENTS_URL', plugin_dir_url(__FILE__));
 
-// Include necessary files
+define('OVA_ELEMS_LICENSE_ENDPOINT', 'https://license.ovationthemes.com/api/public/');
+define('OVA_ELEMS_SERVICES_URL', 'https://www.ovationthemes.com/products');
+define('OVA_ELEMS_VER', '1.2.2');
+
 include(plugin_dir_path(__FILE__) . 'includes/admin-settings.php');
 include(plugin_dir_path(__FILE__) . 'includes/slider-shortcode.php');
 include(plugin_dir_path(__FILE__) . 'ajax/ajax.php');
 
-//enqueue script start
-function ova_elems_admin_scripts($hook) {
+function ova_elems_admin_scripts($hook)
+{
     $is_premium_user = get_option('ovation_slider_is_premium', false);
 
     // Define all admin pages 
@@ -115,7 +117,8 @@ add_action('admin_enqueue_scripts', 'ova_elems_admin_scripts');
 
 
 //enqueue scripts end 
-function ova_elems_admin_enqueue_scripts($hook_suffix) {
+function ova_elems_admin_enqueue_scripts($hook_suffix)
+{
     if ($hook_suffix !== 'toplevel_page_ova-elems') {
         return;
     }
@@ -126,7 +129,8 @@ add_action('admin_enqueue_scripts', 'ova_elems_admin_enqueue_scripts');
 
 
 //for enque
-function ova_elems_enqueue_scripts($hook) {
+function ova_elems_enqueue_scripts($hook)
+{
 
     // Enqueue Font Awesome 
     wp_enqueue_style('ova-elems-font-awesome', plugin_dir_url(__FILE__) . 'assets/css/font.all.min.css', array(), OVA_ELEMS_VER);
@@ -145,31 +149,30 @@ function ova_elems_enqueue_scripts($hook) {
     if (isset($_GET['page']) && $_GET['page'] == 'ovation_elements') {
 
         wp_enqueue_style('ova-elems-bootstrap-css', plugin_dir_url(__FILE__) . 'assets/css/bootstrap.min.css', [], OVA_ELEMS_VER);
-        // Enqueue Bootstrap JS and its dependency Popper.js
         wp_enqueue_script('ova-elems-popper-js', plugin_dir_url(__FILE__) . 'assets/js/popper.min.js', ['jquery'], OVA_ELEMS_VER, true);
         wp_enqueue_script('ova-elems-dash-bootstrap-js', plugin_dir_url(__FILE__) . 'assets/js/bootstrap.min.js', array('jquery', 'ova-elems-popper-js'), OVA_ELEMS_VER, true);
+        wp_enqueue_script('ova-elems-admin-operations', plugin_dir_url(__FILE__) . 'assets/js/admin/ova-elems-admin.js', ['jquery'], OVA_ELEMS_VER, true);
     }
 }
 add_action('admin_enqueue_scripts', 'ova_elems_enqueue_scripts');
 
-// Register activation hook
 register_activation_hook(__FILE__, 'ova_elems_activate');
 
-function ova_elems_activate() {
-    // Activation code here
+function ova_elems_activate()
+{
     ova_elems_post_type();
     flush_rewrite_rules();
 }
 
-// Register deactivation hook
 register_deactivation_hook(__FILE__, 'ova_elems_deactivate');
 
-function ova_elems_deactivate() {
-    // Deactivation code here
+function ova_elems_deactivate()
+{
     flush_rewrite_rules();
 }
 
-function ova_elems_enqueue_block_editor_assets(){
+function ova_elems_enqueue_block_editor_assets()
+{
 
     wp_enqueue_style('ova-elems-modal-css', OVA_ELEMS_URL . 'assets/css/modal.css', array(), OVA_ELEMS_VER);
 
@@ -249,7 +252,8 @@ function ova_elems_register_block()
 }
 add_action('init', 'ova_elems_register_block');
 
-function ova_elems_render_slider_block($attributes){
+function ova_elems_render_slider_block($attributes)
+{
 
     $id = isset($attributes['selectedPost']) ? $attributes['selectedPost'] : null;
 
@@ -275,7 +279,8 @@ add_filter('block_categories_all', function ($categories, $post) {
 
 add_action('admin_notices', 'ova_elems_admin_notice_with_html');
 
-function ova_elems_admin_notice_with_html(){
+function ova_elems_admin_notice_with_html()
+{
     ?>
     <div class="notice is-dismissible ova-elems">
         <div class="ova-elems-notice-banner-wrap">
@@ -285,7 +290,8 @@ function ova_elems_admin_notice_with_html(){
             <div class="ova-elems-notice-heading">
                 <h1 class="ova-elems-main-head"><?php echo esc_html('WORDPRESS THEME BUNDLE'); ?></h1>
                 <h4 class="ova-elems-sub-head">
-                    <?php echo esc_html('Access 125+ Gutenberg Block WordPress themes at Just $89'); ?></h4>
+                    <?php echo esc_html('Access 125+ Gutenberg Block WordPress themes at Just $89'); ?>
+                </h4>
             </div>
             <div class="ova-elems-notice-btn">
                 <a class="ova-elems-buy-btn" target="_blank"

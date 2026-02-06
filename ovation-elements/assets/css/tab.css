@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -156,8 +156,8 @@ ul#ova_elems_ovationSliderTabs {
 
 .nav-tabs .nav-link.active::after {
     content: "";
-    width: 69%;
-    height: 5px;
+    width: 58%;
+    height: 3px;
     position: absolute;
     left: 0;
     right: 0;
@@ -272,6 +272,7 @@ div#gird-bottom {
 #ova_elems_ovationSliderTabsContent h1.coming-soon {
     font: normal normal 900 86px / 89px Segoe UI, Outfit !important;
     text-align: center;
+    margin-bottom: 35px;
 }
 
 p.coming-soon-text {
@@ -307,6 +308,7 @@ p.tab-text-needhelp {
     font: normal normal normal 20px / 27px Segoe UI, outfit;
     letter-spacing: 0px;
     color: #707070;
+    margin: 30px 0px;
 }
 
 .suppoprt-tab-heading {
@@ -407,6 +409,7 @@ input#search-box {
     justify-content: space-between;
     margin: 40px 0px 0px;
 }
+
 select#api-response-dropdown {
     width: 400px;
     height: 50px;
@@ -419,7 +422,7 @@ select#api-response-dropdown {
 }
 
 .card img {
-    max-height: 337px;
+    max-height: 260px;
     height: 100%;
     overflow: hidden;
     object-fit: cover;
@@ -448,15 +451,17 @@ div#product-cards h5.card-title {
     margin-bottom: 0px;
 }
 
-#oe-block-tab .ov-button-wrapper{
+#oe-block-tab .ov-button-wrapper {
     position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    margin: auto;
+    top: auto;
+    bottom: 8px;
+    right: 10px;
+    left: 10px;
     width: max-content;
     height: max-content;
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 
 div#product-cards h5.card-title {
@@ -464,7 +469,9 @@ div#product-cards h5.card-title {
     font: normal normal bold 22px / 30px Segoe UI;
     letter-spacing: 0px;
     color: #3E3E3E;
-    width: 80%;
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
 }
 
 .card-img-wrap {
@@ -483,6 +490,11 @@ p.card-text span {
     color: #FF0707;
 }
 
+.card-text span {
+    font-weight: normal !important;
+    font-size: 18px;
+}
+
 p.card-text {
     font: normal normal 600 22px / 30px Outfit;
     letter-spacing: 0px;
@@ -491,17 +503,18 @@ p.card-text {
 
 .card-img-wrap::after {
     content: "";
-    top: 0;
+    top: auto;
     bottom: 0;
     right: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 60px;
     position: absolute;
     background: #000;
-    opacity: 0;
+    opacity: 1;
     z-index: 0;
     background: transparent linear-gradient(90deg, #F159F2 0%, #0324C5 100%) 0% 0% no-repeat padding-box;
+    border-radius: 8px;
     transition: 0.2s ease-in-out;
 }
 
@@ -511,20 +524,24 @@ p.card-text {
     color: #5E2CED;
     border: none;
     font-weight: 600;
-    opacity: 0;
+    opacity: 1;
     text-transform: uppercase;
 }
+
+.ov-box .btn.btn-primary:hover {
+    background: #1328c8 !important;
+    color: #fff !important;
+}
+
 #oe-block-tab a.btn.btn-primary.demo {
-    padding: 10px 40px;
-}
-
-
-#oe-block-tab .card:hover .card-img-wrap::after {
-    opacity: 0.8;
-}
-
-#oe-block-tab .card:hover a.btn.btn-primary {
+    padding: 10px 20px;
     opacity: 1;
+}
+
+.card-text {
+    font-size: 21px;
+    color: #fff;
+    font-weight: 700;
 }
 
 button#load-more {
@@ -540,17 +557,21 @@ button#load-more {
     opacity: 1 !important;
     color: #1D2327;
 }
-#product-cards{
+
+#product-cards {
     margin-top: 50px;
 }
+
 .ov-button-wrapper {
     z-index: 99;
 }
+
 .ov-text-container h6 {
     font: normal normal normal 18px / 23px Segoe UI, Outfit;
     letter-spacing: 0px;
     color: #707070;
 }
+
 select#category {
     letter-spacing: 0px;
     color: #000000;
@@ -563,6 +584,7 @@ select#category {
     border-radius: 6px;
     font-weight: 600;
 }
+
 .type-dropdown::after {
     content: "\f161";
     color: #707070;
@@ -576,14 +598,17 @@ select#category {
     height: 30px;
     width: 30px;
 }
+
 .type-dropdown {
     position: relative;
     max-width: 230px;
     width: 100%;
 }
+
 .type-dropdown {
     position: relative;
 }
+
 @media(max-width:1400px) {
     .grid-container {
         gap: 0px 20px;
@@ -689,6 +714,7 @@ select#category {
         font: normal normal 900 66px / 79px Segoe UI, Outfit !important;
         text-align: center;
     }
+
     p.coming-soon-text {
         font: normal normal normal 17px / 20px Segoe UI, outfit;
     }
@@ -782,12 +808,13 @@ select#category {
     #ova_elems_ovationSliderTabs {
         background-image: none !important;
     }
+
     #ova_elems_ovationSliderTabsContent h1.coming-soon {
         font: normal normal 900 56px / 59px Segoe UI, Outfit !important;
         text-align: center;
     }
-    
-    
+
+
 }
 
 @media(max-width:991px) {
@@ -822,9 +849,11 @@ select#category {
         padding: 10px 20px;
         flex-direction: column;
     }
+
     #product-cards {
         margin-top: 20px;
     }
+
     div#gird-bottom .grid-item p {
         text-align: center;
     }
@@ -917,19 +946,398 @@ select#category {
         border-radius: 5px;
         max-width: 100%;
     }
+
     #ova_elems_ovationSliderTabsContent h1.coming-soon {
         font: normal normal 900 36px / 50px Segoe UI, Outfit !important;
     }
 }
 
 
-/* new add */
-a.btn.btn-primary {
-	font: 18px / 23px Outfit;
-	font-weight: 500;
-	background: #5E2CED;
-	padding: 9px 25px;
-	border: none;
-	color: white;
+
+/* --------- New Slider Section CSS --------- */
+
+
+.inner-cards {
+    width: 100%;
+    max-width: 335px;
 }
-/* end */
+
+.slider-card {
+    border-radius: 6px;
+    background-color: #E6E6E6;
+    border: 1px solid #707070;
+    height: 100%;
+}
+
+.template-actions {
+    padding: 0px 15px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+}
+
+h5.card-title {
+    color: #1B2227;
+    font-size: 19px;
+    font-weight: bold;
+    font-family: 'Segoe UI';
+}
+
+.slider-card .mt-2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 15px 0px;
+    gap: 10px;
+}
+
+a.btn.btn-primary {
+    background: transparent linear-gradient(270deg, #0023C4 0%, #F95BF4 100%);
+    padding: 9px 20px;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-family: 'Segoe UI';
+    font-weight: 600;
+}
+
+img.card-img-top {
+    border: 1px solid #707070;
+    border-radius: 6px;
+}
+
+.right-div {
+    padding-right: 0;
+}
+
+span.oe-crown {
+    font-size: 19px;
+    font-weight: bold;
+    font-family: "Segoe UI";
+    color: #1D2327;
+}
+
+/* ----------New Slider Header ---------- */
+.serch-header.row {
+    max-width: 1653px;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 0px;
+}
+
+.left-div {
+    background: transparent linear-gradient(270deg, #0023C4 0%, #F95BF4 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(270deg, #0023C4 0%, #F95BF4 100%);
+    border-radius: 6px;
+    padding: 0px;
+}
+
+.nav-tabs-slider-sec {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 5px;
+}
+
+li.nav-item-slider {
+    margin-bottom: 0px;
+    margin: 0px !important;
+}
+
+.nav-link-slider {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 19px;
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    padding: 7px 30px;
+}
+
+.active.nav-link-slider:hover {
+    color: #E056F0;
+}
+
+.active.nav-link-slider {
+    background: #FFFFFF;
+    padding: 10px;
+    border-radius: 6px;
+    color: #E056F0;
+    padding: 7px 30px;
+}
+
+.nav-link-slider:hover {
+    color: #fff;
+}
+
+.slider-search-container {
+    display: flex;
+    border: 1px solid #707070 !important;
+    border-radius: 6px;
+}
+
+.slider-search-container input {
+    border: none;
+    width: 78%;
+    color: #707070;
+    font-size: 16px;
+    font-family: 'Segoe UI';
+}
+
+.slider-search-container i {
+    background: transparent linear-gradient(270deg, #0023C4 0%, #F95BF4 100%) 0% 0% no-repeat padding-box;
+    width: 23%;
+    border-radius: 6px;
+    padding: 13px 5px;
+    text-align: center;
+    font-size: 22px;
+    color: #fff;
+}
+
+/* ----------New Slider Header END ---------- */
+
+/* --------- New Slider Section CSS Resposive --------- */
+
+
+@media screen and (max-width:1440px) and (min-width: 1199px) {
+    .inner-cards {
+        max-width: 305px;
+    }
+
+    a.btn.btn-primary {
+        font-size: 16px;
+    }
+
+    .nav-link-slider {
+        padding: 7px 15px;
+    }
+
+    .nav-link-slider {
+        padding: 7px 15px;
+        font-size: 16px;
+    }
+
+    .slider-search-container i {
+        padding: 13px 5px;
+        font-size: 18px;
+    }
+
+    .container-custom-one .row {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width:1199px) and (min-width: 991px) {
+    .container-custom-one .row {
+        justify-content: center;
+    }
+
+    .inner-cards {
+        max-width: 400px;
+    }
+
+    .active.nav-link-slider {
+        padding: 5px 5px;
+    }
+
+    .nav-link-slider {
+        padding: 5px 5px;
+        font-size: 15px;
+    }
+
+    .slider-search-container i {
+        padding: 10px 5px;
+    }
+
+    .slider-search-container input {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width:991px) and (min-width: 768px) {
+    .container-custom-one .row {
+        justify-content: center;
+    }
+
+    .nav-tabs-slider-sec {
+        padding: 10px 5px;
+        row-gap: 10px;
+    }
+
+    .nav-link-slider {
+        font-size: 16px;
+        padding: 7px 10px;
+    }
+}
+
+@media screen and (max-width:768px) and (min-width: 320px) {
+    .nav-tabs-slider-sec {
+        row-gap: 20px;
+    }
+
+    .container-custom-one .row {
+        justify-content: center;
+    }
+
+    .serch-header.row {
+        flex-direction: column;
+        row-gap: 20px;
+    }
+
+    .left-div {
+        width: 100% !important;
+    }
+
+    .right-div {
+        width: 100% !important;
+        padding: 0px;
+    }
+}
+
+
+/* --------- New Slider Section CSS Responsive END --------- */
+
+/* --------- New Slider Section CSS END --------- */
+
+
+/* Services Tab Css */
+.ova-elems-services-tab-cards-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.ova-elems-services-tab-service-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 16px 10px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0px 3px 6px #00000029;
+}
+
+.ova-elems-services-tab-card-header {
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.ova-elems-services-tab-card-header h3 {
+    font-size: 18px;
+    margin-bottom: 4px;
+    font-weight: bold;
+    font: normal normal bold 18px/22px Roboto;
+    color: #1A1A1A;
+}
+
+
+.ova-elems-services-tab-card-header p {
+     margin-top: 10px;
+    text-align: center;
+    font: normal normal normal 12px / 16px Roboto;
+    letter-spacing: 0px;
+    color: #1A1A1A;
+    opacity: 1;
+}
+
+.ova-elems-services-tab-card-image {
+     position: relative;
+    height: 200px;
+    border-radius: 9px;
+    overflow: hidden;
+}
+
+.ova-elems-services-tab-card-image img {
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.4s ease;
+}
+
+.ova-elems-services-tab-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.95));
+    color: #fff;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.ova-elems-services-tab-card-overlay::-webkit-scrollbar {
+    display: none;
+}
+.ova-elems-services-tab-service-card:hover .ova-elems-services-tab-card-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+.ova-elems-services-tab-card-image:hover img {
+    opacity: 0.15;
+}
+
+.ova-elems-services-tab-card-overlay h4 {
+    color: #ff70ff;
+    margin-bottom: 8px;
+    font: normal normal bold 12px/14px Roboto;
+}
+
+.ova-elems-services-tab-card-overlay ul {
+    list-style-position: inside;
+    padding-left: 0;
+    margin-bottom: 12px;
+}
+
+.ova-elems-services-tab-card-overlay ul li {
+    margin-bottom: 6px;
+    font: normal normal normal 11px/10px Roboto;
+}
+
+.ova-elems-services-tab-delivery {
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 8px;
+    font: normal normal normal 12px/16px Roboto;
+}
+
+.ova-elems-services-tab-card-footer {
+    margin-top: 14px;
+    text-align: center;
+}
+
+.ova-elems-services-tab-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: transparent linear-gradient(90deg, #0023C4 0%, #FD5CF4 100%) 0% 0% no-repeat padding-box;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: transform 0.25s ease;
+}
+
+.ova-elems-services-tab-btn:hover {
+    transform: scale(1.05);
+    color: white !important;
+}
+
+.ova-elems-services-tab-service-card {
+    overflow: visible !important;
+}
+
+
+.ova-elems-services-tab-cards-wrapper {
+    overflow: visible !important;
+}
