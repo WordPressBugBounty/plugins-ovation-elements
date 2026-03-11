@@ -58,7 +58,7 @@ jQuery(document).ready(function ($) {
             },
             success: function (response) {
                 var newSlideHtml = `
-                     <div class="slide-container mb-4 p-3 border rounded" data-index="${index}">
+                     <div class="slide-container mb-4 p-3 border rounded ov-settings-seprator" data-index="${index}">
                          <h3>Slide ${index + 1}</h3>
                          <div class="form-group">
                              <label for="select_post_${index}">Select Post</label>

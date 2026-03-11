@@ -68,12 +68,12 @@ a.btn.btn-primary {
 	margin: 0px;
 }
 /* select template page */
-.slide-container,
+/* .slide-container,
 .static-container {
 	background: #F2F2F2;
 	padding: 30px 35px !important;
 	border-radius: 20px !important;
-}
+} */
 .form-group label {
 	font: normal normal 600 18px / 23px Outfit;
 	letter-spacing: 0px;
@@ -193,11 +193,11 @@ button.btn.btn-primary {
 	position: relative;
 	margin-bottom: 50px;
 }
-.static-container {
+/* .static-container {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0px 10px;
-}
+} */
 .form-group {
 	width: 100%;
 }
@@ -495,3 +495,26 @@ a.btn.btn-primary {
 } */
 
 
+/* my new settings is present here */
+
+/* .slide-container.mb-4.p-3.border.rounded {
+	background: #F2F2F2;
+} */
+
+
+.ov-settings-seprator{
+ background: #F2F2F2;
+ padding: 30px 35px !important;
+ border-radius: 20px !important;
+}
+
+.ove-other-details.ov-settings-seprator {
+	margin-top: 20px;
+}
+
+.form-group-heading label {
+	font: normal normal 600 20px / 23px Outfit;
+	letter-spacing: 0px;
+	color: #000000;
+	padding-bottom: 25px;
+}

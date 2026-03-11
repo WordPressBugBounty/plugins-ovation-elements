@@ -136,12 +136,12 @@ function ova_elems_slider_add_menu_pages()
     }
 
     add_submenu_page(
-        'edit.php?post_type=ova_elems',
-        'Select Template',
-        'Select Template',
-        'manage_options',
-        'select-template',
-        'ova_elems_slider_select_template_page'
+        'edit.php?post_type=ova_elems', 
+        'Select Template',               
+        'Select Template',               
+        'manage_options',                
+        'select-template',               
+        '__return_null'                  
     );
 
     // Add different edit pages for each template
@@ -342,7 +342,7 @@ function ova_elems_slider_dashboard_page()
                     aria-controls="ova_elems_tab2" aria-selected="false">Sliders</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" id="ova_elems_tab5-tab" data-toggle="tab" href="#ova_elems_tab5" role="tab"
+                <a class="nav-link" id="ova_elems_tab5-tab" data-toggle="tab" href="#ova_elems_tab5" role="tab"
                     aria-controls="ova_elems_tab5" aria-selected="false"> Block Themes</a>
             </li>
             <li class="nav-item">
@@ -364,7 +364,7 @@ function ova_elems_slider_dashboard_page()
             <div class="tab-pane fade" id="ova_elems_tab2" role="tabpanel" aria-labelledby="ova_elems_tab2-tab">
                 <?php include(plugin_dir_path(__FILE__) . 'ova-elems-tab2.php'); ?>
             </div>
-            <div class="tab-pane fade show active" id="ova_elems_tab5" role="tabpanel" aria-labelledby="ova_elems_tab5-tab">
+            <div class="tab-pane fade" id="ova_elems_tab5" role="tabpanel" aria-labelledby="ova_elems_tab5-tab">
                 <?php include(plugin_dir_path(__FILE__) . 'ova-elems-tab5.php'); ?>
             </div>
 
@@ -665,96 +665,19 @@ function ova_elems_edit_link($actions, $post)
 //end
 
 
-// Template Selection Page
-function ova_elems_slider_select_template_page()
-{
-    $is_premium_user = get_option('ovation_slider_is_premium', false);
-    ?>
-    <div class="wrap">
-        <div class="heading-container">
-            <div class="container-custom">
-                <h1>Select a Template</h1>
-            </div>
-        </div>
-        <div class="container-custom">
-            <div class="row">
-                <?php
-                $templates = array(
-                    array('id' => 1, 'title' => 'Business Slider Template', 'image' => OVA_ELEMS_URL . 'assets/images/template-1.png'),
-                    array('id' => 2, 'title' => 'Travel Slider Template', 'image' => OVA_ELEMS_URL . 'assets/images/template-2.png'),
-                    array('id' => 3, 'title' => 'Ecommerce Slider Template', 'image' => OVA_ELEMS_URL . 'assets/images/template-3.png'),
-                    array('id' => 4, 'title' => 'News Slider Template', 'image' => OVA_ELEMS_URL . 'assets/images/template-4.png'),
-                    array('id' => 5, 'title' => 'Food Slider Template', 'image' => OVA_ELEMS_URL . 'assets/images/template-5.png'),
-                    array('id' => 6, 'title' => 'Restaurant Slider Template', 'image' => OVA_ELEMS_URL . 'assets/images/template-6.png'),
-                    array('id' => 7, 'title' => 'Travel Slider Template2', 'image' => OVA_ELEMS_URL . 'assets/images/template-7.png'),
-                    array('id' => 8, 'title' => 'Education Slider Template', 'image' => OVA_ELEMS_URL . 'assets/images/template-8.png'),
-                    array('id' => 9, 'title' => 'Business Slider Template2', 'image' => OVA_ELEMS_URL . 'assets/images/template-9.png'),
-                    array('id' => 10, 'title' => 'E-commerce Slider Template2', 'image' => OVA_ELEMS_URL . 'assets/images/template-10.png'),
-                    array('id' => 11, 'title' => 'Travel Slider Template3', 'image' => OVA_ELEMS_URL . 'assets/images/template-11.png'),
-                    array('id' => 12, 'title' => 'Restaurant Slider Template', 'image' => OVA_ELEMS_URL . 'assets/images/template-12.png'),
-                    array('id' => 13, 'title' => 'Ecommerce Slider Template3', 'image' => OVA_ELEMS_URL . 'assets/images/template-13.png'),
-                    array('id' => 14, 'title' => 'Business Slider Template3', 'image' => OVA_ELEMS_URL . 'assets/images/template-14.png'),
-                    array('id' => 15, 'title' => 'Education Slider Template2', 'image' => OVA_ELEMS_URL . 'assets/images/template-15.png'),
+// Template Selection Page 
+add_action('admin_init', function() {
+    if (isset($_GET['page']) && $_GET['page'] === 'select-template') {
 
-                );
+        if (!current_user_can('manage_options')) {
+            return;
+        }
+        wp_safe_redirect(admin_url('admin.php?page=ovation_elements&tab=sliders'));
+        exit;
+    }
 
-                foreach ($templates as $template) {
-                    $is_pro_template = in_array($template['id'], [6, 7, 8, 9]); // Mark templates 6, 7, 8 as Pro only
-                    ?>
-                    <div class="col-md-4 col-lg-4 col-12 mb-4">
-                        <div class="slider-card" style="">
-                            <div class="slider-image">
-                                <img class="card-img-top" src="<?php echo esc_url($template['image']); ?>"
-                                    alt="<?php echo esc_attr($template['title']); ?>">
-                            </div>
-
-                            <!-- i change -->
-                            <div class="heading-wrapper mt-2">
-                                <h5 class="card-title"><?php echo esc_html($template['title']); ?></h5>
-
-                                <div class="template-actions">
-                                    <?php
-                                    $coming_soon_ids = [10, 11, 12, 13, 14, 15];
-
-                                    if (in_array($template['id'], $coming_soon_ids)) {
-                                        // echo '<div class="ot-elems-coming-soon">';
-                                        if (!$is_premium_user) {
-                                            echo '<a href="https://www.ovationthemes.com/products/ovation-elements-pro" target="_blank" class="btn btn-primary">Upgrade to Pro</a>';
-                                        } else {
-                                            echo '<button class="btn btn-secondary" disabled>Select Template</button>';
-                                        }
-                                        echo '<img src="' . esc_url(OVA_ELEMS_URL . 'assets/images/coming-soon.png') . '" alt="" class="coming-soon-image" />';
-                                        // echo '</div>';
-                                    } elseif (!$is_premium_user && $is_pro_template) {
-                                        echo '<a href="https://www.ovationthemes.com/products/ovation-elements-pro" target="_blank" class="btn btn-primary">Upgrade to Pro</a>';
-                                    } else {
-                                        echo '<a href="' . esc_url(admin_url('admin-post.php?action=create_ova_elems&template_id=' . $template['id'])) . '" class="btn btn-primary">Select Template</a>';
-                                    }
-
-                                    // Badge section
-                                    if (!in_array($template['id'], $coming_soon_ids)) {
-                                        if ($is_pro_template) {
-                                            echo '<span class="oe-crown"><i class="fa-solid fa-crown"></i> PRO</span>';
-                                        } else {
-                                            echo '<span class="badge oe-free">FREE</span>';
-                                        }
-                                    }
-                                    ?>
-                                </div>
-                            </div>
-                            <!-- end -->
-                        </div>
-                    </div>
-                    <?php
-                }
-                ?>
-            </div>
-        </div>
-    </div>
-    <?php
-}
-
-//new handle  slider 
+});
+// end
 
 function ova_elems_handle_create_slider()
 {

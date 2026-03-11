@@ -113,7 +113,7 @@ jQuery(document).ready(function ($) {
 
 
         const newSlide = `
-            <div class="slide-container mb-4 p-3 border rounded" data-index="${slideCount}">
+            <div class="slide-container mb-4 p-3 border rounded ov-settings-seprator" data-index="${slideCount}">
                 <h3>Slide ${slideCount + 1}</h3>
                 <div class="form-group">
                     <label for="slide_image_${slideCount}">Image:</label>
@@ -152,8 +152,6 @@ jQuery(document).ready(function ($) {
     });
 
     //new add for remove bg image
-    // Handle remove image functionality
-    // Handle remove image functionality
     $(document).on('click', '.remove_image_button', function () {
         const parent = $(this).closest('.form-group');
 

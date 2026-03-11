@@ -1,11 +1,11 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.getElementById('ov-template-search-input');
     const templateCards = document.querySelectorAll('.inner-cards');
 
-    searchInput.addEventListener('input', function() {
+    searchInput.addEventListener('input', function () {
         const query = this.value.trim().toLowerCase();
         let anyVisible = false;
-    
+
         templateCards.forEach(card => {
             const title = card.getAttribute('data-title');
             if (title.includes(query)) {
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 card.style.display = 'none';
             }
         });
-    
+
         document.getElementById('no-templates-found').style.display = anyVisible ? 'none' : 'block';
     });
 });
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         cards.forEach(card => {
             if (category === 'all' || card.dataset.category === category) {
-                document.querySelector('.template-target[data-target="'+category+'"]')
+                document.querySelector('.template-target[data-target="' + category + '"]')
                     .appendChild(card);
                 count++;
             }
@@ -42,8 +42,20 @@ document.addEventListener('DOMContentLoaded', function () {
     render('all');
     document.querySelectorAll('[data-bs-toggle="tab"]').forEach(tab => {
         tab.addEventListener('shown.bs.tab', function (e) {
-            render(e.target.getAttribute('href').replace('#',''));
+            render(e.target.getAttribute('href').replace('#', ''));
         });
     });
 
+});
+
+
+jQuery(document).ready(function ($) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const tab = urlParams.get('tab');
+
+    if (tab === 'sliders') {
+        $('#ova_elems_ovationSliderTabs a[href="#ova_elems_tab2"]').tab('show');
+    } else {
+        $('#ova_elems_ovationSliderTabs a[href="#ova_elems_tab5"]').tab('show'); 
+    }
 });

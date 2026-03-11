@@ -407,7 +407,7 @@ if ($tutor_plugin_active) {
                     </ul>
                 </div>
 
-                <div class="static-container my-static-container mb-4 p-3 border rounded">
+                <div class="static-container my-static-container mb-4 p-3 rounded">
 
                     <div class="settings-tabs">
 
@@ -419,7 +419,8 @@ if ($tutor_plugin_active) {
                                 <!-- slider add -->
                                 <div id="slider-slides">
                                     <?php if (empty($slides)): ?>
-                                        <div class="slide-container mb-4 p-3 border rounded" data-index="0">
+                                        <div class="slide-container mb-4 p-3 border rounded ov-settings-seprator"
+                                            data-index="0">
                                             <h3 class="slider-form-heading">Slide 1</h3>
 
                                             <div class="form-group">
@@ -450,7 +451,7 @@ if ($tutor_plugin_active) {
                                     <?php endif; ?>
 
                                     <?php foreach ($slides as $index => $slide): ?>
-                                        <div class="slide-container mb-4 p-3 border rounded"
+                                        <div class="slide-container mb-4 p-3 border rounded ov-settings-seprator"
                                             data-index="<?php echo esc_attr($index); ?>">
                                             <h3>Slide <?php echo esc_html($index + 1); ?></h3>
 
@@ -486,281 +487,301 @@ if ($tutor_plugin_active) {
                                     <?php endforeach; ?>
                                 </div>
 
-                                <!-- slider end -->
-                                <div class="row">
 
-                                    <div class="col-md-4 form-group">
-                                        <label for="instagram_url">Instagram URL:</label>
-                                        <input type="url" id="instagram_url" name="instagram_url" class="form-control"
-                                            value="<?php echo esc_url(isset($static_settings['instagram_url']) ? $static_settings['instagram_url'] : ''); ?>"
-                                            placeholder="Enter Instagram URL" />
+                                <div class="ove-social-profile ov-settings-seprator">
+                                    <div class="form-group-heading">
+                                        <label for="">Social Profiles</label>
                                     </div>
+                                    <div class="row">
 
-                                    <div class="col-md-4 form-group">
-                                        <label for="youtube_url">YouTube URL:</label>
-                                        <input type="url" id="youtube_url" name="youtube_url" class="form-control"
-                                            value="<?php echo esc_url(isset($static_settings['youtube_url']) ? $static_settings['youtube_url'] : ''); ?>"
-                                            placeholder="Enter YouTube URL" />
-                                    </div>
-
-                                    <div class="col-md-4 form-group">
-                                        <label for="facebook_url">Facebook URL:</label>
-                                        <input type="url" id="facebook_url" name="facebook_url" class="form-control"
-                                            value="<?php echo esc_url(isset($static_settings['facebook_url']) ? $static_settings['facebook_url'] : ''); ?>"
-                                            placeholder="Enter Facebook URL" />
-                                    </div>
-
-                                    <div class="col-md-4 form-group">
-                                        <label for="basketball_url">Dribbble URL:</label>
-                                        <input type="url" id="basketball_url" name="basketball_url" class="form-control"
-                                            value="<?php echo esc_url(isset($static_settings['basketball_url']) ? $static_settings['basketball_url'] : ''); ?>"
-                                            placeholder="Enter Dribbble URL" />
-                                    </div>
-
-                                    <div class="col-md-4 form-group">
-                                        <label for="twitter_url">Twitter URL:</label>
-                                        <input type="url" id="twitter_url" name="twitter_url" class="form-control"
-                                            value="<?php echo esc_url(isset($static_settings['twitter_url']) ? $static_settings['twitter_url'] : ''); ?>"
-                                            placeholder="Enter Twitter URL" />
-                                    </div>
-
-                                    <!-- end  -->
-
-                                    <!-- loder elements box settings -->
-
-                                    <div class="form-group mini d-flex gap-3">
-                                        <label for="slide_mini_image_1_0">Image/Icon :</label>
-                                        <input type="hidden" id="slide_mini_image_1_0" name="slide_mini_images_1[]"
-                                            value="<?php echo esc_attr($static_settings['mini_images_1'][0] ?? ''); ?>" />
-                                        <img src="<?php echo esc_url(wp_get_attachment_url($static_settings['mini_images_1'][0] ?? '')); ?>"
-                                            style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; display: <?php echo empty($static_settings['mini_images_1'][0]) ? 'none' : 'block'; ?>;" />
-                                        <button type="button"
-                                            class="upload_mini_image_1_button button mt-2 upload_image_button">Upload
-                                            Image</button>
-                                    </div>
-
-                                    <div class="col-md-6 form-group">
-                                        <label for="slide_mini_title_0">Enter heading:</label>
-                                        <small class="form-text text-muted">Ex :(Satisfaction , Belive).</small>
-                                        <input type="text" id="slide_mini_title_0" name="slide_mini_titles[]"
-                                            class="form-control"
-                                            value="<?php echo esc_attr($static_settings['mini_titles'][0] ?? ''); ?>"
-                                            placeholder="Enter heading" />
-                                    </div>
-                                    <!-- new add for review -->
-
-                                    <div class="col-md-6 form-group">
-                                        <label for="slide_mini_title2_0">Enter mini head tittle:</label>
-                                        <small class="form-text text-muted">Ex :(Welcome).</small>
-                                        <input type="text" id="slide_mini_title2_0" name="slide_mini_title2[]"
-                                            class="form-control"
-                                            value="<?php echo esc_attr($static_settings['mini_title2'][0] ?? ''); ?>"
-                                            placeholder="Enter mini head tittle" />
-                                    </div>
-
-                                    <div class="col-md-6 form-group mt-4">
-                                        <label for="list_title">List Title:</label><br>
-                                        <input type="text" id="list_title" name="list_title"
-                                            value="<?php echo esc_attr($static_settings['list_title'] ?? ''); ?>"
-                                            class="regular-text" placeholder="Enter list title" />
-                                    </div>
-
-                                    <div class="col-md-6 form-group mt-3">
-                                        <label for="enter_list">Enter List (Comma Separated):</label>
-                                        <input type="text" id="enter_list" name="enter_list"
-                                            value="<?php echo esc_attr(!empty($static_settings['enter_list']) ? implode(', ', $static_settings['enter_list']) : ''); ?>"
-                                            class="regular-text" placeholder="e.g., courses , support" />
-                                    </div>
-
-                                    <div class="col-md-12 form-group mt-3">
-                                        <label for="list_description">List Description:</label>
-                                        <textarea id="list_description" name="list_description" rows="4"
-                                            class="large-text"
-                                            placeholder="Enter list description"><?php echo esc_textarea($static_settings['list_description'] ?? ''); ?></textarea>
-                                    </div>
-
-
-
-                                    <div class="col-md-6 form-group">
-                                        <label for="ov_template_review_text">Review Text</label>
-                                        <small class="form-text text-muted">Ex :(xyz Followers[Educate Followers] ,
-                                            Follow us , subscribe ).</small>
-                                        <input type="text" id="ov_template_review_text" name="ov_template_review_text"
-                                            class="form-control"
-                                            value="<?php echo isset($static_settings['ov_template_review_text']) ? esc_attr($static_settings['ov_template_review_text']) : ''; ?>"
-                                            placeholder="Enter review text" />
-                                    </div>
-
-                                    <div class="col-md-6 form-group">
-                                        <label for="ov_template_review_no">Review No</label>
-                                        <small class="form-text text-muted">Ex: (500+, 1.5K+, 4-5*, etc.)</small>
-                                        <input type="text" id="ov_template_review_no" name="ov_template_review_no"
-                                            class="form-control"
-                                            value="<?php echo isset($static_settings['ov_template_review_no']) ? esc_attr($static_settings['ov_template_review_no']) : ''; ?>"
-                                            placeholder="Enter review number (e.g., 500+, 1.5K+)"
-                                            pattern="^[\d\+\-\*\.Kk]+$" />
-                                    </div>
-
-                                    <div class="col-md-6 form-group mini d-flex align-items-center gap-3">
-                                        <label for="slide_corner_images_0">Upload Right Corner Image:</label>
-                                        <input type="hidden" id="slide_corner_images_0" name="slide_corner_images[]"
-                                            value="<?php echo esc_attr(implode(',', $static_settings['corner_images'] ?? [])); ?>" />
-                                        <div class="corner-images-container">
-                                            <?php
-                                            if (!empty($static_settings['corner_images'])) {
-                                                foreach ($static_settings['corner_images'] as $image_id) {
-                                                    echo '<img src="' . esc_url(wp_get_attachment_url($image_id)) . '" style="max-width: 100px; max-height: 100px; display: inline-block; margin-right: 10px;" />';
-                                                }
-                                            }
-                                            ?>
+                                        <div class="col-md-4 form-group">
+                                            <label for="instagram_url">Instagram URL:</label>
+                                            <input type="url" id="instagram_url" name="instagram_url"
+                                                class="form-control"
+                                                value="<?php echo esc_url(isset($static_settings['instagram_url']) ? $static_settings['instagram_url'] : ''); ?>"
+                                                placeholder="Enter Instagram URL" />
                                         </div>
-                                        <button type="button"
-                                            class="upload_corner_images_button button upload_image_button">Upload
-                                            Image</button>
+
+                                        <div class="col-md-4 form-group">
+                                            <label for="youtube_url">YouTube URL:</label>
+                                            <input type="url" id="youtube_url" name="youtube_url" class="form-control"
+                                                value="<?php echo esc_url(isset($static_settings['youtube_url']) ? $static_settings['youtube_url'] : ''); ?>"
+                                                placeholder="Enter YouTube URL" />
+                                        </div>
+
+                                        <div class="col-md-4 form-group">
+                                            <label for="facebook_url">Facebook URL:</label>
+                                            <input type="url" id="facebook_url" name="facebook_url" class="form-control"
+                                                value="<?php echo esc_url(isset($static_settings['facebook_url']) ? $static_settings['facebook_url'] : ''); ?>"
+                                                placeholder="Enter Facebook URL" />
+                                        </div>
+
+                                        <div class="col-md-4 form-group">
+                                            <label for="basketball_url">Dribbble URL:</label>
+                                            <input type="url" id="basketball_url" name="basketball_url"
+                                                class="form-control"
+                                                value="<?php echo esc_url(isset($static_settings['basketball_url']) ? $static_settings['basketball_url'] : ''); ?>"
+                                                placeholder="Enter Dribbble URL" />
+                                        </div>
+
+                                        <div class="col-md-4 form-group">
+                                            <label for="twitter_url">Twitter URL:</label>
+                                            <input type="url" id="twitter_url" name="twitter_url" class="form-control"
+                                                value="<?php echo esc_url(isset($static_settings['twitter_url']) ? $static_settings['twitter_url'] : ''); ?>"
+                                                placeholder="Enter Twitter URL" />
+                                        </div>
+
                                     </div>
 
-                                    <div class="col-md-6 form-group d-flex align-items-center">
-                                        <label class="mr-2" for="slide_video_url">Upload Video:</label>
-                                        <input type="hidden" id="slide_video_url" name="slide_video_url"
-                                            value="<?php echo esc_attr(isset($static_settings['slide_video_url']) ? $static_settings['slide_video_url'] : ''); ?>" />
-                                        <video id="uploaded_video_preview" controls
-                                            style="max-width: 20%; margin-top: 10px; display: <?php echo empty($static_settings['slide_video_url']) ? 'none' : 'block'; ?>;">
-                                            <source
-                                                src="<?php echo esc_url($static_settings['slide_video_url'] ?? ''); ?>"
-                                                type="video/mp4">
-                                            Your browser does not support the video tag.
-                                        </video>
-                                        <button type="button"
-                                            class="upload_video_button button upload_image_button">Upload Video</button>
+                                </div>
+
+
+                                <div class="ove-other-details ov-settings-seprator">
+                                    <div class="form-group-heading">
+                                        <label for="instagram">Other Details</label>
                                     </div>
 
-                                    <!-- Video Background Image Upload Field -->
-                                    <div class="form-group col-md-6 mt-3">
-                                        <label for="video_bg_image">Video Background Image:</label>
-                                        <input type="text" id="video_bg_image" name="video_bg_image"
-                                            value="<?php echo esc_url($static_settings['video_bg_image'] ?? ''); ?>"
-                                            class="regular-text" placeholder="Upload or select an image" />
-                                        <button type="button" class="button upload_video_bg_image">Upload Image</button>
-                                        <div id="video_bg_preview" style="margin-top:10px;">
-                                            <?php if (!empty($static_settings['video_bg_image'])): ?>
-                                                <img src="<?php echo esc_url($static_settings['video_bg_image']); ?>"
-                                                    width="100" height="auto">
+                                    <div class="row">
+
+                                        <div class="form-group mini d-flex gap-3">
+                                            <label for="slide_mini_image_1_0">Image/Icon :</label>
+                                            <input type="hidden" id="slide_mini_image_1_0" name="slide_mini_images_1[]"
+                                                value="<?php echo esc_attr($static_settings['mini_images_1'][0] ?? ''); ?>" />
+                                            <img src="<?php echo esc_url(wp_get_attachment_url($static_settings['mini_images_1'][0] ?? '')); ?>"
+                                                style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; display: <?php echo empty($static_settings['mini_images_1'][0]) ? 'none' : 'block'; ?>;" />
+                                            <button type="button"
+                                                class="upload_mini_image_1_button button mt-2 upload_image_button">Upload
+                                                Image</button>
+                                        </div>
+
+                                        <div class="col-md-6 form-group">
+                                            <label for="slide_mini_title_0">Enter heading:</label>
+                                            <small class="form-text text-muted">Ex :(Satisfaction , Belive).</small>
+                                            <input type="text" id="slide_mini_title_0" name="slide_mini_titles[]"
+                                                class="form-control"
+                                                value="<?php echo esc_attr($static_settings['mini_titles'][0] ?? ''); ?>"
+                                                placeholder="Enter heading" />
+                                        </div>
+                                        <!-- new add for review -->
+
+                                        <div class="col-md-6 form-group">
+                                            <label for="slide_mini_title2_0">Enter mini head tittle:</label>
+                                            <small class="form-text text-muted">Ex :(Welcome).</small>
+                                            <input type="text" id="slide_mini_title2_0" name="slide_mini_title2[]"
+                                                class="form-control"
+                                                value="<?php echo esc_attr($static_settings['mini_title2'][0] ?? ''); ?>"
+                                                placeholder="Enter mini head tittle" />
+                                        </div>
+
+                                        <div class="col-md-6 form-group mt-4">
+                                            <label for="list_title">List Title:</label><br>
+                                            <input type="text" id="list_title" name="list_title"
+                                                value="<?php echo esc_attr($static_settings['list_title'] ?? ''); ?>"
+                                                class="regular-text" placeholder="Enter list title" />
+                                        </div>
+
+                                        <div class="col-md-6 form-group mt-3">
+                                            <label for="enter_list">Enter List (Comma Separated):</label>
+                                            <input type="text" id="enter_list" name="enter_list"
+                                                value="<?php echo esc_attr(!empty($static_settings['enter_list']) ? implode(', ', $static_settings['enter_list']) : ''); ?>"
+                                                class="regular-text" placeholder="e.g., courses , support" />
+                                        </div>
+
+                                        <div class="col-md-12 form-group mt-3">
+                                            <label for="list_description">List Description:</label>
+                                            <textarea id="list_description" name="list_description" rows="4"
+                                                class="large-text"
+                                                placeholder="Enter list description"><?php echo esc_textarea($static_settings['list_description'] ?? ''); ?></textarea>
+                                        </div>
+
+
+
+                                        <div class="col-md-6 form-group">
+                                            <label for="ov_template_review_text">Review Text</label>
+                                            <small class="form-text text-muted">Ex :(xyz Followers[Educate Followers] ,
+                                                Follow us , subscribe ).</small>
+                                            <input type="text" id="ov_template_review_text"
+                                                name="ov_template_review_text" class="form-control"
+                                                value="<?php echo isset($static_settings['ov_template_review_text']) ? esc_attr($static_settings['ov_template_review_text']) : ''; ?>"
+                                                placeholder="Enter review text" />
+                                        </div>
+
+                                        <div class="col-md-6 form-group">
+                                            <label for="ov_template_review_no">Review No</label>
+                                            <small class="form-text text-muted">Ex: (500+, 1.5K+, 4-5*, etc.)</small>
+                                            <input type="text" id="ov_template_review_no" name="ov_template_review_no"
+                                                class="form-control"
+                                                value="<?php echo isset($static_settings['ov_template_review_no']) ? esc_attr($static_settings['ov_template_review_no']) : ''; ?>"
+                                                placeholder="Enter review number (e.g., 500+, 1.5K+)"
+                                                pattern="^[\d\+\-\*\.Kk]+$" />
+                                        </div>
+
+                                        <div class="col-md-6 form-group mini d-flex align-items-center gap-3">
+                                            <label for="slide_corner_images_0">Upload Right Corner Image:</label>
+                                            <input type="hidden" id="slide_corner_images_0" name="slide_corner_images[]"
+                                                value="<?php echo esc_attr(implode(',', $static_settings['corner_images'] ?? [])); ?>" />
+                                            <div class="corner-images-container">
+                                                <?php
+                                                if (!empty($static_settings['corner_images'])) {
+                                                    foreach ($static_settings['corner_images'] as $image_id) {
+                                                        echo '<img src="' . esc_url(wp_get_attachment_url($image_id)) . '" style="max-width: 100px; max-height: 100px; display: inline-block; margin-right: 10px;" />';
+                                                    }
+                                                }
+                                                ?>
+                                            </div>
+                                            <button type="button"
+                                                class="upload_corner_images_button button upload_image_button">Upload
+                                                Image</button>
+                                        </div>
+
+                                        <div class="col-md-6 form-group d-flex align-items-center">
+                                            <label class="mr-2" for="slide_video_url">Upload Video:</label>
+                                            <input type="hidden" id="slide_video_url" name="slide_video_url"
+                                                value="<?php echo esc_attr(isset($static_settings['slide_video_url']) ? $static_settings['slide_video_url'] : ''); ?>" />
+                                            <video id="uploaded_video_preview" controls
+                                                style="max-width: 20%; margin-top: 10px; display: <?php echo empty($static_settings['slide_video_url']) ? 'none' : 'block'; ?>;">
+                                                <source
+                                                    src="<?php echo esc_url($static_settings['slide_video_url'] ?? ''); ?>"
+                                                    type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            <button type="button"
+                                                class="upload_video_button button upload_image_button">Upload
+                                                Video</button>
+                                        </div>
+
+                                        <!-- Video Background Image Upload Field -->
+                                        <div class="form-group col-md-6 mt-3">
+                                            <label for="video_bg_image">Video Background Image:</label>
+                                            <input type="text" id="video_bg_image" name="video_bg_image"
+                                                value="<?php echo esc_url($static_settings['video_bg_image'] ?? ''); ?>"
+                                                class="regular-text" placeholder="Upload or select an image" />
+                                            <button type="button" class="button upload_video_bg_image">Upload
+                                                Image</button>
+                                            <div id="video_bg_preview" style="margin-top:10px;">
+                                                <?php if (!empty($static_settings['video_bg_image'])): ?>
+                                                    <img src="<?php echo esc_url($static_settings['video_bg_image']); ?>"
+                                                        width="100" height="auto">
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 form-group mt-3">
+                                            <label for="static_button_text">Button Text:</label>
+                                            <input type="text" id="static_button_text" name="static_button_text"
+                                                value="<?php echo esc_attr($static_settings['static_button_text'] ?? ''); ?>"
+                                                class="form-control" placeholder="Enter button text" />
+                                        </div>
+
+                                        <div class="col-md-6 form-group mt-3">
+                                            <label for="static_button_url">Button URL:</label>
+                                            <input type="url" id="static_button_url" name="static_button_url"
+                                                value="<?php echo esc_url($static_settings['static_button_url'] ?? ''); ?>"
+                                                class="form-control" placeholder="Enter button URL" />
+                                        </div>
+
+                                        <div class="col-md-6 form-group mt-3">
+                                            <label for="static_button2_text">Button2 Text:</label>
+                                            <input type="text" id="static_button2_text" name="static_button2_text"
+                                                value="<?php echo esc_attr($static_settings['static_button2_text'] ?? ''); ?>"
+                                                class="form-control" placeholder="Enter button text" />
+                                        </div>
+
+                                        <div class="col-md-6 form-group mt-3">
+                                            <label for="static_button2_url">Button2 URL:</label>
+                                            <input type="url" id="static_button2_url" name="static_button2_url"
+                                                value="<?php echo esc_url($static_settings['static_button2_url'] ?? ''); ?>"
+                                                class="form-control" placeholder="Enter button URL" />
+                                        </div>
+
+                                        <div class="col-md-6 form-group mt-3">
+                                            <label for="static_loader_percentage">Loader Percentage:</label>
+                                            <input type="number" id="static_loader_percentage"
+                                                name="static_loader_percentage"
+                                                value="<?php echo esc_attr($static_settings['static_loader_percentage'] ?? '90'); ?>"
+                                                min="0" max="100" step="1" class="form-control"
+                                                placeholder="Enter loader percentage" />
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label for="bg_slide_image">Slider Background Image</label>
+                                            <input type="text" id="bg_slide_image" name="bg_slide_image"
+                                                class="form-control"
+                                                value="<?php echo esc_url(isset($static_settings['bg_slide_image']) ? $static_settings['bg_slide_image'] : ''); ?>"
+                                                placeholder="Enter or upload background image URL" />
+                                            <button type="button"
+                                                class="btn btn-primary upload-bg-slide-image">Upload</button>
+
+                                            <?php if (!empty($static_settings['bg_slide_image'])): ?>
+                                                <div class="preview-bg-slide-image" style="margin-top: 10px;">
+                                                    <img src="<?php echo esc_url($static_settings['bg_slide_image']); ?>"
+                                                        alt="Background Image"
+                                                        style="max-width: 150px; height: auto; border: 1px solid #ddd; padding: 5px;">
+                                                </div>
                                             <?php endif; ?>
                                         </div>
-                                    </div>
-
-                                    <div class="col-md-6 form-group mt-3">
-                                        <label for="static_button_text">Button Text:</label>
-                                        <input type="text" id="static_button_text" name="static_button_text"
-                                            value="<?php echo esc_attr($static_settings['static_button_text'] ?? ''); ?>"
-                                            class="form-control" placeholder="Enter button text" />
-                                    </div>
-
-                                    <div class="col-md-6 form-group mt-3">
-                                        <label for="static_button_url">Button URL:</label>
-                                        <input type="url" id="static_button_url" name="static_button_url"
-                                            value="<?php echo esc_url($static_settings['static_button_url'] ?? ''); ?>"
-                                            class="form-control" placeholder="Enter button URL" />
-                                    </div>
-
-                                    <div class="col-md-6 form-group mt-3">
-                                        <label for="static_button2_text">Button2 Text:</label>
-                                        <input type="text" id="static_button2_text" name="static_button2_text"
-                                            value="<?php echo esc_attr($static_settings['static_button2_text'] ?? ''); ?>"
-                                            class="form-control" placeholder="Enter button text" />
-                                    </div>
-
-                                    <div class="col-md-6 form-group mt-3">
-                                        <label for="static_button2_url">Button2 URL:</label>
-                                        <input type="url" id="static_button2_url" name="static_button2_url"
-                                            value="<?php echo esc_url($static_settings['static_button2_url'] ?? ''); ?>"
-                                            class="form-control" placeholder="Enter button URL" />
-                                    </div>
-
-                                    <div class="col-md-6 form-group mt-3">
-                                        <label for="static_loader_percentage">Loader Percentage:</label>
-                                        <input type="number" id="static_loader_percentage"
-                                            name="static_loader_percentage"
-                                            value="<?php echo esc_attr($static_settings['static_loader_percentage'] ?? '90'); ?>"
-                                            min="0" max="100" step="1" class="form-control"
-                                            placeholder="Enter loader percentage" />
-                                    </div>
-
-                                    <div class="form-group col-md-6">
-                                        <label for="bg_slide_image">Slider Background Image</label>
-                                        <input type="text" id="bg_slide_image" name="bg_slide_image"
-                                            class="form-control"
-                                            value="<?php echo esc_url(isset($static_settings['bg_slide_image']) ? $static_settings['bg_slide_image'] : ''); ?>"
-                                            placeholder="Enter or upload background image URL" />
-                                        <button type="button"
-                                            class="btn btn-primary upload-bg-slide-image">Upload</button>
-
-                                        <?php if (!empty($static_settings['bg_slide_image'])): ?>
-                                            <div class="preview-bg-slide-image" style="margin-top: 10px;">
-                                                <img src="<?php echo esc_url($static_settings['bg_slide_image']); ?>"
-                                                    alt="Background Image"
-                                                    style="max-width: 150px; height: auto; border: 1px solid #ddd; padding: 5px;">
-                                            </div>
-                                        <?php endif; ?>
-                                    </div>
 
 
-                                    <!-- new settings -->
-                                    <div class="col-md-6 form-group">
-                                        <label for="title_head_font_size">Title Head Font Size</label>
-                                        <input type="number" id="title_head_font_size" name="title_head_font_size"
-                                            class="form-control"
-                                            value="<?php echo esc_attr(isset($static_settings['title_head_font_size']) ? $static_settings['title_head_font_size'] : '20'); ?>" />
-                                    </div>
+                                        <!-- new settings -->
+                                        <div class="col-md-6 form-group">
+                                            <label for="title_head_font_size">Title Head Font Size</label>
+                                            <input type="number" id="title_head_font_size" name="title_head_font_size"
+                                                class="form-control"
+                                                value="<?php echo esc_attr(isset($static_settings['title_head_font_size']) ? $static_settings['title_head_font_size'] : '20'); ?>" />
+                                        </div>
 
 
-                                    <div class="col-md-6 form-group">
-                                        <label for="list_title_font_size">List Title Font Size</label>
-                                        <input type="number" id="list_title_font_size" name="list_title_font_size"
-                                            class="form-control"
-                                            value="<?php echo esc_attr(isset($static_settings['list_title_font_size']) ? $static_settings['list_title_font_size'] : '50'); ?>" />
-                                    </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="list_title_font_size">List Title Font Size</label>
+                                            <input type="number" id="list_title_font_size" name="list_title_font_size"
+                                                class="form-control"
+                                                value="<?php echo esc_attr(isset($static_settings['list_title_font_size']) ? $static_settings['list_title_font_size'] : '50'); ?>" />
+                                        </div>
 
-                                    <div class="col-md-6 form-group">
-                                        <label for="list_description_font_size">List Description Font Size</label>
-                                        <input type="number" id="list_description_font_size"
-                                            name="list_description_font_size" class="form-control"
-                                            value="<?php echo esc_attr(isset($static_settings['list_description_font_size']) ? $static_settings['list_description_font_size'] : '18'); ?>" />
-                                    </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="list_description_font_size">List Description Font Size</label>
+                                            <input type="number" id="list_description_font_size"
+                                                name="list_description_font_size" class="form-control"
+                                                value="<?php echo esc_attr(isset($static_settings['list_description_font_size']) ? $static_settings['list_description_font_size'] : '18'); ?>" />
+                                        </div>
 
-                                    <div class="col-md-6 form-group">
-                                        <label for="list_content_font_size">List Content Font Size</label>
-                                        <input type="number" id="list_content_font_size" name="list_content_font_size"
-                                            class="form-control"
-                                            value="<?php echo esc_attr(isset($static_settings['list_content_font_size']) ? $static_settings['list_content_font_size'] : '18'); ?>" />
-                                    </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="list_content_font_size">List Content Font Size</label>
+                                            <input type="number" id="list_content_font_size"
+                                                name="list_content_font_size" class="form-control"
+                                                value="<?php echo esc_attr(isset($static_settings['list_content_font_size']) ? $static_settings['list_content_font_size'] : '18'); ?>" />
+                                        </div>
 
-                                    <div class="col-md-6 form-group">
-                                        <label for="static_button_text_font_size">Static Button Text Font Size</label>
-                                        <input type="number" id="static_button_text_font_size"
-                                            name="static_button_text_font_size" class="form-control"
-                                            value="<?php echo esc_attr(isset($static_settings['static_button_text_font_size']) ? $static_settings['static_button_text_font_size'] : '18'); ?>" />
-                                    </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="static_button_text_font_size">Static Button Text Font
+                                                Size</label>
+                                            <input type="number" id="static_button_text_font_size"
+                                                name="static_button_text_font_size" class="form-control"
+                                                value="<?php echo esc_attr(isset($static_settings['static_button_text_font_size']) ? $static_settings['static_button_text_font_size'] : '18'); ?>" />
+                                        </div>
 
-                                    <div class="col-md-6 form-group">
-                                        <label for="review_text_font_size">Review Text Font Size</label>
-                                        <input type="number" id="review_text_font_size" name="review_text_font_size"
-                                            class="form-control"
-                                            value="<?php echo esc_attr(isset($static_settings['review_text_font_size']) ? $static_settings['review_text_font_size'] : '22'); ?>" />
-                                    </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="review_text_font_size">Review Text Font Size</label>
+                                            <input type="number" id="review_text_font_size" name="review_text_font_size"
+                                                class="form-control"
+                                                value="<?php echo esc_attr(isset($static_settings['review_text_font_size']) ? $static_settings['review_text_font_size'] : '22'); ?>" />
+                                        </div>
 
-                                    <div class="col-md-6 form-group">
-                                        <label for="review_no_font_size">Review Number Font Size</label>
-                                        <input type="number" id="review_no_font_size" name="review_no_font_size"
-                                            class="form-control"
-                                            value="<?php echo esc_attr(isset($static_settings['review_no_font_size']) ? $static_settings['review_no_font_size'] : '43'); ?>" />
-                                    </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="review_no_font_size">Review Number Font Size</label>
+                                            <input type="number" id="review_no_font_size" name="review_no_font_size"
+                                                class="form-control"
+                                                value="<?php echo esc_attr(isset($static_settings['review_no_font_size']) ? $static_settings['review_no_font_size'] : '43'); ?>" />
+                                        </div>
 
-                                    <div class="col-md-6 form-group">
-                                        <label for="ov_mini_title_font_size">(loader box ) text Font Size</label>
-                                        <input type="number" id="ov_mini_title_font_size" name="ov_mini_title_font_size"
-                                            class="form-control"
-                                            value="<?php echo esc_attr(isset($static_settings['ov_mini_title_font_size']) ? $static_settings['ov_mini_title_font_size'] : '18'); ?>" />
+                                        <div class="col-md-6 form-group">
+                                            <label for="ov_mini_title_font_size">(loader box ) text Font Size</label>
+                                            <input type="number" id="ov_mini_title_font_size"
+                                                name="ov_mini_title_font_size" class="form-control"
+                                                value="<?php echo esc_attr(isset($static_settings['ov_mini_title_font_size']) ? $static_settings['ov_mini_title_font_size'] : '18'); ?>" />
+                                        </div>
+
+
                                     </div>
 
                                 </div>
@@ -771,170 +792,190 @@ if ($tutor_plugin_active) {
                             <div class="tab-pane fade" id="advanced-settings" role="tabpanel"
                                 aria-labelledby="advanced-tab">
 
-                                <div class="row">
+                                <div class="ov-slider-settings ov-settings-seprator">
 
-                                    <div class="col-md-4 mb-4 form-group flex-row d-flex align-items-center">
-                                        <label class="mr-2" for="autoplay_setting">Enable Autoplay:</label>
-                                        <input type="checkbox" id="autoplay_setting" name="autoplay_setting" value="1"
-                                            <?php checked(!empty($static_settings['autoplay']), true); ?> <?php if (!$is_premium_user)
+                                    <div class="form-group-heading">
+                                        <label for="instagram">Animations</label>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-md-4 mb-4 form-group flex-row d-flex align-items-center">
+                                            <label class="mr-2" for="autoplay_setting">Enable Autoplay:</label>
+                                            <input type="checkbox" id="autoplay_setting" name="autoplay_setting"
+                                                value="1" <?php checked(!empty($static_settings['autoplay']), true); ?>
+                                                <?php if (!$is_premium_user)
                                                     echo 'disabled'; ?> />
-                                        <?php if (!$is_premium_user): ?>
-                                            <!-- <small class="form-text text-muted">Upgrade to the pro version to enable autoplay.</small> -->
-                                        <?php endif; ?>
+                                            <?php if (!$is_premium_user): ?>
+                                                <!-- <small class="form-text text-muted">Upgrade to the pro version to enable autoplay.</small> -->
+                                            <?php endif; ?>
+                                        </div>
+
+                                        <div class="col-md-4 mb-4 d-flex flex-column form-group">
+                                            <label for="autoplay_delay">Autoplay Delay Time (ms):</label>
+                                            <input type="number" id="autoplay_delay" name="autoplay_delay"
+                                                value="<?php echo esc_attr($static_settings['autoplay_delay'] ?? 1000); ?>"
+                                                <?php if (!$is_premium_user)
+                                                    echo 'disabled'; ?> />
+                                            <?php if (!$is_premium_user): ?>
+                                                <!-- <small class="form-text text-muted">Upgrade to the pro version to adjust autoplay delay.</small>  -->
+                                            <?php endif; ?>
+                                        </div>
+
+                                        <div class="col-md-4 mb-4 d-flex flex-column form-group">
+                                            <label for="effect">Select Effect:</label>
+                                            <select id="effect" name="effect" <?php if (!$is_premium_user)
+                                                echo 'disabled'; ?>>
+                                                <option value="fade" <?php selected($static_settings['effect'] ?? '', 'fade'); ?>>Fade</option>
+                                                <option value="slide" <?php selected($static_settings['effect'] ?? '', 'slide'); ?>>Slide</option>
+                                                <option value="cube" <?php selected($static_settings['effect'] ?? '', 'cube'); ?>>Cube</option>
+                                                <option value="coverflow" <?php selected($static_settings['effect'] ?? '', 'coverflow'); ?>>Coverflow</option>
+                                            </select>
+                                            <?php if (!$is_premium_user): ?>
+                                                <!-- <small class="form-text text-muted">Upgrade to the pro version to use additional effects.</small>  -->
+                                            <?php endif; ?>
+                                        </div>
+
                                     </div>
 
-                                    <div class="col-md-4 mb-4 d-flex flex-column form-group">
-                                        <label for="autoplay_delay">Autoplay Delay Time (ms):</label>
-                                        <input type="number" id="autoplay_delay" name="autoplay_delay"
-                                            value="<?php echo esc_attr($static_settings['autoplay_delay'] ?? 1000); ?>"
-                                            <?php if (!$is_premium_user)
-                                                echo 'disabled'; ?> />
-                                        <?php if (!$is_premium_user): ?>
-                                            <!-- <small class="form-text text-muted">Upgrade to the pro version to adjust autoplay delay.</small>  -->
-                                        <?php endif; ?>
+                                </div>
+
+                                <div class="ov-style-settings ov-settings-seprator mt-3">
+
+                                    <div class="form-group-heading">
+                                        <label for="instagram">Style</label>
                                     </div>
 
-                                    <div class="col-md-4 mb-4 d-flex flex-column form-group">
-                                        <label for="effect">Select Effect:</label>
-                                        <select id="effect" name="effect" <?php if (!$is_premium_user)
-                                            echo 'disabled'; ?>>
-                                            <option value="fade" <?php selected($static_settings['effect'] ?? '', 'fade'); ?>>Fade</option>
-                                            <option value="slide" <?php selected($static_settings['effect'] ?? '', 'slide'); ?>>Slide</option>
-                                            <option value="cube" <?php selected($static_settings['effect'] ?? '', 'cube'); ?>>Cube</option>
-                                            <option value="coverflow" <?php selected($static_settings['effect'] ?? '', 'coverflow'); ?>>Coverflow</option>
-                                        </select>
-                                        <?php if (!$is_premium_user): ?>
-                                            <!-- <small class="form-text text-muted">Upgrade to the pro version to use additional effects.</small>  -->
-                                        <?php endif; ?>
+                                    <div class="row">
+
+                                        <div class="col-md-4 mb-4 form-group">
+                                            <label for="social_icon_active_color">Social Icon Active Color</label>
+                                            <input type="text" id="social_icon_active_color"
+                                                name="social_icon_active_color" class="form-control"
+                                                value="<?php echo esc_attr(isset($static_settings['social_icon_active_color']) ? $static_settings['social_icon_active_color'] : '#3b5998'); ?>"
+                                                <?php if (!$is_premium_user)
+                                                    echo 'disabled'; ?> />
+                                            <?php if (!$is_premium_user): ?>
+                                                <!-- <small class="form-text text-muted">Upgrade to the pro version to customize social icon active color.</small>  -->
+                                            <?php endif; ?>
+                                        </div>
+
+                                        <!-- Social Icon Hover Color -->
+                                        <div class="col-md-4 mb-4 form-group">
+                                            <label for="social_icon_hover_color">Social Icon Hover Color</label>
+                                            <input type="text" id="social_icon_hover_color"
+                                                name="social_icon_hover_color" class="form-control"
+                                                value="<?php echo esc_attr(isset($static_settings['social_icon_hover_color']) ? $static_settings['social_icon_hover_color'] : '#2d4373'); ?>"
+                                                <?php if (!$is_premium_user)
+                                                    echo 'disabled'; ?> />
+                                            <?php if (!$is_premium_user): ?>
+                                                <!-- <small class="form-text text-muted">Upgrade to the pro version to customize social icon hover color.</small>  -->
+                                            <?php endif; ?>
+                                        </div>
+
+                                        <!-- Social Icon Size -->
+                                        <div class="col-md-4 mb-4 form-group">
+                                            <label for="social_icon_size">Social Icon Size</label>
+                                            <input type="number" id="social_icon_size" name="social_icon_size"
+                                                class="form-control"
+                                                value="<?php echo esc_attr(isset($static_settings['social_icon_size']) ? $static_settings['social_icon_size'] : '24'); ?>"
+                                                <?php if (!$is_premium_user)
+                                                    echo 'disabled'; ?> />
+                                            <?php if (!$is_premium_user): ?>
+                                                <!-- <small class="form-text text-muted">Upgrade to the pro version to customize social icon size.</small> -->
+                                            <?php endif; ?>
+                                        </div>
+
+                                        <!-- Button Background Color -->
+                                        <div class="col-md-4 mb-4 form-group">
+                                            <label for="button_bg_color">Button Background Color</label>
+                                            <input type="text" id="button_bg_color" name="button_bg_color"
+                                                class="form-control"
+                                                value="<?php echo esc_attr(isset($static_settings['button_bg_color']) ? $static_settings['button_bg_color'] : '#000000'); ?>"
+                                                <?php if (!$is_premium_user)
+                                                    echo 'disabled'; ?> />
+                                            <?php if (!$is_premium_user): ?>
+                                                <!-- <small class="form-text text-muted">Upgrade to the pro version to customize the button background color.</small>  -->
+                                            <?php endif; ?>
+                                        </div>
+
+                                        <!-- Button Hover Background Color -->
+                                        <div class="col-md-4 mb-4 form-group">
+                                            <label for="button_hover_bg_color">Button Hover Background Color</label>
+                                            <input type="text" id="button_hover_bg_color" name="button_hover_bg_color"
+                                                class="form-control"
+                                                value="<?php echo esc_attr(isset($static_settings['button_hover_bg_color']) ? $static_settings['button_hover_bg_color'] : '#333333'); ?>"
+                                                <?php if (!$is_premium_user)
+                                                    echo 'disabled'; ?> />
+                                            <?php if (!$is_premium_user): ?>
+                                                <!-- <small class="form-text text-muted">Upgrade to the pro version to customize the button hover background color.</small> -->
+                                            <?php endif; ?>
+                                        </div>
+
+                                        <!-- Button Text Color -->
+                                        <div class="col-md-4 mb-4 form-group">
+                                            <label for="button_text_color">Button Text Color</label>
+                                            <input type="text" id="button_text_color" name="button_text_color"
+                                                class="form-control"
+                                                value="<?php echo esc_attr(isset($static_settings['button_text_color']) ? $static_settings['button_text_color'] : '#ffffff'); ?>"
+                                                <?php if (!$is_premium_user)
+                                                    echo 'disabled'; ?> />
+                                            <?php if (!$is_premium_user): ?>
+                                                <!-- <small class="form-text text-muted">Upgrade to the pro version to customize the button text color.</small> -->
+                                            <?php endif; ?>
+                                        </div>
+
+                                        <!-- Button Hover Text Color -->
+                                        <div class="col-md-4 mb-4 form-group">
+                                            <label for="button_hover_text_color">Button Hover Text Color</label>
+                                            <input type="text" id="button_hover_text_color"
+                                                name="button_hover_text_color" class="form-control"
+                                                value="<?php echo esc_attr(isset($static_settings['button_hover_text_color']) ? $static_settings['button_hover_text_color'] : '#ffffff'); ?>"
+                                                <?php if (!$is_premium_user)
+                                                    echo 'disabled'; ?> />
+                                            <?php if (!$is_premium_user): ?>
+                                                <!-- <small class="form-text text-muted">Upgrade to the pro version to customize the button hover text color.</small> -->
+                                            <?php endif; ?>
+                                        </div>
                                     </div>
 
+                                </div>
 
+                                <div class="ov-custom-css ov-settings-seprator mt-3">
+                                    <div class="row">
+                                        <div class="col-md-12 mb-4 form-group">
+                                            <label for="custom_css">Custom CSS</label>
+                                            <textarea id="custom_css" name="custom_css" class="form-control" rows="6"
+                                                <?php if (!$is_premium_user)
+                                                    echo 'disabled'; ?>><?php echo esc_textarea(isset($static_settings['custom_css']) ? $static_settings['custom_css'] : ''); ?></textarea>
+                                            <small class="form-text text-muted">You can add custom CSS rules here.
+                                                Example:
+                                                .my-class { color: red; }</small>
+                                            <?php if (!$is_premium_user): ?>
+                                            <?php endif; ?>
+                                        </div>
 
-
-                                    <!-- Social Icon Active Color -->
-                                    <div class="col-md-4 mb-4 form-group">
-                                        <label for="social_icon_active_color">Social Icon Active Color</label>
-                                        <input type="text" id="social_icon_active_color" name="social_icon_active_color"
-                                            class="form-control"
-                                            value="<?php echo esc_attr(isset($static_settings['social_icon_active_color']) ? $static_settings['social_icon_active_color'] : '#3b5998'); ?>"
-                                            <?php if (!$is_premium_user)
-                                                echo 'disabled'; ?> />
-                                        <?php if (!$is_premium_user): ?>
-                                            <!-- <small class="form-text text-muted">Upgrade to the pro version to customize social icon active color.</small>  -->
-                                        <?php endif; ?>
                                     </div>
 
-                                    <!-- Social Icon Hover Color -->
-                                    <div class="col-md-4 mb-4 form-group">
-                                        <label for="social_icon_hover_color">Social Icon Hover Color</label>
-                                        <input type="text" id="social_icon_hover_color" name="social_icon_hover_color"
-                                            class="form-control"
-                                            value="<?php echo esc_attr(isset($static_settings['social_icon_hover_color']) ? $static_settings['social_icon_hover_color'] : '#2d4373'); ?>"
-                                            <?php if (!$is_premium_user)
-                                                echo 'disabled'; ?> />
-                                        <?php if (!$is_premium_user): ?>
-                                            <!-- <small class="form-text text-muted">Upgrade to the pro version to customize social icon hover color.</small>  -->
-                                        <?php endif; ?>
-                                    </div>
+                                </div>
 
-                                    <!-- Social Icon Size -->
-                                    <div class="col-md-4 mb-4 form-group">
-                                        <label for="social_icon_size">Social Icon Size</label>
-                                        <input type="number" id="social_icon_size" name="social_icon_size"
-                                            class="form-control"
-                                            value="<?php echo esc_attr(isset($static_settings['social_icon_size']) ? $static_settings['social_icon_size'] : '24'); ?>"
-                                            <?php if (!$is_premium_user)
-                                                echo 'disabled'; ?> />
-                                        <?php if (!$is_premium_user): ?>
-                                            <!-- <small class="form-text text-muted">Upgrade to the pro version to customize social icon size.</small> -->
-                                        <?php endif; ?>
-                                    </div>
-
-                                    <!-- Button Background Color -->
-                                    <div class="col-md-4 mb-4 form-group">
-                                        <label for="button_bg_color">Button Background Color</label>
-                                        <input type="text" id="button_bg_color" name="button_bg_color"
-                                            class="form-control"
-                                            value="<?php echo esc_attr(isset($static_settings['button_bg_color']) ? $static_settings['button_bg_color'] : '#000000'); ?>"
-                                            <?php if (!$is_premium_user)
-                                                echo 'disabled'; ?> />
-                                        <?php if (!$is_premium_user): ?>
-                                            <!-- <small class="form-text text-muted">Upgrade to the pro version to customize the button background color.</small>  -->
-                                        <?php endif; ?>
-                                    </div>
-
-                                    <!-- Button Hover Background Color -->
-                                    <div class="col-md-4 mb-4 form-group">
-                                        <label for="button_hover_bg_color">Button Hover Background Color</label>
-                                        <input type="text" id="button_hover_bg_color" name="button_hover_bg_color"
-                                            class="form-control"
-                                            value="<?php echo esc_attr(isset($static_settings['button_hover_bg_color']) ? $static_settings['button_hover_bg_color'] : '#333333'); ?>"
-                                            <?php if (!$is_premium_user)
-                                                echo 'disabled'; ?> />
-                                        <?php if (!$is_premium_user): ?>
-                                            <!-- <small class="form-text text-muted">Upgrade to the pro version to customize the button hover background color.</small> -->
-                                        <?php endif; ?>
-                                    </div>
-
-                                    <!-- Button Text Color -->
-                                    <div class="col-md-4 mb-4 form-group">
-                                        <label for="button_text_color">Button Text Color</label>
-                                        <input type="text" id="button_text_color" name="button_text_color"
-                                            class="form-control"
-                                            value="<?php echo esc_attr(isset($static_settings['button_text_color']) ? $static_settings['button_text_color'] : '#ffffff'); ?>"
-                                            <?php if (!$is_premium_user)
-                                                echo 'disabled'; ?> />
-                                        <?php if (!$is_premium_user): ?>
-                                            <!-- <small class="form-text text-muted">Upgrade to the pro version to customize the button text color.</small> -->
-                                        <?php endif; ?>
-                                    </div>
-
-                                    <!-- Button Hover Text Color -->
-                                    <div class="col-md-4 mb-4 form-group">
-                                        <label for="button_hover_text_color">Button Hover Text Color</label>
-                                        <input type="text" id="button_hover_text_color" name="button_hover_text_color"
-                                            class="form-control"
-                                            value="<?php echo esc_attr(isset($static_settings['button_hover_text_color']) ? $static_settings['button_hover_text_color'] : '#ffffff'); ?>"
-                                            <?php if (!$is_premium_user)
-                                                echo 'disabled'; ?> />
-                                        <?php if (!$is_premium_user): ?>
-                                            <!-- <small class="form-text text-muted">Upgrade to the pro version to customize the button hover text color.</small> -->
-                                        <?php endif; ?>
-                                    </div>
-
-                                    <!-- Custom CSS Field -->
-                                    <div class="col-md-12 mb-4 form-group">
-                                        <label for="custom_css">Custom CSS</label>
-                                        <textarea id="custom_css" name="custom_css" class="form-control" rows="6" <?php if (!$is_premium_user)
-                                            echo 'disabled'; ?>><?php echo esc_textarea(isset($static_settings['custom_css']) ? $static_settings['custom_css'] : ''); ?></textarea>
-                                        <small class="form-text text-muted">You can add custom CSS rules here. Example:
-                                            .my-class { color: red; }</small>
-                                        <?php if (!$is_premium_user): ?>
-                                            <!-- <small class="form-text text-muted">Upgrade to the pro version to add custom CSS.</small> -->
-                                        <?php endif; ?>
-                                    </div>
-
+                                <div class="d-flex justify-content-center align-items-center mt-3">
                                     <?php if (!$is_premium_user): ?>
                                         <small class="form-text upgrade-message">
                                             Enhance your experience by <a
                                                 href="https://www.ovationthemes.com/products/ovation-elements-pro"
-                                                target="_blank" rel="noopener noreferrer">upgrading to the Pro version</a>
+                                                target="_blank" rel="noopener noreferrer">upgrading to the Pro
+                                                version</a>
                                             to access advanced settings.
                                         </small>
                                     <?php endif; ?>
                                 </div>
-
-
-
                                 <!-- Add more advanced settings here -->
 
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <!-- tab base END  -->
-
         </div>
         <button type="submit" class="btn btn-primary">Save Slider</button>
         </form>

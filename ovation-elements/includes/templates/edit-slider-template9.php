@@ -191,7 +191,7 @@ $ovation_logo = OVA_ELEMS_URL . 'assets/images/logo.png';
                     </ul>
                 </div>
 
-                <div class="static-container my-static-container mb-4 p-3 border rounded">
+                <div class="static-container my-static-container mb-4 p-3 rounded">
                     <!-- tab base settings  -->
                     <div class="settings-tabs">
                         <div class="tab-content" id="settingsTabContent">
@@ -201,7 +201,7 @@ $ovation_logo = OVA_ELEMS_URL . 'assets/images/logo.png';
                                 <!-- slider add -->
                                 <div id="slider-slides">
                                     <?php if (empty($slides)): ?>
-                                        <div class="slide-container mb-4 p-3 border rounded" data-index="0">
+                                        <div class="slide-container mb-4 p-3 border rounded ov-settings-seprator" data-index="0">
                                             <div class="row">
                                                 <h3 class="slider-form-heading fdsffsd">Slide 1</h3>
                                                 <div class="col-md-12 form-group bg_img_color d-flex align-items-center">
@@ -253,7 +253,7 @@ $ovation_logo = OVA_ELEMS_URL . 'assets/images/logo.png';
                                     <?php endif; ?>
 
                                     <?php foreach ($slides as $index => $slide): ?>
-                                        <div class="slide-container mb-4 p-3 border rounded"
+                                        <div class="slide-container mb-4 p-3 border rounded ov-settings-seprator"
                                             data-index="<?php echo esc_attr($index); ?>">
                                             <div class="row">
                                                 <h3>Slide <?php echo esc_html($index + 1); ?></h3>
@@ -324,9 +324,14 @@ $ovation_logo = OVA_ELEMS_URL . 'assets/images/logo.png';
                                 <!-- new add  -->
                                 <div class="tab_all_inputs">
 
+                                <div class="ove-social-profile ov-settings-seprator">
+                                    <div class="form-group-heading">
+                                        <label for="">Social Profiles</label>
+                                    </div>
 
                                     <div class="row">
-                                        <div class="form-group col-md-6 halfs ">
+
+                                     <div class="form-group col-md-6 halfs ">
                                             <label for="instagram_url">Instagram URL:</label>
                                             <input type="url" id="instagram_url" name="instagram_url"
                                                 class="form-control"
@@ -363,6 +368,17 @@ $ovation_logo = OVA_ELEMS_URL . 'assets/images/logo.png';
                                                 placeholder="Enter Twitter URL" />
                                         </div>
 
+                                    </div>
+
+                                </div>
+
+                                <div class="ove-other-details ov-settings-seprator">
+                                    <div class="form-group-heading">
+                                        <label for="instagram">Other Details</label>
+                                    </div>
+
+                                    <div class="row">
+
                                         <div class="col-md-6 form-group">
                                             <label for="ov_template_review_text">Review Text</label>
                                             <small class="form-text text-muted">Ex :(xyz Followers[Educate Followers] ,
@@ -390,13 +406,8 @@ $ovation_logo = OVA_ELEMS_URL . 'assets/images/logo.png';
                                                 </div>
                                             <?php endif; ?>
                                         </div>
-                                    </div>
-                                    <!-- end  -->
 
-                                    <!-- new settings -->
-
-                                    <div class="row">
-                                        <div class="form-group col-md-4 half">
+                                         <div class="form-group col-md-4 half">
                                             <label for="slide_font_size">Tittle Text Font Size</label>
                                             <input type="number" id="heading_font_size" name="heading_font_size"
                                                 class="form-control"
@@ -417,9 +428,10 @@ $ovation_logo = OVA_ELEMS_URL . 'assets/images/logo.png';
                                                 value="<?php echo esc_attr(isset($static_settings['ov_social_text_font_size']) ? $static_settings['ov_social_text_font_size'] : '22'); ?>" />
                                         </div>
 
-
-
                                     </div>
+
+                                </div>
+
                                     <!-- Add more free settings here -->
                                 </div>
                             </div>
@@ -427,48 +439,65 @@ $ovation_logo = OVA_ELEMS_URL . 'assets/images/logo.png';
                             <div class="tab-pane fade" id="advanced-settings" role="tabpanel"
                                 aria-labelledby="advanced-tab">
 
-                                <div class="row">
+                                  <div class="ov-slider-settings ov-settings-seprator">
 
-                                    <div class="col-md-4 mb-4 form-group flex-row d-flex align-items-center">
-                                        <label class="mr-2" for="autoplay_setting">Enable Autoplay:</label>
-                                        <input type="checkbox" id="autoplay_setting" name="autoplay_setting" value="1"
-                                            <?php checked(!empty($static_settings['autoplay']), true); ?>
-                                            <?php if (!$is_premium_user) echo 'disabled'; ?> />
-                                        <?php if (!$is_premium_user): ?>
-                                        <?php endif; ?>
+                                    <div class="form-group-heading">
+                                        <label for="instagram">Animations</label>
+                                    </div>
+
+                                         <div class="row">
+                                             <div class="col-md-4 mb-4 form-group flex-row d-flex align-items-center">
+                                             <label class="mr-2" for="autoplay_setting">Enable Autoplay:</label>
+                                             <input type="checkbox" id="autoplay_setting" name="autoplay_setting" value="1"
+                                                 <?php checked(!empty($static_settings['autoplay']), true); ?>
+                                                 <?php if (!$is_premium_user) echo 'disabled'; ?> />
+                                             <?php if (!$is_premium_user): ?>
+                                             <?php endif; ?>
+     
+                                         </div>
+     
+                                         <div class="col-md-4 mb-4 d-flex flex-column form-group">
+                                             <label for="autoplay_delay">Autoplay Delay Time (ms):</label>
+                                             <input type="number" id="autoplay_delay" name="autoplay_delay"
+                                                 value="<?php echo esc_attr($static_settings['autoplay_delay'] ?? 1000); ?>"
+                                                 <?php if (!$is_premium_user) echo 'disabled'; ?> />
+                                             <?php if (!$is_premium_user): ?>
+                                             <?php endif; ?>
+                                         </div>
+     
+                                         <div class="col-md-4 mb-4 d-flex flex-column form-group">
+                                             <label for="effect">Select Effect:</label>
+                                             <select id="effect" name="effect"
+                                                 <?php if (!$is_premium_user) echo 'disabled'; ?>>
+                                                 <option value="slide"
+                                                     <?php selected($static_settings['effect'] ?? '', 'slide'); ?>>Slide
+                                                 </option>
+                                                 <option value="fade"
+                                                     <?php selected($static_settings['effect'] ?? '', 'fade'); ?>>Fade
+                                                 </option>
+                                                 <option value="cube"
+                                                     <?php selected($static_settings['effect'] ?? '', 'cube'); ?>>Cube
+                                                 </option>
+                                                 <option value="coverflow"
+                                                     <?php selected($static_settings['effect'] ?? '', 'coverflow'); ?>>
+                                                     Coverflow</option>
+                                             </select>
+                                             <?php if (!$is_premium_user): ?>
+                                             <?php endif; ?>
+                                         </div>
 
                                     </div>
 
-                                    <div class="col-md-4 mb-4 d-flex flex-column form-group">
-                                        <label for="autoplay_delay">Autoplay Delay Time (ms):</label>
-                                        <input type="number" id="autoplay_delay" name="autoplay_delay"
-                                            value="<?php echo esc_attr($static_settings['autoplay_delay'] ?? 1000); ?>"
-                                            <?php if (!$is_premium_user) echo 'disabled'; ?> />
-                                        <?php if (!$is_premium_user): ?>
-                                        <?php endif; ?>
+                                 </div>
+
+
+                                 <div class="ov-style-settings ov-settings-seprator mt-3">
+
+                                    <div class="form-group-heading">
+                                        <label for="instagram">Style</label>
                                     </div>
 
-                                    <div class="col-md-4 mb-4 d-flex flex-column form-group">
-                                        <label for="effect">Select Effect:</label>
-                                        <select id="effect" name="effect"
-                                            <?php if (!$is_premium_user) echo 'disabled'; ?>>
-                                            <option value="slide"
-                                                <?php selected($static_settings['effect'] ?? '', 'slide'); ?>>Slide
-                                            </option>
-                                            <option value="fade"
-                                                <?php selected($static_settings['effect'] ?? '', 'fade'); ?>>Fade
-                                            </option>
-                                            <option value="cube"
-                                                <?php selected($static_settings['effect'] ?? '', 'cube'); ?>>Cube
-                                            </option>
-                                            <option value="coverflow"
-                                                <?php selected($static_settings['effect'] ?? '', 'coverflow'); ?>>
-                                                Coverflow</option>
-                                        </select>
-                                        <?php if (!$is_premium_user): ?>
-                                        <?php endif; ?>
-                                    </div>
-
+                                    <div class="row">
 
                                     <!-- Social Icon Active Color -->
                                     <div class="col-md-4 mb-4 form-group">
@@ -556,24 +585,37 @@ $ovation_logo = OVA_ELEMS_URL . 'assets/images/logo.png';
                                         <?php if (!$is_premium_user): ?>
                                         <?php endif; ?>
                                     </div>
-
-                                    <!-- Custom CSS Field -->
-                                    <div class="col-md-12 mb-4 form-group">
-                                        <label for="custom_css">Custom CSS</label>
-                                        <textarea id="custom_css" name="custom_css" class="form-control" rows="6"
-                                            <?php if (!$is_premium_user) echo 'disabled'; ?>><?php echo esc_textarea(isset($static_settings['custom_css']) ? $static_settings['custom_css'] : ''); ?></textarea>
-                                        <small class="form-text text-muted">You can add custom CSS rules here. Example:
-                                            .my-class { color: red; }</small>
-                                        <?php if (!$is_premium_user): ?>
-                                        <?php endif; ?>
                                     </div>
+
+                                 </div>
+
+                                 <div class="ov-custom-css ov-settings-seprator mt-3">
+                                    <div class="row">
+                                        <div class="col-md-12 mb-4 form-group">
+                                            <label for="custom_css">Custom CSS</label>
+                                            <textarea id="custom_css" name="custom_css" class="form-control" rows="6"
+                                                <?php if (!$is_premium_user)
+                                                    echo 'disabled'; ?>><?php echo esc_textarea(isset($static_settings['custom_css']) ? $static_settings['custom_css'] : ''); ?></textarea>
+                                            <small class="form-text text-muted">You can add custom CSS rules here.
+                                                Example:
+                                                .my-class { color: red; }</small>
+                                            <?php if (!$is_premium_user): ?>
+                                            <?php endif; ?>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="d-flex justify-content-center align-items-center mt-3">
                                     <?php if (!$is_premium_user): ?>
-                                    <small class="form-text upgrade-message">
-                                        Enhance your experience by <a
-                                            href="https://www.ovationthemes.com/products/ovation-elements-pro"
-                                            target="_blank" rel="noopener noreferrer">upgrading to the Pro version</a>
-                                        to access advanced settings.
-                                    </small>
+                                        <small class="form-text upgrade-message">
+                                            Enhance your experience by <a
+                                                href="https://www.ovationthemes.com/products/ovation-elements-pro"
+                                                target="_blank" rel="noopener noreferrer">upgrading to the Pro
+                                                version</a>
+                                            to access advanced settings.
+                                        </small>
                                     <?php endif; ?>
                                 </div>
 
@@ -582,7 +624,6 @@ $ovation_logo = OVA_ELEMS_URL . 'assets/images/logo.png';
 
                         </div>
                     </div>
-
                     <!-- tab base END  -->
                 </div>
 
