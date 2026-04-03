@@ -3,7 +3,7 @@
  * Plugin Name:       Ovation Elements
  * Plugin URI:        https://www.ovationthemes.com/products/ovation-elements-pro
  * Description:       Transform your site with captivating sliders. Perfect for beginners and advanced users. Create and customize with our ultimate slider plugin.
- * Version:           1.2.3
+ * Version:           1.2.4
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            pewilliams
@@ -25,7 +25,7 @@ define('OVATION_ELEMENTS_URL', plugin_dir_url(__FILE__));
 
 define('OVA_ELEMS_LICENSE_ENDPOINT', 'https://license.ovationthemes.com/api/public/');
 define('OVA_ELEMS_SERVICES_URL', 'https://www.ovationthemes.com/products');
-define('OVA_ELEMS_VER', '1.2.3');
+define('OVA_ELEMS_VER', '1.2.4');
 
 include(plugin_dir_path(__FILE__) . 'includes/admin-settings.php');
 include(plugin_dir_path(__FILE__) . 'includes/slider-shortcode.php');
@@ -290,7 +290,7 @@ function ova_elems_admin_notice_with_html()
             <div class="ova-elems-notice-heading">
                 <h1 class="ova-elems-main-head"><?php echo esc_html('WORDPRESS THEME BUNDLE'); ?></h1>
                 <h4 class="ova-elems-sub-head">
-                    <?php echo esc_html('Access 125+ Gutenberg Block WordPress themes at Just $89'); ?>
+                    <?php echo esc_html('Access 140+ Gutenberg Block WordPress themes at Just $89'); ?>
                 </h4>
             </div>
             <div class="ova-elems-notice-btn">

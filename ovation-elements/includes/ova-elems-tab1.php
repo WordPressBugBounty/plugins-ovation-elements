@@ -53,7 +53,7 @@ wp_enqueue_style('custom-slider-tab-css', OVA_ELEMS_URL . '/assets/css/tab.css',
       <div class="col-lg-7 col-md-7 col-12">
         <div class="bundle-wrapper">
           <h2>WORDPRESS THEME BUNDLE</h2>
-          <p class="bundle-text">Access 125+ Gutenberg Block WordPress themes</p>
+          <p class="bundle-text">Access 140+ Gutenberg Block WordPress themes</p>
           <div class="bundle-image">
             <a href="<?php echo esc_url('https://www.ovationthemes.com/products/wordpress-bundle?via=true-parameter'); ?>"
               target="_blank"><img src="<?php echo esc_url(OVA_ELEMS_URL . 'assets/images/bundle-images.png'); ?>"
