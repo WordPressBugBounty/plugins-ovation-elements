@@ -249,10 +249,11 @@ div#gird-bottom .grid-item p {
 a.button.review-button {
     font: normal normal bold 26px / 40px Segoe UI, Outfit;
     letter-spacing: 0px;
-    color: #0524C5;
+    color: #0524C5 !important;
     padding: 10px 40px;
     border-radius: 5px;
     border: none;
+    background: #fff !important;
 }
 
 .ov-feature-outer .grid-item {

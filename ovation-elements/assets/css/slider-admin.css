@@ -267,8 +267,8 @@ button.btn.btn-primary {
 .ova-elems-buy-btn {
 	background: #2D1DB3;
 	padding: 10px 20px;
-	text-decoration: none;
-	color: #fff;
+	text-decoration: none !important;
+	color: #fff !important;
 	border-radius: 6px;
 	font-size: 18px;
 }

@@ -4,7 +4,7 @@ Tags: image-slider, responsive-slider, slideshow, wordPress-slider, video-slider
 Requires at least: 5.2
 Tested up to: 6.8
 Requires PHP: 7.2
-Stable tag: 1.2.5
+Stable tag: 1.2.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,12 +70,18 @@ Unlock additional templates, advanced animation effects, and premium support by 
 
 Pair your sliders with professionally designed website themes to create a cohesive and visually stunning website. Explore our [Professional WordPress Themes](https://www.ovationthemes.com/collections/professional-wordpress-themes).
 
+**WordPress Theme Bundle** – 140+ Premium Themes for Only $89 Take your website to the next level with our [WordPress Theme Bundle](https://www.ovationthemes.com/products/wordpress-bundle), featuring **140+ professionally designed WordPress themes** for a one-time price of **just $89.00.**
+
 **Access Free WordPress Themes**
 Get started immediately with our collection of [Free WordPress Themes](https://www.ovationthemes.com/collections/free-wordpress-themes), offering modern designs that are easy to customize and fully responsive.
 
 The Ovation Elements WordPress Plugin is your all-in-one solution for creating beautiful, professional, and highly functional sliders. Transform your website today and deliver a visually engaging experience that captivates your visitors and enhances your brand’s online presence.
 
 == Changelog ==
+
+= 1.2.6 - 2026-16-07 =
+* Minor Fixes.
+* Upsell Banner CSS Update.
 
 = 1.2.5 - 2026-22-04 =
 * Upsell Banner update.
