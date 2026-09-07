@@ -2,9 +2,9 @@
 Contributors: pewilliams
 Tags: image-slider, responsive-slider, slideshow, wordPress-slider, video-slider
 Requires at least: 5.2
-Tested up to: 6.8
+Tested up to: 7.1
 Requires PHP: 7.2
-Stable tag: 1.2.6
+Stable tag: 1.2.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -49,7 +49,7 @@ Responsive and SEO-Friendly: Every slider created with Ovation Elements is fully
 Performance and Compatibility: Ovation Elements is designed to work seamlessly with the latest WordPress standards and PHP versions
 
 * **WordPress Version:** 5.2 or higher
-* **Tested Up To:** WordPress 6.6.1
+* **Tested Up To:** WordPress 7.1
 * **PHP Version:** 7.2 or higher
 
 
@@ -78,6 +78,10 @@ Get started immediately with our collection of [Free WordPress Themes](https://w
 The Ovation Elements WordPress Plugin is your all-in-one solution for creating beautiful, professional, and highly functional sliders. Transform your website today and deliver a visually engaging experience that captivates your visitors and enhances your brand’s online presence.
 
 == Changelog ==
+
+= 1.2.7 - 2026-08-28 =
+* Verified compatibility with WordPress 7.1.
+* Readme updated to reflect current WordPress version support.
 
 = 1.2.6 - 2026-16-07 =
 * Minor Fixes.
@@ -165,6 +169,9 @@ The Ovation Elements WordPress Plugin is your all-in-one solution for creating b
 * Initial Public Release
 
 == Upgrade Notice ==
+
+= 1.2.7 =
+* Confirmed compatibility with WordPress 7.1. Recommended update for all users.
 
 = 1.0.0 =
 * Initial release of the Ovation Elements plugin. Install and activate to start creating stunning sliders for your WordPress site.
